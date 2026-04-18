@@ -149,6 +149,7 @@
                     <div class="flex items-center gap-2" title="Puntos de Sabiduría">
                         <i data-lucide="sparkles" class="w-4 h-4 text-cyan-400"></i>
                         <span id="xp-counter" class="font-mono text-cyan-400 font-bold">0 XP</span>
+                        <span id="rank-badge" class="ml-2 bg-slate-800 text-slate-300 text-[10px] uppercase font-bold px-2 py-0.5 rounded border border-slate-600">Iniciado</span>
                     </div>
                     <div class="w-px h-6 bg-slate-700"></div>
                     <div class="flex items-center gap-2" id="relics-container" title="Reliquias Históricas">
@@ -570,6 +571,41 @@
                         </ul>
                     </div>
                 `
+            },
+            {
+                title: "7. El Participio Griego y Adjetivos 3ª Clase", icon: "scroll-text",
+                content: `
+                    <div class="space-y-6 text-sm text-slate-300">
+                        <p>El <strong>Participio</strong> es un adjetivo verbal. Tiene tiempo y voz (como un verbo) pero se declina en caso, género y número (como un adjetivo). Sigue el modelo de los adjetivos de 3ª clase (Mixtos: 3ª declinación para masculino y neutro, 1ª para femenino).</p>
+                        
+                        <h4 class="font-cinzel text-cyan-400 border-b border-slate-700 pb-1 text-lg">Participio de Presente Activo (λύων, λύουσα, λύον)</h4>
+                        <div class="overflow-x-auto">
+                            <table class="premium-table text-xs">
+                                <thead><tr><th>Caso</th><th>Masc (3ª: tema -ντ)</th><th>Fem (1ª: impura)</th><th>Neutro (3ª: tema -ντ)</th></tr></thead>
+                                <tbody>
+                                    <tr><td>N Sg</td><td>λύων</td><td>λύουσ<span class="highlight-des">α</span></td><td>λῦον</td></tr>
+                                    <tr><td>Ac Sg</td><td>λύοντ<span class="highlight-des">α</span></td><td>λύουσ<span class="highlight-des">αν</span></td><td>λῦον</td></tr>
+                                    <tr><td>G Sg</td><td>λύοντ<span class="highlight-des">ος</span></td><td>λυούσ<span class="highlight-des">ης</span></td><td>λύοντ<span class="highlight-des">ος</span></td></tr>
+                                    <tr><td>D Pl</td><td>λύουσι(ν) (οντ+σι)</td><td>λυούσ<span class="highlight-des">αις</span></td><td>λύουσι(ν)</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 class="font-cinzel text-yellow-500 border-b border-slate-700 pb-1 text-lg mt-6">Participio de Aoristo Activo (λύσας, λύσασα, λύσαν)</h4>
+                        <div class="overflow-x-auto">
+                            <table class="premium-table text-xs">
+                                <thead><tr><th>Caso</th><th>Masc (3ª: tema -ντ)</th><th>Fem (1ª: impura)</th><th>Neutro (3ª: tema -ντ)</th></tr></thead>
+                                <tbody>
+                                    <tr><td>N Sg</td><td>λύσας</td><td>λύσασ<span class="highlight-des">α</span></td><td>λῦσαν</td></tr>
+                                    <tr><td>Ac Sg</td><td>λύσαντ<span class="highlight-des">α</span></td><td>λύσασ<span class="highlight-des">αν</span></td><td>λῦσαν</td></tr>
+                                    <tr><td>G Sg</td><td>λύσαντ<span class="highlight-des">ος</span></td><td>λυσάσ<span class="highlight-des">ης</span></td><td>λύσαντ<span class="highlight-des">ος</span></td></tr>
+                                    <tr><td>D Pl</td><td>λύσασι(ν) (αντ+σι)</td><td>λυσάσ<span class="highlight-des">αις</span></td><td>λύσασι(ν)</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="text-xs italic text-slate-400 mt-2 bg-slate-900/50 p-3 rounded border border-slate-700">Nota Premium: Los participios NO llevan aumento, ni siquiera en Aoristo, porque el aumento es exclusivo del modo Indicativo.</p>
+                    </div>
+                `
             }
         ];
 
@@ -595,10 +631,17 @@
                 relicIcon: "coins",
                 translation: "Creso, rey de los lidios, era rico. En su palacio tenía mucho oro y plata. Una vez, Solón, el legislador de los atenienses, fue a Sardes. Creso le muestra toda su riqueza y le pregunta: 'Oh extranjero ateniense, ¿a quién de todos los hombres consideras que es el más feliz?'. Pero Solón no lo adula, sino que dice: 'Es necesario observar el final de todo asunto; pues a muchos el dios, tras mostrarles la felicidad, los ha arruinado de raíz'.",
                 analysis: [
-                    { word: "Κροῖσος", type: "Sustantivo", morph: "Nom. Sg. Masc.", lemma: "Κροῖσος, -ου (ὁ)" },
-                    { word: "ἦν", type: "Verbo", morph: "Imperf. Ind. Activo (3ª Sg)", lemma: "εἰμί" },
-                    { word: "ὀλβιώτατον", type: "Adjetivo (Superl.)", morph: "Acus. Sg. Masc.", lemma: "ὄλβιος, -α, -ον" },
-                    { word: "τίνα", type: "Pronombre", morph: "Acus. Sg. Masc.", lemma: "τίς, τί" }
+                    { word: "ὁ", type: "Artículo", morph: "Nom. Sg. Masc.", lemma: "ὁ, ἡ, τό" },
+                    { word: "μὲν", type: "Partícula", morph: "Invariable", lemma: "μὲν ... δὲ (por un lado...)" },
+                    { word: "Κροῖσος", type: "Sustantivo", morph: "Nom. Sg. Masc. (Sujeto)", lemma: "Κροῖσος, -ου (ὁ)" },
+                    { word: "τῶν", type: "Artículo", morph: "Gen. Pl. Masc.", lemma: "ὁ, ἡ, τό" },
+                    { word: "Λυδῶν", type: "Sustantivo", morph: "Gen. Pl. Masc. (C.Nombre)", lemma: "Λυδός, -οῦ (ὁ)" },
+                    { word: "βασιλεύς", type: "Sustantivo", morph: "Nom. Sg. Masc. (Aposición)", lemma: "βασιλεύς, -έως (ὁ)" },
+                    { word: "ἦν", type: "Verbo Copulativo", morph: "Imperf. Ind. Activo (3ª Sg)", lemma: "εἰμί" },
+                    { word: "πλούσιος", type: "Adjetivo", morph: "Nom. Sg. Masc. (Atributo)", lemma: "πλούσιος, -α, -ον" },
+                    // Aquí puedes seguir añadiendo líneas siguiendo exactamente este mismo patrón para el resto del texto:
+                    // { word: "ἐν", type: "Preposición", morph: "Rige Dativo (Lugar en donde)", lemma: "ἐν" },
+                    // { word: "τοῖς", type: "Artículo", morph: "Dat. Pl. Neutro", lemma: "ὁ, ἡ, τό" },
                 ],
                 tasks: [
                     {
@@ -949,9 +992,29 @@
         function addXP(amount) {
             totalXP += amount;
             const counter = document.getElementById('xp-counter');
+            const rankBadge = document.getElementById('rank-badge');
+            
             counter.innerText = `${totalXP} XP`;
             counter.classList.add('text-yellow-400', 'scale-110');
             setTimeout(() => counter.classList.remove('text-yellow-400', 'scale-110'), 300);
+
+            // Sistema Premium de Rangos
+            let newRank = "Iniciado";
+            let rankColor = "text-slate-300 border-slate-600 bg-slate-800";
+            
+            if (totalXP >= 750) {
+                newRank = "Oráculo de Delfos";
+                rankColor = "text-yellow-900 border-yellow-400 bg-yellow-400";
+            } else if (totalXP >= 500) {
+                newRank = "Aedo Homérico";
+                rankColor = "text-purple-100 border-purple-500 bg-purple-900";
+            } else if (totalXP >= 250) {
+                newRank = "Discípulo Ático";
+                rankColor = "text-cyan-100 border-cyan-500 bg-cyan-900";
+            }
+            
+            rankBadge.innerText = newRank;
+            rankBadge.className = `ml-2 text-[10px] uppercase font-bold px-2 py-0.5 rounded border transition-colors ${rankColor}`;
         }
 
         function unlockRelic(stageIndex) {
