@@ -172,6 +172,10 @@
                     <i data-lucide="type" class="w-5 h-5 text-emerald-400 group-hover:scale-110 transition-transform"></i>
                     <span class="font-cinzel font-bold tracking-wider hidden sm:inline text-emerald-100 group-hover:text-emerald-300 transition-colors">ROSETTA</span>
                 </button>
+                <button onclick="openTorchModal()" class="group flex items-center gap-3 bg-gradient-to-r from-red-950 to-slate-900 hover:from-red-900 hover:to-slate-800 border border-red-600/50 px-5 py-2.5 rounded-xl transition-all shadow-[0_0_15px_rgba(220,38,38,0.2)] hover:shadow-red-500/40">
+                    <i data-lucide="flame" class="w-5 h-5 text-red-400 group-hover:animate-pulse"></i>
+                    <span class="font-cinzel font-bold tracking-wider hidden sm:inline text-red-100 group-hover:text-red-300 transition-colors">EL PAPIRO</span>
+                </button>
                 <button onclick="toggleCodex()" class="group flex items-center gap-3 bg-gradient-to-r from-slate-800 to-slate-900 hover:from-yellow-900/40 hover:to-slate-800 border border-yellow-600/30 px-5 py-2.5 rounded-xl transition-all shadow-lg hover:shadow-yellow-900/50">
                     <i data-lucide="library" class="w-5 h-5 text-yellow-500 group-hover:scale-110 transition-transform"></i>
                     <span class="font-cinzel font-bold tracking-wider hidden sm:inline text-yellow-100 group-hover:text-yellow-400 transition-colors">ABRIR CÓDICE</span>
@@ -428,6 +432,28 @@
                 </div>
             </div>
         </div>
+          <div id="torch-modal" class="fixed inset-0 bg-black z-[140] hidden flex items-center justify-center opacity-0 transition-opacity duration-700" onmousemove="updateTorch(event)" ontouchmove="updateTorch(event)">
+            
+            <button onclick="closeTorchModal()" class="absolute top-6 right-6 text-red-500/50 hover:text-red-400 transition-colors z-50">
+                <i data-lucide="x-circle" class="w-10 h-10"></i>
+            </button>
+
+            <div id="hidden-papyrus" class="absolute inset-0 flex flex-col items-center justify-center bg-[url('https://www.transparenttextures.com/patterns/aged-paper.png')] bg-[#1a1512]" style="-webkit-mask-image: radial-gradient(circle 0px at 50% 50%, black 10%, transparent 100%); mask-image: radial-gradient(circle 0px at 50% 50%, black 10%, transparent 100%);">
+                
+                <i data-lucide="flame" class="w-16 h-16 text-red-600/80 mb-8 animate-pulse"></i>
+                <h2 class="text-4xl md:text-6xl font-serif font-black text-amber-600/90 mb-6 tracking-widest text-center drop-shadow-md">ΓΝΩΘΙ ΣΕΑΥΤΟΝ</h2>
+                <p class="text-2xl font-cinzel text-red-800/80 font-bold tracking-widest border-t border-b border-red-800/30 py-4 px-12 text-center">
+                    "Conócete a ti mismo"
+                </p>
+                <p class="mt-8 text-amber-900/60 font-body text-lg md:text-xl italic max-w-2xl text-center leading-relaxed px-4">
+                    Máxima inscrita en el pronaos del Templo de Apolo en Delfos. <br><br>La verdadera sabiduría no reside en las enormes riquezas de Creso, sino en comprender los límites de tu propia humanidad ante los dioses.
+                </p>
+            </div>
+
+            <div id="torch-instruction" class="absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-1000">
+                <p class="font-cinzel text-slate-600 text-lg tracking-widest animate-pulse">Mueve la antorcha para revelar el secreto en la oscuridad...</p>
+            </div>
+        </div>  
     </main>
 
     <script>
@@ -1566,6 +1592,54 @@
             }
             
             outputEl.innerText = result;
+        }
+// --- Función Premium Exclusiva: El Papiro de Prometeo (Linterna) ---
+        function openTorchModal() {
+            const modal = document.getElementById('torch-modal');
+            const papyrus = document.getElementById('hidden-papyrus');
+            const instruction = document.getElementById('torch-instruction');
+            
+            papyrus.style.webkitMaskImage = `radial-gradient(circle 0px at 50% 50%, black 10%, transparent 100%)`;
+            papyrus.style.maskImage = `radial-gradient(circle 0px at 50% 50%, black 10%, transparent 100%)`;
+            instruction.style.opacity = '1';
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+            lucide.createIcons();
+
+            if (!localStorage.getItem('torch_used')) {
+                addXP(50);
+                localStorage.setItem('torch_used', 'true');
+            }
+        }
+
+        function closeTorchModal() {
+            const modal = document.getElementById('torch-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 700);
+        }
+
+        function updateTorch(e) {
+            const papyrus = document.getElementById('hidden-papyrus');
+            const instruction = document.getElementById('torch-instruction');
+            
+            if (instruction && instruction.style.opacity !== '0') {
+                instruction.style.opacity = '0';
+            }
+
+            let x = e.clientX;
+            let y = e.clientY;
+            
+            if (e.touches && e.touches.length > 0) {
+                x = e.touches[0].clientX;
+                y = e.touches[0].clientY;
+            }
+
+            const gradient = `radial-gradient(circle 250px at ${x}px ${y}px, black 30%, transparent 100%)`;
+            papyrus.style.webkitMaskImage = gradient;
+            papyrus.style.maskImage = gradient;
         }
         
         window.onload = init;
