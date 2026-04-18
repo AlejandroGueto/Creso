@@ -386,16 +386,6 @@
             <i data-lucide="edit-3" class="w-6 h-6 group-hover:rotate-12 transition-transform"></i>
         </button>
         ```
-
----
-
-### PASO 2: El JavaScript (La memoria del navegador)
-Ahora vamos a decirle al navegador que guarde cada letra que el alumno escriba.
-
-1. Busca (con `Ctrl + F`) la línea donde inicializas todo: **`window.onload = init;`** (al final del código).
-2. Pega estas tres funciones cortitas **justo encima** de esa línea:
-
-```javascript
         // --- Función Premium: Tablilla de Cera (LocalStorage) ---
         function toggleNotepad() {
             const panel = document.getElementById('notepad-panel');
