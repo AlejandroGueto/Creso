@@ -171,6 +171,15 @@
                     <i data-lucide="globe-2" class="w-5 h-5 text-cyan-400 group-hover:animate-[spin_3s_linear_infinite]"></i>
                     <span class="font-cinzel font-bold tracking-wider hidden sm:inline text-cyan-100 group-hover:text-cyan-300 transition-colors">VER MAPA</span>
                 </button>
+                <button onclick="openMapModal()" class="group flex items-center gap-3 bg-gradient-to-r from-cyan-950 to-slate-900 hover:from-cyan-900 hover:to-slate-800 border border-cyan-600/50 px-5 py-2.5 rounded-xl transition-all shadow-[0_0_15px_rgba(8,145,178,0.2)] hover:shadow-cyan-500/40">
+                    <i data-lucide="globe-2" class="w-5 h-5 text-cyan-400 group-hover:animate-[spin_3s_linear_infinite]"></i>
+                    <span class="font-cinzel font-bold tracking-wider hidden sm:inline text-cyan-100 group-hover:text-cyan-300 transition-colors">VER MAPA</span>
+                </button>
+
+                <button onclick="openMintModal()" class="group flex items-center gap-3 bg-gradient-to-r from-orange-950 to-slate-900 hover:from-orange-900 hover:to-slate-800 border border-orange-600/50 px-5 py-2.5 rounded-xl transition-all shadow-[0_0_15px_rgba(249,115,22,0.2)] hover:shadow-orange-500/40">
+                    <i data-lucide="hammer" class="w-5 h-5 text-orange-400 group-hover:-rotate-45 transition-transform"></i>
+                    <span class="font-cinzel font-bold tracking-wider hidden sm:inline text-orange-100 group-hover:text-orange-300 transition-colors">LA CECA</span>
+                </button>
                 <button onclick="toggleCodex()" class="group flex items-center gap-3 bg-gradient-to-r from-slate-800 to-slate-900 hover:from-yellow-900/40 hover:to-slate-800 border border-yellow-600/30 px-5 py-2.5 rounded-xl transition-all shadow-lg hover:shadow-yellow-900/50">
                     <i data-lucide="library" class="w-5 h-5 text-yellow-500 group-hover:scale-110 transition-transform"></i>
                     <span class="font-cinzel font-bold tracking-wider hidden sm:inline text-yellow-100 group-hover:text-yellow-400 transition-colors">ABRIR CÓDICE</span>
@@ -337,6 +346,39 @@
                 
                 <div id="ancient-map" class="flex-grow w-full rounded-b-xl z-0 bg-[#e5e5f7]"></div>
                 
+            </div>
+        </div>
+        <div id="mint-modal" class="fixed inset-0 bg-black/95 backdrop-blur-lg z-[130] hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-500">
+            <div class="bg-gradient-to-b from-slate-900 to-orange-950/40 border-2 border-orange-500/50 rounded-3xl w-full max-w-2xl shadow-[0_0_60px_rgba(249,115,22,0.2)] p-8 relative text-center transform scale-95 transition-transform duration-500 z-10 overflow-hidden">
+                
+                <div id="forge-flash" class="absolute inset-0 bg-orange-500 opacity-0 pointer-events-none transition-opacity duration-200"></div>
+
+                <button onclick="closeMintModal()" class="absolute top-4 right-4 text-orange-400/50 hover:text-orange-300 transition-colors z-20">
+                    <i data-lucide="x" class="w-8 h-8"></i>
+                </button>
+
+                <div class="relative z-10">
+                    <div class="flex justify-center items-center gap-4 mb-2">
+                        <i data-lucide="anvil" class="w-10 h-10 text-orange-500 drop-shadow-md"></i>
+                        <h2 class="text-3xl font-cinzel font-black text-orange-300 drop-shadow-lg">LA CECA DE SARDES</h2>
+                    </div>
+                    <p class="text-orange-200/60 font-mono text-sm uppercase tracking-widest mb-6">Acuña monedas dominando la Etimología</p>
+
+                    <div class="inline-block bg-slate-950 border border-orange-600/50 rounded-full px-6 py-2 mb-8 shadow-inner">
+                        <span class="font-cinzel font-bold text-orange-400">Tus Creseidas Acuñadas: <span id="mint-score" class="text-2xl text-yellow-400">0</span></span>
+                    </div>
+
+                    <div id="mint-game-area" class="space-y-6">
+                        <p class="text-slate-300 font-body text-lg">¿Qué palabra castellana deriva de la siguiente raíz griega?</p>
+                        <div class="bg-slate-800/80 border border-slate-600 rounded-xl p-6 mb-6">
+                            <span id="greek-root-word" class="text-4xl font-serif font-bold text-yellow-400 tracking-wider">χρυσός</span>
+                            <p id="greek-root-meaning" class="text-slate-400 font-mono text-sm mt-2">(oro)</p>
+                        </div>
+                        
+                        <div id="mint-options" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -1108,6 +1150,95 @@
             setTimeout(() => modal.classList.add('hidden'), 300);
         }
         // Initialize App
+        // --- Función Premium: La Ceca Real de Sardes (Etimología) ---
+        const ETYMOLOGY_DATA = [
+            { greek: "χρυσός", meaning: "(oro)", options: ["Crisantemo", "Cromático", "Cristal"], correct: 0 },
+            { greek: "χρόνος", meaning: "(tiempo)", options: ["Cromosoma", "Coro", "Cronómetro"], correct: 2 },
+            { greek: "φίλος", meaning: "(amigo / el que ama)", options: ["Filiación", "Filántropo", "Fobia"], correct: 1 },
+            { greek: "πόλεμος", meaning: "(guerra)", options: ["Policía", "Política", "Polémica"], correct: 2 },
+            { greek: "πῦρ, πυρός", meaning: "(fuego)", options: ["Pirómano", "Piraña", "Pirámide"], correct: 0 },
+            { greek: "θεός", meaning: "(dios)", options: ["Teorema", "Ateo", "Teatro"], correct: 1 },
+            { word: "ἄνθρωπος", meaning: "(hombre / ser humano)", options: ["Antropología", "Antítesis", "Araña"], correct: 0 }
+        ];
+
+        let currentMintIndex = 0;
+        let mintedCoins = 0;
+        let shuffledEtymology = [];
+
+        function openMintModal() {
+            const modal = document.getElementById('mint-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('div').classList.remove('scale-95');
+            }, 10);
+            
+            // Barajar las preguntas cada vez que se abre
+            shuffledEtymology = [...ETYMOLOGY_DATA].sort(() => Math.random() - 0.5);
+            currentMintIndex = 0;
+            loadMintQuestion();
+            lucide.createIcons();
+        }
+
+        function closeMintModal() {
+            const modal = document.getElementById('mint-modal');
+            modal.classList.add('opacity-0');
+            modal.querySelector('div').classList.add('scale-95');
+            setTimeout(() => modal.classList.add('hidden'), 500);
+        }
+
+        function loadMintQuestion() {
+            if (currentMintIndex >= shuffledEtymology.length) {
+                currentMintIndex = 0; // Volver a empezar si las hacen todas
+            }
+
+            const question = shuffledEtymology[currentMintIndex];
+            // En algunos objetos usamos 'greek' y en otros 'word' por error tipográfico, lo unificamos al leer:
+            const greekWord = question.greek || question.word; 
+            
+            document.getElementById('greek-root-word').innerText = greekWord;
+            document.getElementById('greek-root-meaning').innerText = question.meaning;
+
+            const optionsContainer = document.getElementById('mint-options');
+            optionsContainer.innerHTML = '';
+
+            question.options.forEach((opt, index) => {
+                optionsContainer.innerHTML += `
+                    <button onclick="checkMintAnswer(${index}, ${question.correct})" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 hover:border-orange-500 text-slate-200 font-bold py-3 px-4 rounded-xl transition-all shadow-sm">
+                        ${opt}
+                    </button>
+                `;
+            });
+        }
+
+        function checkMintAnswer(selectedIndex, correctIndex) {
+            if (selectedIndex === correctIndex) {
+                // ACIERTO: Efecto de martillazo (Forja)
+                const flash = document.getElementById('forge-flash');
+                flash.style.opacity = '0.5';
+                setTimeout(() => flash.style.opacity = '0', 150);
+
+                mintedCoins++;
+                document.getElementById('mint-score').innerText = mintedCoins;
+                
+                // Dar un poco de XP también
+                addXP(10);
+                
+                // Cargar siguiente tras el destello
+                currentMintIndex++;
+                setTimeout(loadMintQuestion, 300);
+            } else {
+                // FALLO: Temblor rojo
+                const modalBox = document.querySelector('#mint-modal > div');
+                modalBox.style.borderColor = '#e11d48'; // rojo
+                modalBox.animate([
+                    { transform: 'translateX(0) scale(1)' }, { transform: 'translateX(-10px) scale(1)' },
+                    { transform: 'translateX(10px) scale(1)' }, { transform: 'translateX(0) scale(1)' }
+                ], { duration: 300 });
+                
+                setTimeout(() => modalBox.style.borderColor = 'rgba(249,115,22,0.5)', 300);
+            }
+        }
         window.onload = init;
 
     </script>
