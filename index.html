@@ -133,7 +133,7 @@
 <body class="min-h-screen flex flex-col">
 
     <!-- HEADER / NAVBAR -->
-    <header class="glass-panel sticky top-0 z-50 border-b border-yellow-900/50">
+   <header class="glass-panel sticky top-0 z-50 border-b border-yellow-900/50">
         <div class="max-w-screen-2xl mx-auto px-4 lg:px-8 py-3 flex justify-between items-center">
             <div class="flex items-center gap-4">
                 <div class="bg-gradient-to-br from-yellow-600 to-yellow-900 p-2 rounded-lg border border-yellow-500/30 shadow-lg">
@@ -146,15 +146,6 @@
             </div>
             
             <div class="flex items-center gap-4 md:gap-8">
-                <!-- Inventario / Stats -->
-                <div class="hidden lg:flex items-center gap-6 bg-slate-900/80 px-5 py-2 rounded-full border border-slate-700">
-                    <div class="flex items-center gap-2" title="Puntos de Sabiduría">
-                        <i data-lucide="sparkles" class="w-4 h-4 text-cyan-400"></i>
-                        <span id="xp-counter" class="font-mono text-cyan-400 font-bold">0 XP</span>
-                        <span id="rank-badge" class="ml-2 bg-slate-800 text-slate-300 text-[10px] uppercase font-bold px-2 py-0.5 rounded border border-slate-600">Iniciado</span>
-                    </div>
-                    <div class="w-px h-6 bg-slate-700"></div>
-                    <div class="flex items-center gap-4 md:gap-8">
                 <div class="hidden lg:flex items-center gap-6 bg-slate-900/80 px-5 py-2 rounded-full border border-slate-700">
                     <div class="flex items-center gap-2" title="Puntos de Sabiduría">
                         <i data-lucide="sparkles" class="w-4 h-4 text-cyan-400"></i>
@@ -164,13 +155,9 @@
                     <div class="w-px h-6 bg-slate-700"></div>
                     <div class="flex items-center gap-2" id="relics-container" title="Reliquias Históricas">
                         <span class="text-xs text-slate-500 uppercase font-cinzel font-bold">Reliquias:</span>
-                        </div>
+                    </div>
                 </div>
                 
-                <button onclick="openMapModal()" class="group flex items-center gap-3 bg-gradient-to-r from-cyan-950 to-slate-900 hover:from-cyan-900 hover:to-slate-800 border border-cyan-600/50 px-5 py-2.5 rounded-xl transition-all shadow-[0_0_15px_rgba(8,145,178,0.2)] hover:shadow-cyan-500/40">
-                    <i data-lucide="globe-2" class="w-5 h-5 text-cyan-400 group-hover:animate-[spin_3s_linear_infinite]"></i>
-                    <span class="font-cinzel font-bold tracking-wider hidden sm:inline text-cyan-100 group-hover:text-cyan-300 transition-colors">VER MAPA</span>
-                </button>
                 <button onclick="openMapModal()" class="group flex items-center gap-3 bg-gradient-to-r from-cyan-950 to-slate-900 hover:from-cyan-900 hover:to-slate-800 border border-cyan-600/50 px-5 py-2.5 rounded-xl transition-all shadow-[0_0_15px_rgba(8,145,178,0.2)] hover:shadow-cyan-500/40">
                     <i data-lucide="globe-2" class="w-5 h-5 text-cyan-400 group-hover:animate-[spin_3s_linear_infinite]"></i>
                     <span class="font-cinzel font-bold tracking-wider hidden sm:inline text-cyan-100 group-hover:text-cyan-300 transition-colors">VER MAPA</span>
@@ -180,12 +167,12 @@
                     <i data-lucide="hammer" class="w-5 h-5 text-orange-400 group-hover:-rotate-45 transition-transform"></i>
                     <span class="font-cinzel font-bold tracking-wider hidden sm:inline text-orange-100 group-hover:text-orange-300 transition-colors">LA CECA</span>
                 </button>
+
                 <button onclick="toggleCodex()" class="group flex items-center gap-3 bg-gradient-to-r from-slate-800 to-slate-900 hover:from-yellow-900/40 hover:to-slate-800 border border-yellow-600/30 px-5 py-2.5 rounded-xl transition-all shadow-lg hover:shadow-yellow-900/50">
                     <i data-lucide="library" class="w-5 h-5 text-yellow-500 group-hover:scale-110 transition-transform"></i>
                     <span class="font-cinzel font-bold tracking-wider hidden sm:inline text-yellow-100 group-hover:text-yellow-400 transition-colors">ABRIR CÓDICE</span>
                 </button>
             </div>
-                    
         </div>
     </header>
 
@@ -733,10 +720,7 @@
                     { word: "Λυδῶν", type: "Sustantivo", morph: "Gen. Pl. Masc. (C.Nombre)", lemma: "Λυδός, -οῦ (ὁ)" },
                     { word: "βασιλεύς", type: "Sustantivo", morph: "Nom. Sg. Masc. (Aposición)", lemma: "βασιλεύς, -έως (ὁ)" },
                     { word: "ἦν", type: "Verbo Copulativo", morph: "Imperf. Ind. Activo (3ª Sg)", lemma: "εἰμί" },
-                    { word: "πλούσιος", type: "Adjetivo", morph: "Nom. Sg. Masc. (Atributo)", lemma: "πλούσιος, -α, -ον" },
-                    // Aquí puedes seguir añadiendo líneas siguiendo exactamente este mismo patrón para el resto del texto:
-                    // { word: "ἐν", type: "Preposición", morph: "Rige Dativo (Lugar en donde)", lemma: "ἐν" },
-                    // { word: "τοῖς", type: "Artículo", morph: "Dat. Pl. Neutro", lemma: "ὁ, ἡ, τό" },
+                    { word: "πλούσιος", type: "Adjetivo", morph: "Nom. Sg. Masc. (Atributo)", lemma: "πλούσιος, -α, -ον" }
                 ],
                 tasks: [
                     {
@@ -764,16 +748,6 @@
                             { text: "Pronombre Interrogativo (quién/qué).", isCorrect: true },
                         ],
                         hint: "Tomo Gramatical, sección 4: la regla del acento tónico constante."
-                    },
-                    {
-                        type: "select",
-                        question: "Contexto Cultural: Creso basa su felicidad en su riqueza, creyéndose intocable. ¿Qué concepto griego está violando?",
-                        options: [
-                            { text: "La Híbris (Arrogancia desmesurada).", isCorrect: true },
-                            { text: "La Xenía (Hospitalidad sagrada).", isCorrect: false },
-                            { text: "El Nóstos (Regreso a casa).", isCorrect: false },
-                        ],
-                        hint: "Tomo Cultural: Revisa la definición de orgullo desmesurado que atrae a la Némesis."
                     }
                 ]
             },
@@ -823,16 +797,6 @@
                             { text: "Pronombre Demostrativo.", isCorrect: true }
                         ],
                         hint: "Tomo Gramatical, sección 4."
-                    },
-                    {
-                        type: "select",
-                        question: "Los verbos <strong class='text-yellow-400'>πολεμεῖν</strong> y <strong class='text-yellow-400'>νικᾶν</strong> son infinitivos que sufren contracciones (-εω y -αω). ¿Por qué πολεμέ-εν se convierte en πολεμεῖν?",
-                        options: [
-                            { text: "Porque la 3ª declinación añade -ν.", isCorrect: false },
-                            { text: "Porque las vocales ε + ε se contraen en el diptongo ει.", isCorrect: true },
-                            { text: "Porque es un aoristo sigmático irregular.", isCorrect: false }
-                        ],
-                        hint: "Tomo Gramatical, sección 5 (Verbos Contractos)."
                     }
                 ]
             },
@@ -882,25 +846,10 @@
                         question: "Identifica en el texto un sustantivo femenino de la 1ª Declinación (α pura) en caso Genitivo Singular, dependiente de la preposición ἐπί. Significa 'pira/fuego'. Escríbelo en griego.",
                         correctAnswers: ["πυρας", "πυρᾶς"],
                         hint: "Empieza por 'π' y termina en 'ς'. Está en la segunda oración larga."
-                    },
-                    {
-                        type: "select",
-                        question: "El verbo final <strong class='text-yellow-400'>ἐγένετο</strong> ('llegó a ser / se convirtió') es fundamental en griego. ¿Cuál es su verbo en presente?",
-                        options: [
-                            { text: "γίγνομαι", isCorrect: true },
-                            { text: "γράφω", isCorrect: false },
-                            { text: "ἔρχομαι", isCorrect: false }
-                        ],
-                        hint: "Tomo Gramatical, sección 6 (Aoristo Radical). Es un verbo deponente muy común."
                     }
                 ]
             }
         ];
-
-        // ==========================================
-        // LÓGICA Y ESTADO DE LA APLICACIÓN
-        // ==========================================
-        let currentStage = 0;
         let tasksState = [];
         let totalXP = 0;
         let unlockedRelics = [];
@@ -1239,11 +1188,7 @@
                 setTimeout(() => modalBox.style.borderColor = 'rgba(249,115,22,0.5)', 300);
             }
         }
-        window.onload = init;
-
-    </script>
-</body>
-</html>
+        
         // --- Funciones Premium: XP y Reliquias ---
         function addXP(amount) {
             totalXP += amount;
