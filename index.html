@@ -1046,6 +1046,7 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
         }
 
         // --- Manejo del Códice Móvil/Desktop ---
+        // --- Manejo del Códice Móvil/Desktop ---
         function toggleCodex() {
             const sidebar = document.getElementById('codex-sidebar');
             const overlay = document.getElementById('mobile-overlay');
@@ -1054,13 +1055,11 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
                 sidebar.classList.remove('hidden');
                 sidebar.classList.add('fixed', 'inset-y-0', 'right-0', 'w-[95vw]', 'md:w-[80vw]', 'z-[60]', 'm-2', 'md:m-4');
                 overlay.classList.remove('hidden');
+                sayCroesus("Mi biblioteca personal. Aquí Solón me enseñó que la fortuna es más volátil que el humo.");
             } else {
                 sidebar.classList.add('hidden');
                 sidebar.classList.remove('fixed', 'inset-y-0', 'right-0', 'w-[95vw]', 'md:w-[80vw]', 'z-[60]', 'm-2', 'md:m-4');
                 overlay.classList.add('hidden');
-                const panel = document.getElementById('codex-panel');
-    if (panel.classList.contains('translate-x-full')) { 
-        sayCroesus("Mi biblioteca personal. Aquí Solón me enseñó que la fortuna es más volátil que el humo.");
             }
         }
 
@@ -1081,7 +1080,6 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             document.getElementById('narrative-text').innerHTML = stage.narrative;
             document.getElementById('greek-text').innerHTML = stage.greekText;
             
-            // Generar Tareas
             const tasksContainer = document.getElementById('tasks-container');
             tasksContainer.innerHTML = '';
             tasksState = new Array(stage.tasks.length).fill(false);
@@ -1126,22 +1124,20 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             updateProgress();
             lucide.createIcons();
             
-            // Pequeña animación de entrada
             document.getElementById('game-container').animate([
                 { opacity: 0, transform: 'translateY(20px)' },
                 { opacity: 1, transform: 'translateY(0)' }
             ], { duration: 600, easing: 'ease-out' });
         }
-// --- Modal de Traducción y Análisis ---
+
+        // --- Modal de Traducción y Análisis ---
         function openTranslationModal() {
             const modal = document.getElementById('translation-modal');
             const modalContent = document.getElementById('translation-modal-content');
             const stage = STAGES[currentStage];
 
-            // Rellenar traducción
             document.getElementById('modal-translation-text').innerHTML = stage.translation;
 
-            // Rellenar tabla de análisis
             const tbody = document.getElementById('modal-analysis-body');
             tbody.innerHTML = '';
             stage.analysis.forEach(item => {
@@ -1155,13 +1151,12 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
                 `;
             });
 
-            // Mostrar modal con animación
             modal.classList.remove('hidden');
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 modalContent.classList.remove('scale-95');
             }, 10);
-            document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
+            document.body.style.overflow = 'hidden'; 
             lucide.createIcons();
         }
 
@@ -1177,6 +1172,7 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
                 document.body.style.overflow = '';
             }, 300);
         }
+
         // --- Función Premium: Secretos del Códice ---
         function openLoreModal(title, text) {
             const modal = document.getElementById('lore-modal');
@@ -1184,7 +1180,7 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             const textEl = document.getElementById('lore-text');
             
             titleEl.innerText = title;
-            textEl.innerHTML = text; // Usamos innerHTML por si queremos meter negritas en el secreto
+            textEl.innerHTML = text; 
             
             modal.classList.remove('hidden');
             setTimeout(() => {
@@ -1200,7 +1196,8 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             modal.querySelector('div').classList.add('scale-95');
             setTimeout(() => modal.classList.add('hidden'), 300);
         }
-        // --- Función Premium: Mapa Interactivo (Leaflet) ---
+
+        // --- Función Premium: Mapa Interactivo ---
         let ancientMap = null; 
 
         function openMapModal() {
@@ -1213,11 +1210,9 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
                 
                 if (!ancientMap) {
                     ancientMap = L.map('ancient-map').setView([38.8, 26.5], 6);
-
                     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
                         attribution: '&copy; OpenStreetMap contributors',
-                        maxZoom: 10,
-                        minZoom: 5
+                        maxZoom: 10, minZoom: 5
                     }).addTo(ancientMap);
 
                     L.marker([38.48, 28.03]).addTo(ancientMap)
@@ -1230,13 +1225,11 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
                     L.marker([39.75, 33.38]).addTo(ancientMap)
                         .bindPopup('<strong style="color:#9f1239;font-family:\'Cinzel\',serif;font-size:1.2em;">Río Halys</strong><br>La frontera natural entre Lidia y el Imperio Persa. <em>"Si cruzas el río..."</em>');
                 }
-                
                 ancientMap.invalidateSize();
                 lucide.createIcons();
-                
             }, 50);
-        sayCroesus("Contempla mi imperio. Desde las costas de Jonia hasta el corazón de Lidia, todo brilla bajo mi mando.");
-}
+            sayCroesus("Contempla mi imperio. Desde las costas de Jonia hasta el corazón de Lidia, todo brilla bajo mi mando.");
+        }
 
         function closeMapModal() {
             const modal = document.getElementById('map-modal');
@@ -1244,8 +1237,8 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             modal.querySelector('div').classList.add('scale-95');
             setTimeout(() => modal.classList.add('hidden'), 300);
         }
-        // Initialize App
-        // --- Función Premium: La Ceca Real de Sardes (Etimología) ---
+
+        // --- Función Premium: La Ceca Real ---
         const ETYMOLOGY_DATA = [
             { greek: "χρυσός", meaning: "(oro)", options: ["Crisantemo", "Cromático", "Cristal"], correct: 0 },
             { greek: "χρόνος", meaning: "(tiempo)", options: ["Cromosoma", "Coro", "Cronómetro"], correct: 2 },
@@ -1268,7 +1261,6 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
                 modal.querySelector('div').classList.remove('scale-95');
             }, 10);
             
-            // Barajar las preguntas cada vez que se abre
             shuffledEtymology = [...ETYMOLOGY_DATA].sort(() => Math.random() - 0.5);
             currentMintIndex = 0;
             loadMintQuestion();
@@ -1285,11 +1277,10 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
 
         function loadMintQuestion() {
             if (currentMintIndex >= shuffledEtymology.length) {
-                currentMintIndex = 0; // Volver a empezar si las hacen todas
+                currentMintIndex = 0;
             }
 
             const question = shuffledEtymology[currentMintIndex];
-            // En algunos objetos usamos 'greek' y en otros 'word' por error tipográfico, lo unificamos al leer:
             const greekWord = question.greek || question.word; 
             
             document.getElementById('greek-root-word').innerText = greekWord;
@@ -1309,24 +1300,19 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
 
         function checkMintAnswer(selectedIndex, correctIndex) {
             if (selectedIndex === correctIndex) {
-                // ACIERTO: Efecto de martillazo (Forja)
                 const flash = document.getElementById('forge-flash');
                 flash.style.opacity = '0.5';
                 setTimeout(() => flash.style.opacity = '0', 150);
 
                 mintedCoins++;
                 document.getElementById('mint-score').innerText = mintedCoins;
-                
-                // Dar un poco de XP también
                 addXP(10);
                 
-                // Cargar siguiente tras el destello
                 currentMintIndex++;
                 setTimeout(loadMintQuestion, 300);
             } else {
-                // FALLO: Temblor rojo
                 const modalBox = document.querySelector('#mint-modal > div');
-                modalBox.style.borderColor = '#e11d48'; // rojo
+                modalBox.style.borderColor = '#e11d48'; 
                 modalBox.animate([
                     { transform: 'translateX(0) scale(1)' }, { transform: 'translateX(-10px) scale(1)' },
                     { transform: 'translateX(10px) scale(1)' }, { transform: 'translateX(0) scale(1)' }
@@ -1346,7 +1332,6 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             counter.classList.add('text-yellow-400', 'scale-110');
             setTimeout(() => counter.classList.remove('text-yellow-400', 'scale-110'), 300);
 
-            // Sistema Premium de Rangos
             let newRank = "Iniciado";
             let rankColor = "text-slate-300 border-slate-600 bg-slate-800";
             
@@ -1359,12 +1344,11 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             } else if (totalXP >= 250) {
                 newRank = "Discípulo Ático";
                 rankColor = "text-cyan-100 border-cyan-500 bg-cyan-900";
-    sayCroesus("¡Magnífico! Tu intelecto brilla como un lingote recién fundido. ¡Sigue así!");
-}
             }
             
             rankBadge.innerText = newRank;
             rankBadge.className = `ml-2 text-[10px] uppercase font-bold px-2 py-0.5 rounded border transition-colors ${rankColor}`;
+            sayCroesus("¡Magnífico! Tu intelecto brilla como un lingote recién fundido. ¡Sigue así!");
         }
 
         function unlockRelic(stageIndex) {
@@ -1385,7 +1369,7 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
         // --- Validación de Retos ---
         function markTaskCorrect(tIndex) {
             tasksState[tIndex] = true;
-            addXP(250); // XP Reward
+            addXP(250);
 
             const card = document.getElementById(`task-card-${tIndex}`);
             card.classList.add('task-success');
@@ -1405,7 +1389,6 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             feedback.className = "mt-4 text-sm font-bold text-rose-500 block flex items-center gap-2";
             feedback.innerHTML = `<i data-lucide="alert-triangle" class="w-5 h-5"></i> ` + feedback.innerHTML;
             
-            // Shake animation
             const card = document.getElementById(`task-card-${tIndex}`);
             card.animate([
                 { transform: 'translateX(0)' }, { transform: 'translateX(-10px)' },
@@ -1414,6 +1397,7 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             ], { duration: 400 });
             
             lucide.createIcons();
+            sayCroesus("Incluso el gran Creso se equivocó con el Oráculo... No te rindas, analiza bien los casos.");
         }
 
         function checkSelectTask(tIndex, oIndex, isCorrect) {
@@ -1434,7 +1418,6 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
         }
 
         function normalizeGreek(str) {
-            // Elimina acentos, espíritus e iota suscrita para facilitar validación a los alumnos
             return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\u0345/g, "").toLowerCase().trim();
         }
 
@@ -1479,22 +1462,21 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             document.getElementById('progress-bar').style.width = `${percentage}%`;
         }
 
-       function useHint() {
+        function useHint() {
             const unsolvedIndex = tasksState.findIndex(state => !state);
             if (unsolvedIndex !== -1) {
-                // Sacamos un pop-up gigante en el navegador con la pista
                 alert(`👁️ VISIÓN DEL ORÁCULO:\n\n${STAGES[currentStage].tasks[unsolvedIndex].hint}`);
+                sayCroesus("Invocando al Oráculo, ¿eh? Recuerda: sus palabras son como el oro, hay que saber filtrarlas.");
             } else {
                 alert("La fase ha sido completamente superada. Los dioses están satisfechos.");
-                sayCroesus("Invocando al Oráculo, ¿eh? Recuerda: sus palabras son como el oro, hay que saber filtrarlas.");
-}
+            }
+        }
 
         function showVictory() {
             document.getElementById('progress-bar').style.width = `100%`;
             
             document.getElementById('game-container').innerHTML = `
                 <div class="glass-panel p-10 md:p-16 rounded-3xl shadow-2xl text-center border-t-[12px] border-yellow-500 relative overflow-hidden">
-                    <!-- Efectos de luz final -->
                     <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
                     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-yellow-500/10 rounded-full blur-[100px] pointer-events-none"></div>
                     
@@ -1540,7 +1522,6 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             `;
             lucide.createIcons();
             
-            // Final Victory Confetti simulation
             const container = document.getElementById('game-container');
             for(let i=0; i<30; i++) {
                 let spark = document.createElement('div');
@@ -1561,7 +1542,6 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             }
         }
 
-        // Initialize App
         function toggleNotepad() {
             const panel = document.getElementById('notepad-panel');
             panel.classList.toggle('hidden');
@@ -1574,10 +1554,9 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             const notes = document.getElementById('student-notes').value;
             localStorage.setItem('códice_creso_notas', notes);
             if (!window.notesTalked) {
-        sayCroesus("Anota bien en tu tablilla. La memoria es traicionera, pero el grafito es eterno.");
-        window.notesTalked = true; // Solo lo dirá la primera vez que escriban algo
-    }
-}
+                sayCroesus("Anota bien en tu tablilla. La memoria es traicionera, pero el grafito es eterno.");
+                window.notesTalked = true; 
+            }
         }
 
         function loadNotes() {
@@ -1587,8 +1566,7 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             }
         }
 
-        // INIT
-        // --- Función Premium: La Piedra de Rosetta (Transliterador) ---
+        // --- Función Premium: La Piedra de Rosetta ---
         const GREEK_MAP = {
             'a': 'α', 'b': 'β', 'c': 'κ', 'd': 'δ', 'e': 'ε', 'f': 'φ', 'g': 'γ', 
             'h': 'χ', 'i': 'ι', 'j': 'χ', 'k': 'κ', 'l': 'λ', 'm': 'μ', 'n': 'ν', 
@@ -1611,12 +1589,11 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             document.getElementById('rosetta-input').focus();
             lucide.createIcons();
             
-            // Recompensa secreta por usar el transliterador
             if (!localStorage.getItem('rosetta_used')) {
                 addXP(20);
                 localStorage.setItem('rosetta_used', 'true');
-               sayCroesus("La lengua de Homero es un laberinto para los bárbaros, pero una joya para los sabios. ¡Escribe!");
-}
+                sayCroesus("La lengua de Homero es un laberinto para los bárbaros, pero una joya para los sabios. ¡Escribe!");
+            }
         }
 
         function closeRosettaModal() {
@@ -1638,17 +1615,16 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             let result = '';
             for (let i = 0; i < input.length; i++) {
                 let char = input[i];
-                // Regla inteligente: Sigma final
                 if ((char === 's' || char === 'S') && (i === input.length - 1 || input[i+1] === ' ')) {
                     result += 'ς';
                 } else {
                     result += GREEK_MAP[char] || char;
                 }
             }
-            
             outputEl.innerText = result;
         }
-// --- Función Premium Exclusiva: El Papiro de Prometeo (Linterna) ---
+
+        // --- Función Premium: El Papiro de Prometeo ---
         function openTorchModal() {
             const modal = document.getElementById('torch-modal');
             const papyrus = document.getElementById('hidden-papyrus');
@@ -1668,7 +1644,6 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
                 addXP(50);
                 localStorage.setItem('torch_used', 'true');
                 sayCroesus("Cuidado con el fuego de Prometeo... a veces revela verdades que preferiríamos dejar en la sombra.");
-}
             }
         }
 
@@ -1698,12 +1673,14 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             papyrus.style.webkitMaskImage = gradient;
             papyrus.style.maskImage = gradient;
         }
+
         // --- MOTOR DE PARTÍCULAS (POLVO DE ORO) ---
         const canvas = document.getElementById('gold-particles');
         const ctx = canvas.getContext('2d');
         let particles = [];
 
         function initParticles() {
+            if(!canvas) return;
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             for(let i = 0; i < 50; i++) {
@@ -1735,6 +1712,7 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
         function sayCroesus(text, duration = 4000) {
             const bubble = document.getElementById('croesus-bubble');
             const croesusText = document.getElementById('croesus-text');
+            if(!bubble || !croesusText) return;
             
             croesusText.innerText = text;
             bubble.classList.remove('opacity-0', 'translate-y-4');
@@ -1744,27 +1722,14 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             }, duration);
         }
 
-        // Inyectar reacciones en las funciones existentes
-        // Ejemplo: Llama a sayCroesus dentro de tus otras funciones:
-        // openMapModal() -> sayCroesus("¡Grecia es vasta, pero mi poder lo es más!");
-        // saveNotes() -> sayCroesus("Anota bien, la memoria es traicionera...");
-        
         window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            if(canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
         });
 
-        // Modificar el init original para arrancar esto
-        const originalInit = init;
-        init = function() {
-            originalInit();
-            initParticles();
-            setTimeout(() => sayCroesus("¡Bienvenido! Busca las monedas de oro para avanzar."), 2000);
-        };
-        window.onload = init;
-
-    </script>
-   // --- SISTEMA DE ESTADO INACTIVO (Easter Egg) ---
+        // --- SISTEMA DE ESTADO INACTIVO (Easter Egg) ---
         let idleTimer;
         function resetIdleTimer() {
             clearTimeout(idleTimer);
@@ -1773,14 +1738,13 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
                     "¿Te has quedado petrificado como el rey Midas? ¡Muévete, que el tiempo es electró!",
                     "¿Estás analizando un aoristo o te has quedado dormido?"
                 ];
-                const bromaAleatoria = bromas[Math.floor(Math.random() * bromas.length)];
-                sayCroesus(bromaAleatoria);
+                sayCroesus(bromas[Math.floor(Math.random() * bromas.length)]);
             }, 60000); 
         }
 
         // --- ARRANQUE DEL JUEGO ---
         window.onload = () => {
-            init(); 
+            initParticles();
             document.onmousemove = resetIdleTimer;
             document.onkeypress = resetIdleTimer;
             resetIdleTimer();
