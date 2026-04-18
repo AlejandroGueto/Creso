@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room: La Tragedia de Creso</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        :root {
+            --bg-dark: #0f172a;
+            --bg-panel: #1e293b;
+            --gold-light: #fef08a;
+            --gold-main: #d4af37;
+            --gold-dark: #b45309;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --greek-bg: #fdf6e3;
+            --greek-text: #1c1917;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: rgba(30, 41, 59, 0.85);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid var(--gold-main);
+            backdrop-filter: blur(5px);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--gold-main);
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            border-bottom: 2px solid var(--gold-dark);
+            padding-bottom: 15px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .quote {
+            text-align: center;
+            font-style: italic;
+            color: var(--gold-light);
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .culture-box {
+            background-color: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--gold-main);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .greek-text {
+            font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+            font-size: 1.5em;
+            background-color: var(--greek-bg);
+            color: var(--greek-text);
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+            border: 2px solid #e5e7eb;
+        }
+
+        details {
+            background-color: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        details:hover {
+            border-color: var(--gold-main);
+        }
+
+        summary {
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            color: var(--gold-light);
+            cursor: pointer;
+            outline: none;
+            font-size: 1.2em;
+            list-style: none;
+            text-align: center;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .analysis-card {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 2px solid var(--gold-dark);
+        }
+
+        .analysis-card h4 {
+            color: var(--gold-light);
+            margin-top: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 5px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+
+        .puzzle-section {
+            background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(180,83,9,0.2) 100%);
+            border: 1px solid var(--gold-main);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 6px;
+            border: 1px solid var(--gold-main);
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            width: 70%;
+            max-width: 400px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-family: 'Palatino Linotype', serif;
+        }
+
+        button {
+            background-color: var(--gold-main);
+            color: #1a1a1a;
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 6px;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background-color: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212,175,55,0.4);
+        }
+
+        .error-msg {
+            color: #fca5a5;
+            font-weight: bold;
+            margin-top: 15px;
+            display: none;
+            background: rgba(220, 38, 38, 0.2);
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .level { display: none; }
+        .active-level { display: block; animation: fadeIn 0.8s ease-in; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .analysis-grid { grid-template-columns: 1fr; }
+            input[type="text"] { width: 90%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🏛️ El Enigma de Creso 🏛️</h1>
+    <p class="quote">"Nadie puede ser llamado verdaderamente feliz hasta el día de su muerte." — Solón de Atenas</p>
+
+    <div id="level1" class="level active-level">
+        <h2>Fase I: La Riqueza y la Pregunta (Sardes, Lidia)</h2>
+        
+        <div class="culture-box">
+            <p><strong>Contexto Histórico:</strong> Creso, el rey más rico del mundo, recibe en su corte al sabio Solón. Deseoso de halagos, Creso le muestra todos sus tesoros. Sin embargo, Solón sabe que la fortuna es caprichosa y lanza una pregunta que cambiará la perspectiva del rey ludio.</p>
+        </div>
+
+        <div class="greek-text">
+            ὁ Κροῖσος ἄρχει τῆς Λυδίας καὶ ἔχει πολὺν χρυσόν. ὁ δὲ Σόλων λέγει· "<strong>τίς</strong> ἐστιν ὄλβιος; ὁ ἐμὸς λόγος ἀληθής ἐστι. μηδένα πρὸ τοῦ τέλους ὄλβιον <strong>κάλει</strong>."
+        </div>
+
+        <details>
+            <summary>👁️ Revelar Análisis Gramatical (Desplegar)</summary>
+            <div class="analysis-grid">
+                <div class="analysis-card">
+                    <h4>Artículos y Pronombres</h4>
+                    <ul>
+                        <li><strong>Artículos:</strong> ὁ (Nom. sg. masc.), τῆς (Gen. sg. fem.), τοῦ (Gen. sg. neutro).</li>
+                        <li><strong>Pronombre Interrogativo:</strong> τίς (Nom. sg. masc./fem. "¿quién?"). <em>¡Atención, siempre lleva acento agudo!</em></li>
+                        <li><strong>Pronombre Posesivo:</strong> ἐμός (Nom. sg. masc. "mi").</li>
+                    </ul>
+                </div>
+                <div class="analysis-card">
+                    <h4>Sustantivos y Adjetivos</h4>
+                    <ul>
+                        <li><strong>Declinaciones:</strong> Λυδίας (1ª), Κροῖσος / χρυσόν / λόγος (2ª), τέλους (3ª decl. neutro en -ς).</li>
+                        <li><strong>Adjetivos 1ª Clase:</strong> ὄλβιος, -ον ("feliz, próspero", 3 terminaciones).</li>
+                        <li><strong>Adjetivos 2ª Clase:</strong> ἀληθής ("verdadero", 2 terminaciones).</li>
+                    </ul>
+                </div>
+                <div class="analysis-card" style="grid-column: 1 / -1;">
+                    <h4>Verbos (Tema de Presente)</h4>
+                    <ul>
+                        <li><strong>Indicativo Activo:</strong> ἄρχει ("gobierna"), ἔχει ("tiene"), λέγει ("dice").</li>
+                        <li><strong>Verbo Contracto (Imperativo):</strong> κάλει (2ª pers. sg. Imperativo activo de καλέω [ε-ω] -> "llama / considera").</li>
+                    </ul>
+                </div>
+            </div>
+        </details>
+
+        <div class="puzzle-section">
+            <h3>🧩 Primer Sello</h3>
+            <p>Observa el texto en griego. ¿Cuál es el <strong>pronombre interrogativo</strong> que usa Solón para preguntar "¿Quién (es feliz)?" Escríbelo en griego.</p>
+            <input type="text" id="ans1" placeholder="Escribe aquí (ej: τις)">
+            <br>
+            <button onclick="checkLevel1()">Abrir Puertas del Tesoro</button>
+            <p class="error-msg" id="error1">Respuesta incorrecta. Revisa la sección de Artículos y Pronombres del análisis.</p>
+        </div>
+    </div>
+
+    <div id="level2" class="level">
+        <h2>Fase II: El Oráculo y el Error fatal (Delfos)</h2>
+        
+        <div class="culture-box">
+            <p><strong>Contexto Histórico:</strong> Asustado por el Imperio Persa, Creso envía ofrendas a Delfos. Pregunta a la Pitia qué debe hacer. El oráculo es ambiguo: si cruza el río, destruirá un gran imperio. Creso no comprende que el imperio destruido será el suyo.</p>
+        </div>
+
+        <div class="greek-text">
+            ὁ Κροῖσος <strong>ἐρωτᾷ</strong>· "τί ποιήσω;" ὁ μάντις τῷ βασιλεῖ ἔλεγεν· "ἢν τὸν ποταμὸν διαβαίνῃς, μεγάλην ἀρχὴν καταλύσεις." οὗτος ὁ λόγος τὸν Κροῖσον ἔπειθε, ἀλλὰ ἡ ἐλπὶς ψευδὴς ἦν.
+        </div>
+
+        <details>
+            <summary>👁️ Revelar Análisis Gramatical (Desplegar)</summary>
+            <div class="analysis-grid">
+                <div class="analysis-card">
+                    <h4>Artículos y Pronombres</h4>
+                    <ul>
+                        <li><strong>Artículos:</strong> τὸν (Ac. sg. masc.), τῷ (Dat. sg. masc.), ἡ (Nom. sg. fem.).</li>
+                        <li><strong>Pronombre Interrogativo:</strong> τί (Ac. sg. neutro "¿qué?").</li>
+                        <li><strong>Pronombre Demostrativo:</strong> οὗτος (Nom. sg. masc. "este").</li>
+                    </ul>
+                </div>
+                <div class="analysis-card">
+                    <h4>Sustantivos y Adjetivos</h4>
+                    <ul>
+                        <li><strong>3ª Declinación:</strong> μάντις (tema en -i), βασιλεῖ (tema en diftongo), ἐλπὶς (tema en dental).</li>
+                        <li><strong>Adjetivos 2ª Clase:</strong> ψευδής ("falso/engañosa").</li>
+                    </ul>
+                </div>
+                <div class="analysis-card" style="grid-column: 1 / -1;">
+                    <h4>Verbos (Pretéritos y Contractos)</h4>
+                    <ul>
+                        <li><strong>Verbo Contracto (Presente):</strong> ἐρωτᾷ (3ª pers. sg. Pres. Ind. Activo de ἐρωτάω [α-ω] -> "pregunta". Contracción α+ει = ᾳ).</li>
+                        <li><strong>Imperfecto Indicativo Activo:</strong> ἔλεγεν ("decía"), ἔπειθε ("persuadía"), ἦν ("era"). ¡Fíjate en el aumento ε-!</li>
+                    </ul>
+                </div>
+            </div>
+        </details>
+
+        <div class="puzzle-section">
+            <h3>🧩 Segundo Sello</h3>
+            <p>Identifica en el texto el <strong>verbo contracto</strong> en presente de indicativo que significa "pregunta" (tiene suscrita). Escríbelo en griego.</p>
+            <input type="text" id="ans2" placeholder="Escribe aquí...">
+            <br>
+            <button onclick="checkLevel2()">Cruzar el río Halis</button>
+            <p class="error-msg" id="error2">Incorrecto. Busca el verbo que deriva de ἐρωτάω y fíjate en su contracción.</p>
+        </div>
+    </div>
+
+    <div id="level3" class="level">
+        <h2>Fase III: La Pira y la Iluminación</h2>
+        
+        <div class="culture-box">
+            <p><strong>Contexto Histórico:</strong> Derrotado, Creso es condenado a la hoguera por Ciro. Cuando el fuego es encendido por un hombre cualquiera, Creso recuerda a Solón y reflexiona. Ciro, conmovido por la historia, ordena apagar el fuego.</p>
+        </div>
+
+        <div class="greek-text">
+            οἱ Πέρσαι ἔλαβον τὸν Κροῖσον. ἄνθρωπός <strong>τις</strong> τὸ πῦρ ἅπτει. ὁ δὲ Κῦρος ἐκέλευσε τοὺς στρατιώτας παύειν τὴν πυράν. Κροῖσος ᾔσθετο τὴν τοῦ Σόλωνος σοφίαν. "ἐγὼ νῦν μανθάνω", ἔφη αὐτῷ.
+        </div>
+
+        <details>
+            <summary>👁️ Revelar Análisis Gramatical (Desplegar)</summary>
+            <div class="analysis-grid">
+                <div class="analysis-card">
+                    <h4>Pronombres</h4>
+                    <ul>
+                        <li><strong>Pronombre Indefinido:</strong> τις (Nom. sg. masc. enclítico "un, un cierto, alguno"). Acompaña a ἄνθρωπος.</li>
+                        <li><strong>Personales:</strong> ἐγὼ (1ª pers. Nom. sg. "yo"), αὐτῷ (3ª pers. Dat. sg. "a él").</li>
+                    </ul>
+                </div>
+                <div class="analysis-card">
+                    <h4>Artículos y Sustantivos</h4>
+                    <ul>
+                        <li><strong>Artículos pl. y neutro:</strong> οἱ (Nom. pl. masc.), τοὺς (Ac. pl. masc.), τὸ (Nom/Ac sg. neutro).</li>
+                        <li><strong>Sustantivos:</strong> πῦρ (3ª decl. neutro "fuego"), στρατιώτας (1ª decl. masc. "soldados").</li>
+                    </ul>
+                </div>
+                <div class="analysis-card" style="grid-column: 1 / -1;">
+                    <h4>Verbos (Aoristo, Infinitivo y Voz Media)</h4>
+                    <ul>
+                        <li><strong>Aoristo Indicativo Activo:</strong> ἔλαβον (Aoristo radical de λαμβάνω: "capturaron"), ἐκέλευσε (Aoristo sigmático de κελεύω: "ordenó").</li>
+                        <li><strong>Aoristo Indicativo Medio:</strong> ᾔσθετο (Aoristo deponente de αἰσθάνομαι: "se dio cuenta / percibió"). Tiene aumento η- por alargamiento temporal.</li>
+                        <li><strong>Infinitivo Presente Activo:</strong> παύειν ("apagar / detener").</li>
+                    </ul>
+                </div>
+            </div>
+        </details>
+
+        <div class="puzzle-section">
+            <h3>🧩 Tercer Sello</h3>
+            <p>Busca en el texto el <strong>pronombre indefinido</strong> (enclítico, sin acento propio en el texto original) que acompaña a "ἄνθρωπός" significando "un cierto / un tal". Escríbelo en griego.</p>
+            <input type="text" id="ans3" placeholder="Escribe aquí...">
+            <br>
+            <button onclick="checkLevel3()">Apagar la pira y escapar</button>
+            <p class="error-msg" id="error3">Incorrecto. Revisa el apartado de Pronombres.</p>
+        </div>
+    </div>
+
+    <div id="level4" class="level">
+        <h2>🏛️ ¡Has Alterado el Destino! 🏛️</h2>
+        <div class="culture-box" style="text-align: center; border-left: none; border-top: 4px solid var(--gold-main); border-bottom: 4px solid var(--gold-main);">
+            <p style="font-size: 1.2em; color: var(--gold-main);"><strong>Creso ha sobrevivido gracias a tu dominio de la lengua griega.</strong></p>
+            <p>Has navegado con éxito a través de las 3 declinaciones, las voces activa y media, los intrincados verbos contractos, los tiempos de presente, imperfecto y aoristo, y la red de pronombres interrogativos, indefinidos, demostrativos y personales.</p>
+            <p style="font-size: 1.3em; font-family: 'Cinzel', serif; margin-top: 30px;">
+                "La verdadera riqueza de Lidia no era el oro, <br>sino ἡ ἐπιστήμη (el conocimiento)."
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Función robusta para normalizar griego (quita acentos, espíritus, iota suscrita y pasa a minúsculas)
+    function normalizeGreek(str) {
+        return str.normalize("NFD")
+                  .replace(/[\u0300-\u036f]/g, "") // Quita diacríticos (acentos, espíritus)
+                  .replace(/\u0345/g, "")          // Quita iota suscrita
+                  .toLowerCase()
+                  .trim();
+    }
+
+    function checkLevel1() {
+        const ans = normalizeGreek(document.getElementById('ans1').value);
+        // Esperamos: τις o τίς -> normalizado a "τις"
+        if (ans === 'τις') {
+            document.getElementById('level1').classList.remove('active-level');
+            document.getElementById('level2').classList.add('active-level');
+        } else {
+            document.getElementById('error1').style.display = 'block';
+        }
+    }
+
+    function checkLevel2() {
+        const ans = normalizeGreek(document.getElementById('ans2').value);
+        // Esperamos: ἐρωτᾷ -> normalizado a "ερωτα"
+        if (ans === 'ερωτα') {
+            document.getElementById('level1').classList.remove('active-level');
+            document.getElementById('level2').classList.remove('active-level');
+            document.getElementById('level3').classList.add('active-level');
+        } else {
+            document.getElementById('error2').style.display = 'block';
+        }
+    }
+
+    function checkLevel3() {
+        const ans = normalizeGreek(document.getElementById('ans3').value);
+        // Esperamos: τις (indefinido) -> normalizado a "τις"
+        if (ans === 'τις') {
+            document.getElementById('level3').classList.remove('active-level');
+            document.getElementById('level4').classList.add('active-level');
+        } else {
+            document.getElementById('error3').style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
