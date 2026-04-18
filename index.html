@@ -161,7 +161,7 @@
         
         <div class="relative w-32 h-32 md:w-48 md:h-48 cursor-pointer hover:scale-110 transition-transform duration-500 animate-float" onclick="sayCroesus('¡No me toques el manto, que es de seda de Sardes!')">
             <div class="absolute inset-0 bg-yellow-500/20 rounded-full blur-2xl animate-pulse"></div>
-            <img src="https://drive.google.com/uc?export=view&id=15xR0gEsq7zgzoJUBcYAN7h4CNcSx7K63" 
+            <img src="creso.png" 
                  alt="Rey Creso" 
                  class="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(234,179,8,0.6)] relative z-10">
         </div>
@@ -1764,25 +1764,28 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
         window.onload = init;
 
     </script>
-    let idleTimer;
-function resetIdleTimer() {
-    clearTimeout(idleTimer);
-    idleTimer = setTimeout(() => {
-        const bromas = [
-            "¿Te has quedado petrificado como el rey Midas? ¡Muévete, que el tiempo es electró!",
-            "¿Estás analizando un aoristo o te has quedado dormido?"
-        ];
-        const bromaAleatoria = bromas[Math.floor(Math.random() * bromas.length)];
-        sayCroesus(bromaAleatoria);
-    }, 60000); // 60.000 milisegundos = 1 minuto
-}
+   // --- SISTEMA DE ESTADO INACTIVO (Easter Egg) ---
+        let idleTimer;
+        function resetIdleTimer() {
+            clearTimeout(idleTimer);
+            idleTimer = setTimeout(() => {
+                const bromas = [
+                    "¿Te has quedado petrificado como el rey Midas? ¡Muévete, que el tiempo es electró!",
+                    "¿Estás analizando un aoristo o te has quedado dormido?"
+                ];
+                const bromaAleatoria = bromas[Math.floor(Math.random() * bromas.length)];
+                sayCroesus(bromaAleatoria);
+            }, 60000); 
+        }
 
-// Escuchar movimientos del ratón o teclas para resetear el tiempo
-window.onload = () => {
-    init(); // Tu función de inicio normal
-    document.onmousemove = resetIdleTimer;
-    document.onkeypress = resetIdleTimer;
-    resetIdleTimer();
-};
+        // --- ARRANQUE DEL JUEGO ---
+        window.onload = () => {
+            init(); 
+            document.onmousemove = resetIdleTimer;
+            document.onkeypress = resetIdleTimer;
+            resetIdleTimer();
+        };
+
+    </script>
 </body>
 </html>
