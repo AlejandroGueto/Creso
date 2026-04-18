@@ -285,33 +285,28 @@
         </div>
 
         <!-- RIGHT: CODEX (SIDEBAR / OVERLAY) -->
-        <aside id="codex-sidebar" class="w-full xl:w-5/12 glass-panel rounded-3xl flex flex-col h-[85vh] sticky top-28 border border-slate-700 transition-all duration-500 xl:translate-x-0 hidden xl:flex z-50 overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+       <aside id="codex-panel" class="fixed top-0 right-0 w-full sm:w-[450px] h-full bg-slate-900 border-l-4 border-yellow-600/50 shadow-[0_0_50px_rgba(0,0,0,0.9)] z-[200] transform translate-x-full transition-transform duration-500 flex flex-col">
             
-            <!-- Codex Header & Tabs -->
-            <div class="bg-slate-900 border-b border-slate-700 z-10">
-                <div class="p-6 flex justify-between items-center">
-                    <h2 class="text-2xl font-cinzel font-black tracking-widest text-yellow-500 flex items-center gap-3">
-                        <i data-lucide="book-open" class="w-8 h-8"></i> ARCHIVO MAESTRO
-                    </h2>
-                    <button onclick="toggleCodex()" class="xl:hidden bg-slate-800 hover:bg-slate-700 p-2 rounded-full text-slate-400 hover:text-white transition-colors">
-                        <i data-lucide="x" class="w-6 h-6"></i>
-                    </button>
-                </div>
-                
-                <div class="flex px-2 mt-2 font-cinzel font-bold text-sm">
-                    <button onclick="switchTab('grammar')" id="tab-grammar" class="tab-btn active flex-1 py-3 px-4 rounded-t-lg border border-transparent flex items-center justify-center gap-2 text-slate-400 hover:text-slate-200">
-                        <i data-lucide="pen-tool" class="w-4 h-4"></i> Gramática Exhaustiva
-                    </button>
-                    <button onclick="switchTab('culture')" id="tab-culture" class="tab-btn flex-1 py-3 px-4 rounded-t-lg border border-transparent flex items-center justify-center gap-2 text-slate-400 hover:text-slate-200">
-                        <i data-lucide="globe" class="w-4 h-4"></i> Cultura e Historia
-                    </button>
-                </div>
+            <div class="bg-slate-950 border-b-2 border-slate-800 p-6 flex justify-between items-center shadow-md">
+                <h2 class="text-2xl font-cinzel font-black tracking-widest text-yellow-500 flex items-center gap-3 drop-shadow-md">
+                    <i data-lucide="library" class="w-7 h-7 text-yellow-600"></i> ARCHIVO MAESTRO
+                </h2>
+                <button onclick="toggleCodex()" class="bg-slate-800 hover:bg-red-900/50 p-2 rounded-full text-slate-400 hover:text-white transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
             </div>
             
-            <!-- Codex Content Area -->
-            <div class="flex-grow overflow-y-auto p-4 bg-slate-950/50" id="codex-content-area">
-                <!-- Dynamic Content injected here -->
+            <div class="flex px-2 mt-2 font-cinzel font-bold text-sm bg-slate-900">
+                <button onclick="switchTab('grammar')" id="tab-grammar" class="tab-btn active flex-1 py-3 px-4 rounded-t-lg border border-transparent flex items-center justify-center gap-2 text-slate-400 hover:text-slate-200">
+                    <i data-lucide="pen-tool" class="w-4 h-4"></i> Gramática Exhaustiva
+                </button>
+                <button onclick="switchTab('culture')" id="tab-culture" class="tab-btn flex-1 py-3 px-4 rounded-t-lg border border-transparent flex items-center justify-center gap-2 text-slate-400 hover:text-slate-200">
+                    <i data-lucide="globe" class="w-4 h-4"></i> Cultura e Historia
+                </button>
             </div>
+            
+            <div class="flex-grow overflow-y-auto p-4 bg-slate-950/50 scrollbar-thin scrollbar-thumb-yellow-700 scrollbar-track-slate-800" id="codex-content-area">
+                </div>
         </aside>
 
         <!-- OVERLAY FOR MOBILE CODEX -->
