@@ -1,43 +1,43 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang=”es”>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset=”UTF-8”>
+    <meta name=”viewport” content=”width=device-width, initial-scale=1.0”>
     <title>🏛️ El Códice de Creso: Escape Room Filológico</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
+    <script src=https://cdn.tailwindcss.com></script>
+    <script src=https://unpkg.com/feather-icons></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Space+Mono&display=swap');
+        @import url(‘https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Space+Mono&display=swap’);
 
         :root {
-            --font-display: 'Cinzel', serif;
-            --font-body: 'Lora', serif;
-            --font-mono: 'Space Mono', monospace;
+            --font-display: ‘Cinzel’, serif;
+            --font-body: ‘Lora’, serif;
+            --font-mono: ‘Space Mono’, monospace;
         }
 
-        body {
-            font-family: var(--font-body);
-            background-color: #020617; /* slate-950 */
-            color: #cbd5e1; /* slate-300 */
+        Body {
+            Font-family: var(--font-body);
+            Background-color: #020617; /* slate-950 */
+            Color: #cbd5e1; /* slate-300 */
         }
 
-        h1, h2, h3, h4, .font-display { font-family: var(--font-display); }
+        H1, h2, h3, h4, .font-display { font-family: var(--font-display); }
         .font-mono { font-family: var(--font-mono); }
 
         /* Estilos tabla griega estilo Codex proporcionado */
         .table-greek th {
-            background-color: #0f172a; /* slate-900 */
-            color: #94a3b8; /* slate-400 */
-            font-family: var(--font-display);
-            letter-spacing: 0.05em;
-            padding: 0.75rem 0.5rem;
-            border-bottom: 2px solid #334155; /* slate-700 */
+            Background-color: #0f172a; /* slate-900 */
+            Color: #94ª3b8; /* slate-400 */
+            Font-family: var(--font-display);
+            Letter-spacing: 0.05em;
+            Padding: 0.75rem 0.5rem;
+            Border-bottom: 2px solid #334155; /* slate-700 */
         }
         .table-greek td {
-            padding: 0.75rem 0.5rem;
-            border-bottom: 1px solid #1e293b; /* slate-800 */
-            font-family: 'Palatino Linotype', serif;
-            font-size: 1.1em;
+            Padding: 0.75rem 0.5rem;
+            Border-bottom: 1px solid #1e293b; /* slate-800 */
+            Font-family: ‘Palatino Linotype’, serif;
+            Font-size: 1.1em;
         }
         .table-greek tr:hover td { background-color: #0f172a; }
         .highlight { color: #38bdf8; font-weight: bold; } /* cyan-400 */
@@ -49,99 +49,99 @@
         ::-webkit-scrollbar-thumb { background: #d97706; border-radius: 4px; } /* amber-600 */
         
         .greek-text-block {
-            font-family: 'Palatino Linotype', serif;
-            font-size: 1.6em;
-            line-height: 1.5;
-            background-color: rgba(253, 246, 227, 0.05);
-            border-left: 4px solid #b45309; /* amber-700 */
+            Font-family: ‘Palatino Linotype’, serif;
+            Font-size: 1.6em;
+            Line-height: 1.5;
+            Background-color: rgba(253, 246, 227, 0.05);
+            Border-left: 4px solid #b45309; /* amber-700 */
         }
     </style>
 </head>
-<body class="antialiased">
+<body class=”antialiased”>
 
-<div id="app" class="min-h-screen flex flex-col">
-    <header class="bg-slate-900 border-b border-slate-800 p-4 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <i data-feather="book-open" class="text-amber-500 w-8 h-8"></i>
-                <h1 class="text-3xl font-bold text-slate-100 tracking-wider">EL CÓDICE DE CRESO</h1>
+<div id=”app” class=”min-h-screen flex flex-col”>
+    <header class=”bg-slate-900 border-b border-slate-800 p-4 sticky top-0 z-50”>
+        <div class=”max-w-7xl mx-auto flex items-center justify-between”>
+            <div class=”flex items-center gap-3”>
+                <i data-feather=”book-open” class=”text-amber-500 w-8 h-8”></i>
+                <h1 class=”text-3xl font-bold text-slate-100 tracking-wider”>EL CÓDICE DE CRESO</h1>
             </div>
-            <button onclick="toggleCodex()" class="flex items-center gap-2 bg-amber-600 hover:bg-amber-500 text-slate-950 px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg text-sm">
-                <i data-feather="key" class="w-4 h-4"></i>
+            <button onclick=”toggleCodex()” class=”flex items-center gap-2 bg-amber-600 hover:bg-amber-500 text-slate-950 px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg text-sm”>
+                <i data-feather=”key” class=”w-4 h-4”></i>
                 CONSULTAR CÓDICE (GRAMÁTICA Y CULTURA)
             </button>
         </div>
     </header>
 
-    <main class="flex-grow max-w-7xl w-full mx-auto p-6 md:p-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+    <main class=”flex-grow max-w-7xl w-full mx-auto p-6 md:p-8 grid grid-cols-1 lg:grid-cols-4 gap-8”>
         
-        <div id="game-area" class="lg:col-span-3 space-y-8">
-            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-xl">
-                <div class="flex items-center gap-4 mb-6 border-b border-slate-800 pb-5">
-                    <div class="bg-amber-950/50 p-4 rounded-full border border-amber-700">
-                        <i data-feather="flag" class="text-amber-400 w-8 h-8"></i>
+        <div id=”game-area” class=”lg:col-span-3 space-y-8”>
+            <div class=”bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-xl”>
+                <div class=”flex items-center gap-4 mb-6 border-b border-slate-800 pb-5”>
+                    <div class=”bg-amber-950/50 p-4 rounded-full border border-amber-700”>
+                        <i data-feather=”flag” class=”text-amber-400 w-8 h-8”></i>
                     </div>
                     <div>
-                        <h2 class="text-sm font-mono text-amber-500 uppercase tracking-widest">Misión Actual</h2>
-                        <h3 id="stage-title" class="text-2xl font-bold text-slate-100">Cargando...</h3>
+                        <h2 class=”text-sm font-mono text-amber-500 uppercase tracking-widest”>Misión Actual</h2>
+                        <h3 id=”stage-title” class=”text-2xl font-bold text-slate-100”>Cargando…</h3>
                     </div>
                 </div>
-                <div id="stage-narrative" class="text-slate-300 space-y-4 leading-relaxed">
+                <div id=”stage-narrative” class=”text-slate-300 space-y-4 leading-relaxed”>
                     </div>
             </div>
 
-            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-xl relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-40 h-40 bg-amber-600/10 rounded-full blur-3xl -mr-10 -mt-10"></div>
+            <div class=”bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-xl relative overflow-hidden”>
+                <div class=”absolute top-0 right-0 w-40 h-40 bg-amber-600/10 rounded-full blur-3xl -mr-10 -mt-10”></div>
                 
-                <h4 class="font-display text-xl text-slate-200 mb-6 flex items-center gap-3">
-                    <i data-feather="puzzle" class="text-cyan-400"></i>
+                <h4 class=”font-display text-xl text-slate-200 mb-6 flex items-center gap-3”>
+                    <i data-feather=”puzzle” class=”text-cyan-400”></i>
                     Desencripta el Fragmento Griego
                 </h4>
 
-                <div id="greek-text-container" class="greek-text-block text-slate-100 p-6 rounded-2xl mb-8 shadow-inner border border-slate-800">
+                <div id=”greek-text-container” class=”greek-text-block text-slate-100 p-6 rounded-2xl mb-8 shadow-inner border border-slate-800”>
                     </div>
 
-                <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
-                    <p id="puzzle-question" class="text-amber-300 font-medium text-lg"></p>
-                    <div class="flex flex-col sm:flex-row gap-3">
-                        <input type="text" id="user-input" placeholder="Escribe tu respuesta aquí (puedes omitir acentos)..." class="flex-grow bg-slate-800 border border-slate-700 text-slate-100 p-4 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 font-mono text-sm outline-none">
-                        <button onclick="checkAnswer()" class="bg-cyan-600 hover:bg-cyan-500 text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg">
-                            <i data-feather="arrow-right" class="w-5 h-5"></i>
+                <div class=”bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4”>
+                    <p id=”puzzle-question” class=”text-amber-300 font-medium text-lg”></p>
+                    <div class=”flex flex-col sm:flex-row gap-3”>
+                        <input type=”text” id=”user-input” placeholder=”Escribe tu respuesta aquí (puedes omitir acentos)…” class=”flex-grow bg-slate-800 border border-slate-700 text-slate-100 p-4 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 font-mono text-sm outline-none”>
+                        <button onclick=”checkAnswer()” class=”bg-cyan-600 hover:bg-cyan-500 text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg”>
+                            <i data-feather=”arrow-right” class=”w-5 h-5”></i>
                             VALIDAR
                         </button>
                     </div>
-                    <p id="feedback" class="text-sm font-mono pt-2 min-h-[20px]"></p>
+                    <p id=”feedback” class=”text-sm font-mono pt-2 min-h-[20px]”></p>
                 </div>
             </div>
         </div>
 
-        <aside class="space-y-6">
-            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl sticky top-28">
-                <h4 class="font-display text-lg text-slate-200 mb-5 pb-4 border-b border-slate-800 tracking-wide">Mapa del Destino</h4>
-                <nav id="progress-map" class="space-y-3 font-mono text-sm">
+        <aside class=”space-y-6”>
+            <div class=”bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl sticky top-28”>
+                <h4 class=”font-display text-lg text-slate-200 mb-5 pb-4 border-b border-slate-800 tracking-wide”>Mapa del Destino</h4>
+                <nav id=”progress-map” class=”space-y-3 font-mono text-sm”>
                     </nav>
             </div>
         </aside>
     </main>
 
-    <footer class="bg-slate-900 border-t border-slate-800 p-6 mt-12 text-center text-slate-500 text-sm font-mono">
+    <footer class=”bg-slate-900 border-t border-slate-800 p-6 mt-12 text-center text-slate-500 text-sm font-mono”>
         Escape Room Filológico v2.0 Premium | Basado en Heródoto | Para 1º Bachillerato Griego.
     </footer>
 
-    <div id="codex-modal" class="fixed inset-0 bg-slate-950/80 z-[100] hidden backdrop-blur-sm opacity-0 transition-opacity duration-300 flex justify-end" onclick="closeCodexOuter(event)">
-        <div class="w-full max-w-5xl h-full bg-slate-900 border-l border-slate-700 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300" onclick="event.stopPropagation()">
-            <header class="p-6 border-b border-slate-700 flex items-center justify-between sticky top-0 bg-slate-900 z-10">
-                <div class="flex items-center gap-3">
-                    <i data-feather="book-open" class="text-amber-500 w-7 h-7"></i>
-                    <h2 class="text-2xl font-bold text-slate-100 tracking-wider">EL CÓDICE DE CRESO</h2>
+    <div id=”codex-modal” class=”fixed inset-0 bg-slate-950/80 z-[100] hidden backdrop-blur-sm opacity-0 transition-opacity duration-300 flex justify-end” onclick=”closeCodexOuter(event)”>
+        <div class=”w-full max-w-5xl h-full bg-slate-900 border-l border-slate-700 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300” onclick=”event.stopPropagation()”>
+            <header class=”p-6 border-b border-slate-700 flex items-center justify-between sticky top-0 bg-slate-900 z-10”>
+                <div class=”flex items-center gap-3”>
+                    <i data-feather=”book-open” class=”text-amber-500 w-7 h-7”></i>
+                    <h2 class=”text-2xl font-bold text-slate-100 tracking-wider”>EL CÓDICE DE CRESO</h2>
                 </div>
-                <button onclick="toggleCodex()" class="text-slate-500 hover:text-white p-2 rounded-full hover:bg-slate-800">
-                    <i data-feather="x" class="w-6 h-6"></i>
+                <button onclick=”toggleCodex()” class=”text-slate-500 hover:text-white p-2 rounded-full hover:bg-slate-800”>
+                    <i data-feather=”x” class=”w-6 h-6”></i>
                 </button>
             </header>
             
-            <div class="flex-grow overflow-y-auto p-8 space-y-12">
-                <div id="codex-content"></div>
+            <div class=”flex-grow overflow-y-auto p-8 space-y-12”>
+                <div id=”codex-content”></div>
             </div>
         </div>
     </div>
@@ -149,65 +149,65 @@
 
 <script>
     // Inicializar iconos Feather
-    feather.replace();
+    Feather.replace();
 
     // ==========================================
     // ESTRUCTURA DE DATOS PRINCIPAL: CODEX_DATA
     // (Complejidad y estilo clonados del ejemplo)
     // ==========================================
-    const CODEX_DATA = [
+    Const CODEX_DATA = [
         {
-            id: "cultura", category: "Contexto Cultural", title: "1. Lidia, Solón y la Riqueza", icon: "flag",
-            content: `
-                <div class="space-y-6 text-slate-300 leading-relaxed">
-                  <h4 class="font-bold text-amber-400 text-xl border-b border-slate-700 pb-3">El Imperio de Lidia y la Invención de la Moneda</h4>
+            Id: “cultura”, category: “Contexto Cultural”, title: “1. Lidia, Solón y la Riqueza”, icon: “flag”,
+            Content: `
+                <div class=”space-y-6 text-slate-300 leading-relaxed”>
+                  <h4 class=”font-bold text-amber-400 text-xl border-b border-slate-700 pb-3”>El Imperio de Lidia y la Invención de la Moneda</h4>
                   <p>Lidia (Asia Menor, actual Turquía) fue una superpotencia en el s. VI a.C. Su capital, Sardes, era un crisol cultural entre Grecia y Oriente. Gracias a los depósitos del río Pactolo, Creso acumuló una riqueza legendaria, convirtiendo el metal precioso, el <strong>electró</strong> (aleación natural de oro y plata), en las primeras monedas acuñadas de la historia con sello real (los *creseidas*), revolucionando la economía mundial.</p>
                   
-                  <div class="grid md:grid-cols-2 gap-4 mt-4 font-body">
-                    <div class="bg-amber-950/20 border-l-4 border-amber-600 p-5 rounded-r-xl">
-                      <h5 class="font-bold text-amber-500 mb-2 text-lg">Solón de Atenas</h5>
-                      <p class="text-sm">El gran legislador ateniense, tras sus reformas, viajó por el mundo. Heródoto ficcionaliza su encuentro con Creso en Sardes. Solón representa la sabiduría tradicional griega (*sophrosyne*): la moderación frente a la desmesura asiática.</p>
+                  <div class=”grid md:grid-cols-2 gap-4 mt-4 font-body”>
+                    <div class=”bg-amber-950/20 border-l-4 border-amber-600 p-5 rounded-r-xl”>
+                      <h5 class=”font-bold text-amber-500 mb-2 text-lg”>Solón de Atenas</h5>
+                      <p class=”text-sm”>El gran legislador ateniense, tras sus reformas, viajó por el mundo. Heródoto ficcionaliza su encuentro con Creso en Sardes. Solón representa la sabiduría tradicional griega (*sophrosyne*): la moderación frente a la desmesura asiática.</p>
                     </div>
-                    <div class="bg-blue-950/20 border-l-4 border-blue-500 p-5 rounded-r-xl">
-                      <h5 class="font-bold text-blue-400 mb-2 text-lg">Híbris y Némesis</h5>
-                      <p class="text-sm">Creso comete <strong>Híbris</strong> (Ὕβρις, arrogancia extrema) al creerse el hombre más feliz (ὄλβιος) del mundo por su oro. Solón le advierte: nadie sabe su destino hasta su muerte. Este pecado atrae la <strong>Némesis</strong> (Νέμεσις), el castigo divino que restablece el equilibrio.</p>
+                    <div class=”bg-blue-950/20 border-l-4 border-blue-500 p-5 rounded-r-xl”>
+                      <h5 class=”font-bold text-blue-400 mb-2 text-lg”>Híbris y Némesis</h5>
+                      <p class=”text-sm”>Creso comete <strong>Híbris</strong> (Ὕβρις, arrogancia extrema) al creerse el hombre más feliz (ὄλβιος) del mundo por su oro. Solón le advierte: nadie sabe su destino hasta su muerte. Este pecado atrae la <strong>Némesis</strong> (Νέμεσις), el castigo divino que restablece el equilibrio.</p>
                     </div>
                   </div>
 
-                  <h4 class="font-bold text-purple-400 text-xl border-b border-slate-700 pb-3 mt-8">El Oráculo de Delfos</h4>
-                  <p class="text-sm mb-4">La religiosidad de Creso fue inmensa. Envió tesoros fabulosos a Delfos para consultar si debía atacar a Ciro el Persa. El Oráculo, regido por Apolo a través de la Pitia, dio su famosa respuesta ambigua. Creso interpretó lo que quería oír, omitiendo la prudencia.</p>
+                  <h4 class=”font-bold text-purple-400 text-xl border-b border-slate-700 pb-3 mt-8”>El Oráculo de Delfos</h4>
+                  <p class=”text-sm mb-4”>La religiosidad de Creso fue inmensa. Envió tesoros fabulosos a Delfos para consultar si debía atacar a Ciro el Persa. El Oráculo, regido por Apolo a través de la Pitia, dio su famosa respuesta ambigua. Creso interpretó lo que quería oír, omitiendo la prudencia.</p>
                 </div>
             `
         },
         {
-            id: "nominal_1", category: "Morfología Nominal", title: "2. Casos, Artículo y Declinaciones", icon: "layers",
-            content: `
-                <div class="space-y-8 text-sm text-slate-300 font-body">
+            Id: “nominal_1”, category: “Morfología Nominal”, title: “2. Casos, Artículo y Declinaciones”, icon: “layers”,
+            Content: `
+                <div class=”space-y-8 text-sm text-slate-300 font-body”>
                   <div>
-                    <h4 class="font-bold text-amber-400 text-xl border-b border-slate-700 pb-2 mb-4 tracking-wide">El Artículo y las Funciones Sintácticas</h4>
-                    <p class="mb-3 text-slate-400">En griego, el orden de las palabras es libre. El <strong>Caso</strong> (desinencia) determina la función. El <strong>Artículo Determinado</strong> es clave: nos dice el género, número y caso de la palabra que acompaña, incluso si esta es un adjetivo o participio sustantivado.</p>
-                    <ul class="space-y-2 bg-slate-900/50 p-4 rounded-xl border border-slate-700 font-mono text-xs shadow-inner">
-                      <li><strong class="text-blue-400 text-base">Nominativo (ὁ, ἡ, τό):</strong> Sujeto y Atributo. <span class="text-slate-500 italic">(Creso gobierna Lidia)</span>.</li>
-                      <li><strong class="text-emerald-400 text-base">Acusativo (τόν, τήν, τό):</strong> Complemento Directo. <span class="text-slate-500 italic">(Muestra mucho oro)</span>.</li>
-                      <li><strong class="text-purple-400 text-base">Genitivo (τοῦ, τῆς, τοῦ):</strong> Complemento del Nombre (Posesión, Origen). <span class="text-slate-500 italic">(La riqueza del rey)</span>.</li>
-                      <li><strong class="text-orange-400 text-base">Dativo (τῷ, τῇ, τῷ):</strong> Complemento Indirecto e Instrumental. <span class="text-slate-500 italic">(Habló al adivino)</span>.</li>
+                    <h4 class=”font-bold text-amber-400 text-xl border-b border-slate-700 pb-2 mb-4 tracking-wide”>El Artículo y las Funciones Sintácticas</h4>
+                    <p class=”mb-3 text-slate-400”>En griego, el orden de las palabras es libre. El <strong>Caso</strong> (desinencia) determina la función. El <strong>Artículo Determinado</strong> es clave: nos dice el género, número y caso de la palabra que acompaña, incluso si esta es un adjetivo o participio sustantivado.</p>
+                    <ul class=”space-y-2 bg-slate-900/50 p-4 rounded-xl border border-slate-700 font-mono text-xs shadow-inner”>
+                      <li><strong class=”text-blue-400 text-base”>Nominativo (ὁ, ἡ, τό):</strong> Sujeto y Atributo. <span class=”text-slate-500 italic”>(Creso gobierna Lidia)</span>.</li>
+                      <li><strong class=”text-emerald-400 text-base”>Acusativo (τόν, τήν, τό):</strong> Complemento Directo. <span class=”text-slate-500 italic”>(Muestra mucho oro)</span>.</li>
+                      <li><strong class=”text-purple-400 text-base”>Genitivo (τοῦ, τῆς, τοῦ):</strong> Complemento del Nombre (Posesión, Origen). <span class=”text-slate-500 italic”>(La riqueza del rey)</span>.</li>
+                      <li><strong class=”text-orange-400 text-base”>Dativo (τῷ, τῇ, τῷ):</strong> Complemento Indirecto e Instrumental. <span class=”text-slate-500 italic”>(Habló al adivino)</span>.</li>
                     </ul>
                   </div>
 
-                  <div class="overflow-x-auto bg-slate-950 p-4 rounded-xl border border-slate-700 shadow-inner">
-                    <h5 class="font-bold text-blue-300 text-center mb-3 uppercase tracking-widest text-xs font-display">Tercera Declinación (Temas en Oclusiva)</h5>
-                    <p class="text-xs text-slate-400 mb-4 px-2">Creso, en griego, es <strong>Κροῖσος</strong> (2ª declinación), pero muchos términos culturales o religiosos claves pertenecen a la 3ª atemática (como *basileus* o *mántis*). Aquí vemos los temas en oclusiva (gutural y labial):</p>
-                    <table class="table-greek w-full whitespace-nowrap text-center text-xs">
+                  <div class=”overflow-x-auto bg-slate-950 p-4 rounded-xl border border-slate-700 shadow-inner”>
+                    <h5 class=”font-bold text-blue-300 text-center mb-3 uppercase tracking-widest text-xs font-display”>Tercera Declinación (Temas en Oclusiva)</h5>
+                    <p class=”text-xs text-slate-400 mb-4 px-2”>Creso, en griego, es <strong>Κροῖσος</strong> (2ª declinación), pero muchos términos culturales o religiosos claves pertenecen a la 3ª atemática (como *basileus* o *mántis*). Aquí vemos los temas en oclusiva (gutural y labial):</p>
+                    <table class=”table-greek w-full whitespace-nowrap text-center text-xs”>
                       <thead>
                         <tr><th>Caso</th><th>Gutural Fem (ἡ φλόξ, llama)</th><th>Gutural Masc (ὁ κόραξ)</th><th>Labial Masc (ὁ γύψ, buitre)</th></tr>
                       </thead>
                       <tbody>
-                        <tr><td class="font-bold text-slate-500 font-mono">Nom Sg</td><td>φλ<span class="highlight">όξ</span> (γ+ς)</td><td>κόραξ</td><td>γύψ</td></tr>
-                        <tr><td class="font-bold text-slate-500 font-mono">Acus Sg</td><td>φλόγ-<span class="highlight">α</span></td><td>κόρακ-<span class="highlight">α</span></td><td>γύπ-<span class="highlight">α</span></td></tr>
-                        <tr><td class="font-bold text-slate-500 font-mono">Gen Sg</td><td>φλογ-<span class="highlight">ός</span></td><td>κόρακ-<span class="highlight">ος</span></td><td>γύπ-<span class="highlight">ος</span></td></tr>
-                        <tr><td class="font-bold text-slate-500 font-mono">Dat Sg</td><td>φλογ-<span class="highlight">ί</span></td><td>κόρακ-<span class="highlight">ι</span></td><td>γύπ-<span class="highlight">ι</span></td></tr>
-                        <tr class="border-t border-slate-700"><td class="font-bold text-slate-500 font-mono">Nom Pl</td><td>φλόγ-<span class="highlight">ες</span></td><td>κόρακ-<span class="highlight">ες</span></td><td>γύπ-<span class="highlight">ες</span></td></tr>
-                        <tr><td class="font-bold text-slate-500 font-mono">Gen Pl</td><td>φλογ-<span class="highlight">ῶν</span></td><td>κοράκ-<span class="highlight">ων</span></td><td>γυπ-<span class="highlight">ῶν</span></td></tr>
+                        <tr><td class=”font-bold text-slate-500 font-mono”>Nom Sg</td><td>φλ<span class=”highlight”>όξ</span> (γ+ς)</td><td>κόραξ</td><td>γύψ</td></tr>
+                        <tr><td class=”font-bold text-slate-500 font-mono”>Acus Sg</td><td>φλόγ-<span class=”highlight”>α</span></td><td>κόρακ-<span class=”highlight”>α</span></td><td>γύπ-<span class=”highlight”>α</span></td></tr>
+                        <tr><td class=”font-bold text-slate-500 font-mono”>Gen Sg</td><td>φλογ-<span class=”highlight”>ός</span></td><td>κόρακ-<span class=”highlight”>ος</span></td><td>γύπ-<span class=”highlight”>ος</span></td></tr>
+                        <tr><td class=”font-bold text-slate-500 font-mono”>Dat Sg</td><td>φλογ-<span class=”highlight”>ί</span></td><td>κόρακ-<span class=”highlight”>ι</span></td><td>γύπ-<span class=”highlight”>ι</span></td></tr>
+                        <tr class=”border-t border-slate-700”><td class=”font-bold text-slate-500 font-mono”>Nom Pl</td><td>φλόγ-<span class=”highlight”>ες</span></td><td>κόρακ-<span class=”highlight”>ες</span></td><td>γύπ-<span class=”highlight”>ες</span></td></tr>
+                        <tr><td class=”font-bold text-slate-500 font-mono”>Gen Pl</td><td>φλογ-<span class=”highlight”>ῶν</span></td><td>κοράκ-<span class=”highlight”>ων</span></td><td>γυπ-<span class=”highlight”>ῶν</span></td></tr>
                       </tbody>
                     </table>
                   </div>
@@ -215,55 +215,54 @@
             `
         },
         {
-            id: "nominal_2", category: "Morfología Nominal", title: "3. Adjetivos y Pronombres (Interrog./Indef.)", icon: "star",
-            content: `
-                <div class="space-y-6 text-sm text-slate-300 font-body">
-                  <h4 class="font-bold text-amber-400 text-xl border-b border-slate-700 pb-2 tracking-wide">Adjetivos de 1ª Clase (2-1-2)</h4>
-                  <p>Concuerdan en GNC. Siguen la 2ª declinación para Masc. y Neutro, y la 1ª para Femenino. Creso se consideraba el hombre más "feliz" (ὄλβιος, -α, -ον).</p>
+            Id: “nominal_2”, category: “Morfología Nominal”, title: “3. Adjetivos y Pronombres (Interrog./Indef.)”, icon: “star”,
+            Content: `
+                <div class=”space-y-6 text-sm text-slate-300 font-body”>
+                  <h4 class=”font-bold text-amber-400 text-xl border-b border-slate-700 pb-2 tracking-wide”>Adjetivos de 1ª Clase (2-1-2)</h4>
+                  <p>Concuerdan en GNC. Siguen la 2ª declinación para Masc. y Neutro, y la 1ª para Femenino. Creso se consideraba el hombre más “feliz” (ὄλβιος, -α, -ον).</p>
                   
-                  <div class="bg-slate-950 p-4 rounded-xl border border-slate-700 shadow-inner overflow-x-auto">
-                    <table class="table-greek w-full whitespace-nowrap text-center text-xs mb-4">
+                  <div class=”bg-slate-950 p-4 rounded-xl border border-slate-700 shadow-inner overflow-x-auto”>
+                    <table class=”table-greek w-full whitespace-nowrap text-center text-xs mb-4”>
                       <thead><tr><th>Caso/Numb</th><th>Masc (2ª)</th><th>Fem (1ª -η)</th><th>Neutro (2ª)</th></tr></thead>
                       <tbody>
-                        <tr><td class="font-bold text-slate-500 font-mono">Nom Sg</td><td>ὄλβι-<strong class="text-blue-400">ος</strong></td><td>ὀλβί-<strong class="text-pink-400">α</strong> (impura)</td><td>ὄλβι-<strong class="text-emerald-400">ον</strong></td></tr>
-                        <tr><td class="font-bold text-slate-500 font-mono">Acus Pl</td><td>ὀλβί-<strong class="text-blue-400">ους</strong></td><td>ὀλβί-<strong class="text-pink-400">ας</strong></td><td>ὄλβι-<strong class="text-emerald-400">α</strong></td></tr>
+                        <tr><td class=”font-bold text-slate-500 font-mono”>Nom Sg</td><td>ὄλβι-<strong class=”text-blue-400”>ος</strong></td><td>ὀλβί-<strong class=”text-pink-400”>α</strong> (impura)</td><td>ὄλβι-<strong class=”text-emerald-400”>ον</strong></td></tr>
+                        <tr><td class=”font-bold text-slate-500 font-mono”>Acus Pl</td><td>ὀλβί-<strong class=”text-blue-400”>ους</strong></td><td>ὀλβί-<strong class=”text-pink-400”>ας</strong></td><td>ὄλβι-<strong class=”text-emerald-400”>α</strong></td></tr>
                       </tbody>
                     </table>
                   </div>
 
-                  <h4 class="font-bold text-cyan-400 text-xl border-b border-slate-700 pb-2 mt-6 tracking-wide">Pronombres: Interrogativo e Indefinido</h4>
+                  <h4 class=”font-bold text-cyan-400 text-xl border-b border-slate-700 pb-2 mt-6 tracking-wide”>Pronombres: Interrogativo e Indefinido</h4>
                   <p>Diferenciarlos es crucial en griego. Solón hace preguntas fatídicas a Creso.</p>
                   
-                  <div class="grid md:grid-cols-2 gap-4">
-                    <div class="bg-cyan-950/20 border-l-4 border-cyan-500 p-5 rounded-r-xl font-mono text-xs">
-                      <h5 class="font-bold text-cyan-300 mb-2 text-lg font-display">Interrogativo (Quis?)</h5>
-                      <p class="text-sm font-body mb-3">Tienen acento agudo siempre en la primera sílaba (τίς o τί). Traducen "¿quién?", "¿qué?", "¿cuál?". </p>
-                      <p><strong class="text-cyan-400">Nom Sg (M/F):</strong> τίς ἐστιν; <span class="italic text-slate-500">(¿Quién es?)</span></p>
-                      <p><strong class="text-cyan-400">Nom Sg (N):</strong> τί τοῦτό ἐστι; <span class="italic text-slate-500">(¿Qué es esto?)</span></p>
+                  <div class=”grid md:grid-cols-2 gap-4”>
+                    <div class=”bg-cyan-950/20 border-l-4 border-cyan-500 p-5 rounded-r-xl font-mono text-xs”>
+                      <h5 class=”font-bold text-cyan-300 mb-2 text-lg font-display”>Interrogativo (Quis?)</h5>
+                      <p class=”text-sm font-body mb-3”>Tienen acento agudo siempre en la primera sílaba (τίς o τί). Traducen “¿quién?”, “¿qué?”, “¿cuál?”. </p>
+                      <p><strong class=”text-cyan-400”>Nom Sg (M/F):</strong> τίς ἐστιν; <span class=”italic text-slate-500”>(¿Quién es?)</span></p>
+                      <p><strong class=”text-cyan-400”>Nom Sg (N):</strong> τί τοῦτό ἐστι; <span class=”italic text-slate-500”>(¿Qué es esto?)</span></p>
                     </div>
-                    <div class="bg-slate-900 border-l-4 border-slate-600 p-5 rounded-r-xl font-mono text-xs shadow-inner">
-                      <h5 class="font-bold text-slate-400 mb-2 text-lg font-display">Indefinido (Aliquis)</h5>
-                      <p class="text-sm font-body mb-3">Son enclíticos (generalmente sin acento) o llevan acento en la última sílaba. Traducen "alguno", "un cierto", "alguien".</p>
-                      <p><strong class="text-slate-400">Nom Sg (M/F):</strong> ἄνθρωπός τις <span class="italic text-slate-500">(un cierto hombre)</span></p>
-                      <p><strong class="text-slate-400">Nom Sg (N):</strong> δῶρόν τι <span class="italic text-slate-500">(algún regalo)</span></p>
+                    <div class=”bg-slate-900 border-l-4 border-slate-600 p-5 rounded-r-xl font-mono text-xs shadow-inner”>
+                      <h5 class=”font-bold text-slate-400 mb-2 text-lg font-display”>Indefinido (Aliquis)</h5>
+                      <p class=”text-sm font-body mb-3”>Son enclíticos (generalmente sin acento) o llevan acento en la última sílaba. Traducen “alguno”, “un cierto”, “alguien”.</p>
+                      <p><strong class=”text-slate-400”>Nom Sg (M/F):</strong> ἄνθρωπός τις <span class=”italic text-slate-500”>(un cierto hombre)</span></p>
+                      <p><strong class=”text-slate-400”>Nom Sg (N):</strong> δῶρόν τι <span class=”italic text-slate-500”>(algún regalo)</span></p>
                     </div>
                   </div>
                 </div>
             `
         },
         {
-            id: "verbal", category: "Morfología Verbal", title: "4. Tiempos de Pasado (Aoristo y Voz Media)", icon: "zap",
-            content: `
-                <div class="space-y-6 text-sm text-slate-300 font-body leading-relaxed">
-                  <h4 class="font-bold text-amber-400 text-xl border-b border-slate-700 pb-2 tracking-wide">La Voz Media y los Verbos Contractos</h4>
-                  <p>Creso se "paga" (*medio*) sus propios ejércitos. La <strong>Voz Media</strong> indica que el sujeto realiza la acción con un interés especial para sí mismo o es el beneficiario directo.</p>
-                  <p>Los <strong>Verbos Contractos</strong> (-εω, -αω, -οω) sufren cambios en presente al unir la vocal del tema con la desinencia. Solón advierte: "μηδένα πρὸ τοῦ τέλους ὄλβιον **κάλει**" (no *consideres* [imperativo de *kaléo*] a nadie feliz...).</p>
+            Id: “verbal”, category: “Morfología Verbal”, title: “4. Tiempos de Pasado (Aoristo y Voz Media)”, icon: “zap”,
+            Content: `
+                <div class=”space-y-6 text-sm text-slate-300 font-body leading-relaxed”>
+                  <h4 class=”font-bold text-amber-400 text-xl border-b border-slate-700 pb-2 tracking-wide”>La Voz Media y los Verbos Contractos</h4>
+                  <p>Creso se “paga” (*medio*) sus propios ejércitos. La <strong>Voz Media</strong> indica que el sujeto realiza la acción con un interés especial para sí mismo o es el beneficiario directo.</p>
+                  <p>Los <strong>Verbos Contractos</strong> (-εω, -αω, -οω) sufren cambios en presente al unir la vocal del tema con la desinencia. Solón advierte: “μηδένα πρὸ τοῦ τέλους ὄλβιον **κάλει**” (no *consideres* [imperativo de *kaléo*] a nadie feliz…).</p>
 
-                  <div class="bg-slate-950 p-4 rounded-xl border border-slate-700 shadow-inner overflow-x-auto">
-                    <h5 class="font-bold text-purple-300 text-center mb-3 uppercase tracking-widest text-xs font-display">Aoristo de Indicativo (Activo y Medio)</h5>
-                    <p class="text-xs text-slate-400 mb-4 px-2">El <strong>Aoristo</strong> expresa una acción puntual y pasada, desvinculada del presente (como el pretérito perfecto simple). Lleva <strong>Aumento (ε-)</strong>. El modelo sigmático añade -σα-.</p>
-                    <table class="table-greek w-full whitespace-nowrap text-center text-xs">
+                  <div class=”bg-slate-950 p-4 rounded-xl border border-slate-700 shadow-inner overflow-x-auto”>
+                    <h5 class=”font-bold text-purple-300 text-center mb-3 uppercase tracking-widest text-xs font-display”>Aoristo de Indicativo (Activo y Medio)</h5>
+                    <p class=”text-xs text-slate-400 mb-4 px-2”>El <strong>Aoristo</strong> expresa una acción puntual y pasada, desvinculada del presente (como el pretérito perfecto simple). Lleva <strong>Aumento (ε-)</strong>. El modelo sigmático añade -σα-.</p>
+                    <table class=”table-greek w-full whitespace-nowrap text-center text-xs”>
                       <thead><tr><th>Persona</th><th>Activo (ἔλυσα, desaté)</th><th>Medio (ἐλυσάμην, desaté para mí)</th></tr></thead>
                       <tbody>
-                        <tr><td class="font-bold text-slate-500 font-mono">1ª Sg</td><td>ε-λυσά-<strong class="highlight">μην</strong></td><td><strong class="highlight-alt">ε-λυσ</strong>-ά-<strong class="highlight-alt">μην</strong></td></tr>
-                        <tr><td class="font-bold text
+                        <tr><td class=”
