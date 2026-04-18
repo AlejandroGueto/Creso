@@ -1458,10 +1458,12 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
         function useHint() {
             const unsolvedIndex = tasksState.findIndex(state => !state);
             if (unsolvedIndex !== -1) {
-                alert(`👁️ VISIÓN DEL ORÁCULO:\n\n${STAGES[currentStage].tasks[unsolvedIndex].hint}`);
-                sayCroesus("Invocando al Oráculo, ¿eh? Recuerda: sus palabras son como el oro, hay que saber filtrarlas.");
+                // Extraemos la pista y hacemos que Creso la diga directamente en su burbuja
+                const pista = STAGES[currentStage].tasks[unsolvedIndex].hint;
+                sayCroesus(`👁️ VISIÓN DEL ORÁCULO: ${pista}`, 7000); 
             } else {
-                alert("La fase ha sido completamente superada. Los dioses están satisfechos.");
+                // Creso avisa si ya está todo resuelto en lugar de sacar una alerta
+                sayCroesus("La fase ha sido completamente superada. Los dioses están satisfechos.", 4000);
             }
         }
 
