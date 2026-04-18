@@ -168,6 +168,10 @@
                     <span class="font-cinzel font-bold tracking-wider hidden sm:inline text-orange-100 group-hover:text-orange-300 transition-colors">LA CECA</span>
                 </button>
 
+                <button onclick="openRosettaModal()" class="group flex items-center gap-3 bg-gradient-to-r from-emerald-950 to-slate-900 hover:from-emerald-900 hover:to-slate-800 border border-emerald-600/50 px-5 py-2.5 rounded-xl transition-all shadow-[0_0_15px_rgba(16,185,129,0.2)] hover:shadow-emerald-500/40">
+                    <i data-lucide="type" class="w-5 h-5 text-emerald-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-cinzel font-bold tracking-wider hidden sm:inline text-emerald-100 group-hover:text-emerald-300 transition-colors">ROSETTA</span>
+                </button>
                 <button onclick="toggleCodex()" class="group flex items-center gap-3 bg-gradient-to-r from-slate-800 to-slate-900 hover:from-yellow-900/40 hover:to-slate-800 border border-yellow-600/30 px-5 py-2.5 rounded-xl transition-all shadow-lg hover:shadow-yellow-900/50">
                     <i data-lucide="library" class="w-5 h-5 text-yellow-500 group-hover:scale-110 transition-transform"></i>
                     <span class="font-cinzel font-bold tracking-wider hidden sm:inline text-yellow-100 group-hover:text-yellow-400 transition-colors">ABRIR CÓDICE</span>
@@ -385,7 +389,45 @@
         <button onclick="toggleNotepad()" class="fixed bottom-6 left-4 md:left-8 z-50 bg-gradient-to-br from-amber-700 to-amber-900 text-amber-100 p-4 rounded-full shadow-lg border-2 border-amber-500 hover:scale-110 hover:shadow-amber-500/50 transition-all group">
             <i data-lucide="edit-3" class="w-6 h-6 group-hover:rotate-12 transition-transform"></i>
         </button>
-        
+        <div id="rosetta-modal" class="fixed inset-0 bg-black/95 backdrop-blur-lg z-[130] hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-500">
+            <div class="bg-gradient-to-b from-slate-900 to-emerald-950/40 border-2 border-emerald-500/50 rounded-3xl w-full max-w-3xl shadow-[0_0_60px_rgba(16,185,129,0.2)] p-8 relative text-center transform scale-95 transition-transform duration-500 z-10 overflow-hidden">
+                
+                <button onclick="closeRosettaModal()" class="absolute top-4 right-4 text-emerald-400/50 hover:text-emerald-300 transition-colors z-20">
+                    <i data-lucide="x" class="w-8 h-8"></i>
+                </button>
+
+                <div class="relative z-10">
+                    <div class="flex justify-center items-center gap-4 mb-2">
+                        <i data-lucide="languages" class="w-10 h-10 text-emerald-500 drop-shadow-md"></i>
+                        <h2 class="text-3xl font-cinzel font-black text-emerald-300 drop-shadow-lg">LA PIEDRA DE ROSETTA</h2>
+                    </div>
+                    <p class="text-emerald-200/60 font-mono text-sm uppercase tracking-widest mb-8">Transliterador del Alfabeto Griego</p>
+
+                    <div class="space-y-8">
+                        <div class="relative">
+                            <label class="absolute -top-3 left-4 bg-slate-900 px-2 text-xs font-mono text-emerald-400">Escribe en Castellano</label>
+                            <textarea id="rosetta-input" oninput="transliterateText()" placeholder="Escribe tu nombre o un mensaje secreto aquí..." class="w-full bg-slate-950 border border-emerald-600/50 text-slate-200 p-5 rounded-xl font-body text-lg focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 transition-all resize-none h-24"></textarea>
+                        </div>
+
+                        <div class="flex justify-center">
+                            <div class="bg-slate-900 border border-emerald-500/30 p-3 rounded-full animate-bounce">
+                                <i data-lucide="arrow-down" class="w-6 h-6 text-emerald-500"></i>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <label class="absolute -top-3 left-4 bg-slate-900 px-2 text-xs font-mono text-yellow-500">Resultado en Griego</label>
+                            <div class="w-full bg-[#fdf6e3] border-2 border-yellow-600 p-8 rounded-xl shadow-inner min-h-[8rem] flex items-center justify-center relative overflow-hidden">
+                                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/aged-paper.png')] opacity-40 pointer-events-none"></div>
+                                <p id="rosetta-output" class="text-3xl md:text-5xl font-serif font-bold text-amber-900 tracking-wider break-words text-center w-full select-all">
+                                    ...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script>
@@ -1466,6 +1508,65 @@
         }
 
         // INIT
+        // --- Función Premium: La Piedra de Rosetta (Transliterador) ---
+        const GREEK_MAP = {
+            'a': 'α', 'b': 'β', 'c': 'κ', 'd': 'δ', 'e': 'ε', 'f': 'φ', 'g': 'γ', 
+            'h': 'χ', 'i': 'ι', 'j': 'χ', 'k': 'κ', 'l': 'λ', 'm': 'μ', 'n': 'ν', 
+            'ñ': 'νι', 'o': 'ο', 'p': 'π', 'q': 'κ', 'r': 'ρ', 's': 'σ', 't': 'τ', 
+            'u': 'υ', 'v': 'β', 'w': 'ω', 'x': 'ξ', 'y': 'υ', 'z': 'ζ',
+            'A': 'Α', 'B': 'Β', 'C': 'Κ', 'D': 'Δ', 'E': 'Ε', 'F': 'Φ', 'G': 'Γ', 
+            'H': 'Χ', 'I': 'Ι', 'J': 'Χ', 'K': 'Κ', 'L': 'Λ', 'M': 'Μ', 'N': 'Ν', 
+            'Ñ': 'ΝΙ', 'O': 'Ο', 'P': 'Π', 'Q': 'Κ', 'R': 'Ρ', 'S': 'Σ', 'T': 'Τ', 
+            'U': 'Υ', 'V': 'Β', 'W': 'Ω', 'X': 'Ξ', 'Y': 'Υ', 'Z': 'Ζ'
+        };
+
+        function openRosettaModal() {
+            const modal = document.getElementById('rosetta-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('div').classList.remove('scale-95');
+            }, 10);
+            
+            document.getElementById('rosetta-input').focus();
+            lucide.createIcons();
+            
+            // Recompensa secreta por usar el transliterador
+            if (!localStorage.getItem('rosetta_used')) {
+                addXP(20);
+                localStorage.setItem('rosetta_used', 'true');
+            }
+        }
+
+        function closeRosettaModal() {
+            const modal = document.getElementById('rosetta-modal');
+            modal.classList.add('opacity-0');
+            modal.querySelector('div').classList.add('scale-95');
+            setTimeout(() => modal.classList.add('hidden'), 500);
+        }
+
+        function transliterateText() {
+            const input = document.getElementById('rosetta-input').value;
+            const outputEl = document.getElementById('rosetta-output');
+            
+            if (input.trim() === '') {
+                outputEl.innerText = '...';
+                return;
+            }
+
+            let result = '';
+            for (let i = 0; i < input.length; i++) {
+                let char = input[i];
+                // Regla inteligente: Sigma final
+                if ((char === 's' || char === 'S') && (i === input.length - 1 || input[i+1] === ' ')) {
+                    result += 'ς';
+                } else {
+                    result += GREEK_MAP[char] || char;
+                }
+            }
+            
+            outputEl.innerText = result;
+        }
         window.onload = init;
 
     </script>
