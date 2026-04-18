@@ -576,6 +576,9 @@
         // ==========================================
         // BASE DE DATOS: FASES DEL JUEGO
         // ==========================================
+        // ==========================================
+        // BASE DE DATOS: FASES DEL JUEGO
+        // ==========================================
         const STAGES = [
             {
                 title: "Fase I: La Híbris de Sardes",
@@ -590,7 +593,6 @@
                 `,
                 relic: "Moneda de Electró (Creseida)",
                 relicIcon: "coins",
-
                 translation: "Creso, rey de los lidios, era rico. En su palacio tenía mucho oro y plata. Una vez, Solón, el legislador de los atenienses, fue a Sardes. Creso le muestra toda su riqueza y le pregunta: 'Oh extranjero ateniense, ¿a quién de todos los hombres consideras que es el más feliz?'. Pero Solón no lo adula, sino que dice: 'Es necesario observar el final de todo asunto; pues a muchos el dios, tras mostrarles la felicidad, los ha arruinado de raíz'.",
                 analysis: [
                     { word: "Κροῖσος", type: "Sustantivo", morph: "Nom. Sg. Masc.", lemma: "Κροῖσος, -ου (ὁ)" },
@@ -598,7 +600,6 @@
                     { word: "ὀλβιώτατον", type: "Adjetivo (Superl.)", morph: "Acus. Sg. Masc.", lemma: "ὄλβιος, -α, -ον" },
                     { word: "τίνα", type: "Pronombre", morph: "Acus. Sg. Masc.", lemma: "τίς, τί" }
                 ],
-                
                 tasks: [
                     {
                         type: "select",
@@ -651,19 +652,6 @@
                 `,
                 relic: "Rama de Laurel Délfico",
                 relicIcon: "leaf",
-
-                {
-                title: "Fase II: El Engaño de Delfos",
-                narrative: `
-                    <p>Habiendo perdido a su hijo por una profecía de Némesis, Creso teme ahora el avance...</p>
-                    <p>La Pitia pronuncia un oráculo ambiguo. Creso no aplica la inteligencia práctica...</p>
-                `,
-                greekText: `
-                    μετὰ δὲ ταῦτα, <strong>οὗτος</strong> ὁ Κροῖσος ἐβούλετο τοῖς Πέρσαις <strong>πολεμεῖν</strong>...
-                `,
-                relic: "Rama de Laurel Délfico",
-                relicIcon: "leaf",
-
                 translation: "Después de esto, este Creso quería hacer la guerra a los persas. Envió, pues, mensajeros a Delfos y preguntó a Apolo. La Pitia respondió: 'Si cruzas el río Halys, destruirás un gran imperio'. El rey se alegró con estas palabras. Preparaba, pues, su ejército y cruzaba el río, esperando vencer a los persas. Pero destruyó su propio imperio.",
                 analysis: [
                     { word: "οὗτος", type: "Pron. Demostrativo", morph: "Nom. Sg. Masc.", lemma: "οὗτος, αὕτη, τοῦτο" },
@@ -671,11 +659,6 @@
                     { word: "βασιλεὺς", type: "Sustantivo", morph: "Nom. Sg. Masc.", lemma: "βασιλεύς, -έως (ὁ)" },
                     { word: "ἔφθειρεν", type: "Verbo", morph: "Imperf. Ind. Activo (3ª Sg)", lemma: "φθείρω" }
                 ],
-
-                tasks: [
-                    {
-                        type: "select",
-                        question: "Observa los verbos de acción continua en el pasado...",
                 tasks: [
                     {
                         type: "select",
@@ -728,19 +711,6 @@
                 `,
                 relic: "Antorcha Apagada de Ciro",
                 relicIcon: "flame",
-
-                {
-                title: "Fase III: La Pira y La Revelación",
-                narrative: `
-                    <p>Creso ha cruzado el río Halys. Su ejército ha sido aniquilado y Sardes ha caído...</p>
-                    <p>Sintiendo el calor de las llamas (<em>phlox</em>), Creso sufre una catarsis...</p>
-                `,
-                greekText: `
-                    οἱ γὰρ Πέρσαι ἐνίκησαν τοὺς Λυδούς. ὁ δὲ Κῦρος <strong>ἔλαβε</strong> τὸν Κροῖσον ζῶντα...
-                `,
-                relic: "Antorcha Apagada de Ciro",
-                relicIcon: "flame",
-
                 translation: "Pues los persas vencieron a los lidios. Y Ciro capturó a Creso vivo y ordenó a los soldados hacer una gran pira. Creso, estando de pie sobre la pira, se acordó de Solón y gritó tres veces: '¡Solón, Solón, Solón!'. Ciro, cuando se dio cuenta de la sabiduría del hombre, se arrepintió y ordenó apagar el fuego. Así Creso fue salvado y se convirtió en amigo de Ciro.",
                 analysis: [
                     { word: "ἔλαβε", type: "Verbo", morph: "Aoristo Radical Activo (3ª Sg)", lemma: "λαμβάνω" },
@@ -748,11 +718,6 @@
                     { word: "ᾔσθετο", type: "Verbo (Deponente)", morph: "Aoristo Ind. Medio (3ª Sg)", lemma: "αἰσθάνομαι" },
                     { word: "ἐγένετο", type: "Verbo (Deponente)", morph: "Aoristo Ind. Medio (3ª Sg)", lemma: "γίγνομαι" }
                 ],
-
-                tasks: [
-                    {
-                        type: "select",
-                        question: "El verbo <strong class='text-yellow-400'>ἔλαβε</strong> (capturó) es un Aoristo...",
                 tasks: [
                     {
                         type: "select",
