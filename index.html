@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🏛️ El Códice de Creso</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -132,9 +130,9 @@
 </head>
 <body class="min-h-screen flex flex-col">
 
-    <!-- HEADER / NAVBAR -->
-   <header class="glass-panel sticky top-0 z-50 border-b border-yellow-900/50">
+    <header class="glass-panel sticky top-0 z-50 border-b border-yellow-900/50">
         <div class="max-w-screen-2xl mx-auto px-4 lg:px-8 py-3 flex justify-between items-center">
+            
             <div class="flex items-center gap-4">
                 <div class="bg-gradient-to-br from-yellow-600 to-yellow-900 p-2 rounded-lg border border-yellow-500/30 shadow-lg">
                     <i data-lucide="landmark" class="text-yellow-100 w-8 h-8"></i>
@@ -176,13 +174,10 @@
         </div>
     </header>
 
-    <!-- MAIN LAYOUT -->
     <main class="flex-grow max-w-screen-2xl mx-auto w-full px-4 py-8 flex flex-col xl:flex-row gap-8 relative">
         
-        <!-- LEFT: GAME AREA -->
         <div class="w-full xl:w-7/12 flex flex-col gap-8" id="game-container">
             
-            <!-- Stage Title & Narrative -->
             <div class="glass-panel p-8 lg:p-10 rounded-3xl relative overflow-hidden">
                 <div class="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-yellow-600/20 to-rose-600/10 rounded-full blur-[100px] pointer-events-none"></div>
                 
@@ -204,7 +199,6 @@
                 <div id="narrative-text" class="text-slate-300 space-y-5 text-lg leading-relaxed font-medium relative z-10"></div>
             </div>
 
-            <!-- Greek Fragment -->
             <div class="relative group">
                 <div class="absolute -inset-1 bg-gradient-to-r from-yellow-600 to-amber-900 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
                 <div class="relative bg-[#f8f9fa] p-8 lg:p-10 rounded-2xl border-2 border-[#d4af37]">
@@ -218,7 +212,6 @@
                 </div>
             </div>
 
-            <!-- Tasks Dashboard -->
             <div class="glass-panel p-8 lg:p-10 rounded-3xl border-t-4 border-yellow-500 relative overflow-hidden">
                 <div class="flex justify-between items-end border-b border-slate-700 pb-5 mb-8 relative z-10">
                     <h3 class="font-cinzel text-3xl text-white font-bold drop-shadow-md">Desafíos Filológicos</h3>
@@ -227,23 +220,15 @@
                         <button onclick="openTranslationModal()" class="group flex items-center gap-2 text-sm font-mono bg-amber-950/40 border border-amber-800/50 text-amber-400 hover:text-amber-300 hover:bg-amber-900/60 px-4 py-2 rounded-lg transition-all shadow-lg">
                             <i data-lucide="languages" class="w-4 h-4 group-hover:rotate-12 transition-transform"></i> Traducción y Análisis
                         </button>
-                        
-                        <button onclick="useHint()" class="group flex items-center gap-2 text-sm font-mono bg-cyan-950/40 border border-cyan-800/50 text-cyan-400 hover:text-cyan-300 hover:bg-cyan-900/60 px-4 py-2 rounded-lg transition-all shadow-lg">
-                            <i data-lucide="sparkles" class="w-4 h-4 group-hover:animate-pulse"></i> Invocar Oráculo
-                        </button>
                     </div>
-                    </div>
+                </div>
                 
                 <div id="tasks-container" class="space-y-6 relative z-10">
-                    <!-- Tasks injected via JS -->
-                </div>
+                    </div>
             </div>
         </div>
 
-        <!-- RIGHT: CODEX (SIDEBAR / OVERLAY) -->
         <aside id="codex-sidebar" class="w-full xl:w-5/12 glass-panel rounded-3xl flex flex-col h-[85vh] sticky top-28 border border-slate-700 transition-all duration-500 xl:translate-x-0 hidden xl:flex z-50 overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-            
-            <!-- Codex Header & Tabs -->
             <div class="bg-slate-900 border-b border-slate-700 z-10">
                 <div class="p-6 flex justify-between items-center">
                     <h2 class="text-2xl font-cinzel font-black tracking-widest text-yellow-500 flex items-center gap-3">
@@ -263,15 +248,11 @@
                     </button>
                 </div>
             </div>
-            
-            <!-- Codex Content Area -->
-            <div class="flex-grow overflow-y-auto p-4 bg-slate-950/50" id="codex-content-area">
-                <!-- Dynamic Content injected here -->
-            </div>
+            <div class="flex-grow overflow-y-auto p-4 bg-slate-950/50" id="codex-content-area"></div>
         </aside>
 
-        <!-- OVERLAY FOR MOBILE CODEX -->
         <div id="mobile-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 hidden xl:hidden" onclick="toggleCodex()"></div>
+        
         <div id="translation-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-[100] hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
             <div class="bg-slate-900 border border-amber-600/50 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-[0_0_50px_rgba(217,119,6,0.2)] transform scale-95 transition-transform duration-300" id="translation-modal-content">
                 <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-700 p-6 flex justify-between items-center z-10">
@@ -293,35 +274,32 @@
                             <table class="premium-table text-sm w-full">
                                 <thead>
                                     <tr>
-                                        <th>Forma en Texto</th>
-                                        <th>Clase</th>
-                                        <th>Morfología</th>
-                                        <th>Enunciado (Lema)</th>
+                                        <th>Forma en Texto</th><th>Clase</th><th>Morfología</th><th>Enunciado (Lema)</th>
                                     </tr>
                                 </thead>
-                                <tbody id="modal-analysis-body">
-                                    </tbody>
+                                <tbody id="modal-analysis-body"></tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div id="lore-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[110] hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300" onclick="closeLoreModal()">
             <div class="bg-gradient-to-b from-amber-900 to-slate-900 border-2 border-amber-500/50 rounded-2xl w-full max-w-lg shadow-[0_0_40px_rgba(245,158,11,0.3)] transform scale-95 transition-transform duration-300 p-1" onclick="event.stopPropagation()">
                 <div class="bg-slate-950/90 rounded-xl p-6 relative overflow-hidden">
                     <div class="absolute -top-10 -right-10 w-32 h-32 bg-amber-500/20 rounded-full blur-2xl"></div>
-                    <button onclick="closeLoreModal()" class="absolute top-4 right-4 text-amber-500/50 hover:text-amber-400 transition-colors">
+                    <button onclick="closeLoreModal()" class="absolute top-4 right-4 text-amber-500/50 hover:text-amber-400 transition-colors z-20">
                         <i data-lucide="x-circle" class="w-6 h-6"></i>
                     </button>
-                    <h3 id="lore-title" class="text-2xl font-cinzel font-black text-amber-400 mb-4 border-b border-amber-900/50 pb-2 pr-8"></h3>
+                    <h3 id="lore-title" class="text-2xl font-cinzel font-black text-amber-400 mb-4 border-b border-amber-900/50 pb-2 pr-8 relative z-10"></h3>
                     <p id="lore-text" class="text-slate-300 font-body leading-relaxed text-lg relative z-10"></p>
                 </div>
             </div>
         </div>
+
         <div id="map-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-[120] hidden flex items-center justify-center p-4 md:p-8 opacity-0 transition-opacity duration-300">
-            <div class="bg-slate-900 border-2 border-cyan-600/50 rounded-2xl w-full max-w-6xl h-[85vh] flex flex-col shadow-[0_0_50px_rgba(8,145,178,0.2)] transform scale-95 transition-transform duration-300">
-                
+            <div class="bg-slate-900 border-2 border-cyan-600/50 rounded-2xl w-full max-w-6xl h-[85vh] flex flex-col shadow-[0_0_50px_rgba(8,145,178,0.2)] transform scale-95 transition-transform duration-300 relative z-10">
                 <div class="bg-slate-950/90 border-b border-slate-700 p-5 flex justify-between items-center rounded-t-2xl z-10">
                     <h2 class="text-2xl font-cinzel font-bold text-cyan-400 flex items-center gap-3">
                         <i data-lucide="map" class="w-7 h-7"></i> Cartografía del Mundo Antiguo
@@ -330,51 +308,45 @@
                         <i data-lucide="x" class="w-6 h-6"></i>
                     </button>
                 </div>
-                
                 <div id="ancient-map" class="flex-grow w-full rounded-b-xl z-0 bg-[#e5e5f7]"></div>
-                
             </div>
         </div>
+
         <div id="mint-modal" class="fixed inset-0 bg-black/95 backdrop-blur-lg z-[130] hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-500">
             <div class="bg-gradient-to-b from-slate-900 to-orange-950/40 border-2 border-orange-500/50 rounded-3xl w-full max-w-2xl shadow-[0_0_60px_rgba(249,115,22,0.2)] p-8 relative text-center transform scale-95 transition-transform duration-500 z-10 overflow-hidden">
-                
                 <div id="forge-flash" class="absolute inset-0 bg-orange-500 opacity-0 pointer-events-none transition-opacity duration-200"></div>
-
                 <button onclick="closeMintModal()" class="absolute top-4 right-4 text-orange-400/50 hover:text-orange-300 transition-colors z-20">
                     <i data-lucide="x" class="w-8 h-8"></i>
                 </button>
-
                 <div class="relative z-10">
                     <div class="flex justify-center items-center gap-4 mb-2">
                         <i data-lucide="anvil" class="w-10 h-10 text-orange-500 drop-shadow-md"></i>
                         <h2 class="text-3xl font-cinzel font-black text-orange-300 drop-shadow-lg">LA CECA DE SARDES</h2>
                     </div>
                     <p class="text-orange-200/60 font-mono text-sm uppercase tracking-widest mb-6">Acuña monedas dominando la Etimología</p>
-
                     <div class="inline-block bg-slate-950 border border-orange-600/50 rounded-full px-6 py-2 mb-8 shadow-inner">
                         <span class="font-cinzel font-bold text-orange-400">Tus Creseidas Acuñadas: <span id="mint-score" class="text-2xl text-yellow-400">0</span></span>
                     </div>
-
                     <div id="mint-game-area" class="space-y-6">
                         <p class="text-slate-300 font-body text-lg">¿Qué palabra castellana deriva de la siguiente raíz griega?</p>
                         <div class="bg-slate-800/80 border border-slate-600 rounded-xl p-6 mb-6">
                             <span id="greek-root-word" class="text-4xl font-serif font-bold text-yellow-400 tracking-wider">χρυσός</span>
                             <p id="greek-root-meaning" class="text-slate-400 font-mono text-sm mt-2">(oro)</p>
                         </div>
-                        
-                        <div id="mint-options" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            </div>
+                        <div id="mint-options" class="grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
                     </div>
                 </div>
             </div>
         </div>
+
     </main>
 
     <script>
+        // Inicializar iconos básicos
         lucide.createIcons();
 
         // ==========================================
-        // BASE DE DATOS: CULTURA E HISTORIA
+        // 1. BASES DE DATOS (Cultura, Gramática y Fases)
         // ==========================================
         const CULTURE_DATA = [
             {
@@ -385,81 +357,54 @@
             {
                 title: "2. Solón y la Sabiduría (Σοφία)", icon: "brain-circuit",
                 content: `<p class="mb-4">Solón de Atenas fue uno de los Siete Sabios de Grecia. Reformó las leyes de Atenas y luego viajó por el mundo. Heródoto narra su encuentro con Creso.</p>
-                <p>Solón representa la <em>sophrosyne</em> (moderación, prudencia). Su máxima es que la fortuna es inestable: <strong>"No llames a nadie verdaderamente feliz (ὄλβιος) hasta que haya muerto"</strong>, pues el destino puede arruinar una vida próspera en su último día.</p>`
+                <p>Solón representa la <em>sophrosyne</em> (moderación, prudencia). Su máxima es que la fortuna es inestable: <strong>"No llames a nadie verdaderamente feliz (ὄλβιος) hasta que haya muerto"</strong>.</p>`
             },
-            // 👇 NUEVA SECCIÓN: ATIS Y ADRASTO 👇
             {
                 title: "3. La Tragedia de Atis y el Jabalí", icon: "swords",
-                content: `<p class="mb-4">Tras la partida de Solón, la venganza divina comenzó. Creso tuvo un sueño profético: su hijo favorito, <span class="text-amber-400 font-bold cursor-pointer hover:text-amber-300 underline decoration-amber-500/50 decoration-dashed transition-all" onclick="openLoreModal('Atis (Ἄτυς)', 'El nombre Atis está relacionado con divinidades frigias de la vegetación que mueren jóvenes y trágicamente, un presagio de su propio destino.')">Atis</span>, moriría herido por una punta de hierro. Aterrado, Creso lo alejó de la guerra y escondió todas las armas del palacio.</p>
-                <p class="mb-4">Tiempo después, llegó a Sardes un príncipe exiliado llamado <span class="text-amber-400 font-bold cursor-pointer hover:text-amber-300 underline decoration-amber-500/50 decoration-dashed transition-all" onclick="openLoreModal('Adrasto (Ἄδρηστος)', 'Su nombre en griego significa &quot;El Inevitable&quot; o &quot;Del que no se puede escapar&quot;. Una ironía literaria magistral de Heródoto, pues él será el portador del destino inevitable de Atis.')">Adrasto</span>, que había matado a su propio hermano por accidente. Creso lo purificó y lo acogió como huésped (<em>Xenía</em>).</p>
-                <p>Ese mismo año, un monstruoso jabalí aterrorizó la región de Misia. Atis rogó ir a la caza, argumentando que los colmillos de un jabalí "no son puntas de hierro". Creso accedió, pero envió a Adrasto para protegerlo. Durante la cacería, Adrasto lanzó su jabalina a la bestia, pero falló, atravesando trágicamente a Atis y cumpliendo la profecía. Devastado por el dolor, Adrasto se suicidó sobre la tumba del joven.</p>`
+                content: `<p class="mb-4">Tras la partida de Solón, la venganza divina comenzó. Creso tuvo un sueño profético: su hijo favorito, <span class="text-amber-400 font-bold cursor-pointer hover:text-amber-300 underline decoration-amber-500/50 decoration-dashed transition-all" onclick="openLoreModal('Atis (Ἄτυς)', 'El nombre Atis está relacionado con divinidades frigias de la vegetación que mueren jóvenes y trágicamente.')">Atis</span>, moriría herido por una punta de hierro. Aterrado, Creso escondió todas las armas.</p>
+                <p class="mb-4">Tiempo después, llegó a Sardes un príncipe exiliado llamado <span class="text-amber-400 font-bold cursor-pointer hover:text-amber-300 underline decoration-amber-500/50 decoration-dashed transition-all" onclick="openLoreModal('Adrasto (Ἄδρηστος)', 'Su nombre en griego significa &quot;El Inevitable&quot; o &quot;Del que no se puede escapar&quot;.')">Adrasto</span>. Creso lo purificó y lo acogió.</p>
+                <p>Ese mismo año, un monstruoso jabalí aterrorizó Misia. Atis rogó ir a la caza. Durante la cacería, Adrasto lanzó su jabalina a la bestia, pero falló, atravesando trágicamente a Atis y cumpliendo la profecía.</p>`
             },
             {
                 title: "4. El Hijo Sordomudo y la Caída", icon: "ear-off",
-                content: `<p class="mb-4">Creso tenía otro hijo que era sordomudo. Años atrás, Creso había preguntado al oráculo si el niño hablaría alguna vez. La Pitia respondió: <em>"Oh, rey, no desees escuchar la voz de tu hijo en el palacio. Hablará por primera vez en un día de gran infortunio"</em>.</p>
-                <p>Cuando los persas de Ciro el Grande tomaron Sardes, un soldado persa, sin reconocer a Creso, se abalanzó sobre él para matarlo. Creso, destrozado por haberlo perdido todo, no hizo ademán de defenderse. Al ver esto, su hijo mudo rompió a hablar por primera vez por puro terror, gritando: <span class="text-amber-400 font-bold cursor-pointer hover:text-amber-300 underline decoration-amber-500/50 decoration-dashed transition-all" onclick="openLoreModal('El grito que salvó al rey', '&quot;¡Hombre, no mates a Creso!&quot; (Ἄνθρωπε, μὴ κτεῖνε Κροῖσον). Gracias a estas primeras palabras, el soldado lo reconoció y lo hizo prisionero en lugar de asesinarlo.')">¡Hombre, no mates a Creso!</span>. La profecía se había cumplido al milímetro.</p>`
+                content: `<p class="mb-4">Creso tenía otro hijo que era sordomudo. La Pitia le advirtió: <em>"Oh, rey, no desees escuchar la voz de tu hijo. Hablará por primera vez en un día de gran infortunio"</em>.</p>
+                <p>Cuando los persas tomaron Sardes, un soldado, sin reconocer a Creso, iba a matarlo. Su hijo mudo rompió a hablar por puro terror, gritando: <span class="text-amber-400 font-bold cursor-pointer hover:text-amber-300 underline decoration-amber-500/50 decoration-dashed transition-all" onclick="openLoreModal('El grito que salvó al rey', '&quot;¡Hombre, no mates a Creso!&quot; (Ἄνθρωπε, μὴ κτεῖνε Κροῖσον).')">¡Hombre, no mates a Creso!</span>. La profecía se cumplió.</p>`
             },
             {
                 title: "5. Híbris (Ὕβρις) y Némesis (Νέμεσις)", icon: "scale",
-                content: `<p class="mb-4">En el pensamiento griego, la <strong>Híbris</strong> es la arrogancia extrema, el orgullo desmesurado que lleva a un mortal a creerse intocable. Creso comete Híbris al basar su felicidad en riquezas materiales, ignorando los avisos divinos.</p>
-                <p>La consecuencia de la Híbris es la <strong>Némesis</strong>, la venganza divina o justicia retributiva que restaura el equilibrio. La pérdida de Atis, de su imperio y su condena a la hoguera son la Némesis en acción.</p>`
+                content: `<p class="mb-4">La <strong>Híbris</strong> es la arrogancia extrema, el orgullo desmesurado que lleva a un mortal a creerse intocable. Creso comete Híbris al basar su felicidad en riquezas materiales.</p>
+                <p>La consecuencia es la <strong>Némesis</strong>, la venganza divina o justicia retributiva que restaura el equilibrio. La pérdida de Atis, de su imperio y su condena a la hoguera son la Némesis en acción.</p>`
             },
             {
                 title: "6. El Oráculo de Delfos y la Ambigüedad", icon: "flame",
-                content: `<p class="mb-4">El Oráculo de Delfos, dedicado a Apolo, era el centro religioso del mundo antiguo. Las profecías, pronunciadas por la Pitia en estado de trance, solían ser ambiguas, requiriendo <strong>Mêtis</strong> (inteligencia y astucia) para ser interpretadas.</p>
-                <p>Creso, cegado por su deseo de guerra, interpretó la famosa profecía ("Si cruzas el río, destruirás un gran imperio") literalmente a su favor, ignorando que el imperio que caería sería el suyo. Al final de la historia, Creso manda sus cadenas a Delfos quejándose del engaño, pero el dios le responde que el oráculo fue exacto: la culpa fue de su propia interpretación.</p>`
+                content: `<p class="mb-4">El Oráculo de Delfos, dedicado a Apolo, era el centro religioso del mundo antiguo. Las profecías, requerían <strong>Mêtis</strong> (inteligencia y astucia) para ser interpretadas.</p>
+                <p>Creso interpretó la profecía ("Si cruzas el río, destruirás un gran imperio") literalmente a su favor, ignorando que el imperio que caería sería el suyo.</p>`
+            },
+            {
+                title: "7. La Caída de Sardes y la Pira", icon: "shield-alert",
+                content: `<p class="mb-4">Creso cruzó el río Halys y fue derrotado por Ciro el Grande. El "gran imperio" que cayó fue el suyo.</p>
+                <p class="mb-4">Ciro condenó a Creso a morir quemado vivo. En las llamas, Creso recordó a Solón y gritó: <strong>"¡Solón, Solón, Solón!"</strong>. Ciro, al escuchar la historia, se arrepintió, pero el fuego era incontrolable.</p>
+                <p>Creso rogó a Apolo, quien envió una <span class="text-amber-400 font-bold cursor-pointer hover:text-amber-300 underline decoration-amber-500/50 decoration-dashed transition-all" onclick="openLoreModal('La Lluvia de Apolo', 'Unas nubes oscuras se congregaron de inmediato y una tormenta repentina apagó las llamas. Creso sobrevivió.')">lluvia milagrosa</span> que apagó la pira. Sobrevivió y fue consejero de Ciro.</p>`
             }
         ];
-        // ==========================================
-        // BASE DE DATOS: GRAMÁTICA EXHAUSTIVA
-        // ==========================================
+
         const GRAMMAR_DATA = [
             {
                 title: "1. Artículo, Adjetivos (1ª y 2ª Clase)", icon: "tag",
                 content: `
                     <div class="space-y-6">
                         <h4 class="font-cinzel text-yellow-500 border-b border-slate-700 pb-1 text-lg">El Artículo Determinado</h4>
-                        <div class="overflow-x-auto">
-                            <table class="premium-table text-sm">
-                                <thead><tr><th>Caso</th><th>Masc Sg / Pl</th><th>Fem Sg / Pl</th><th>Neut Sg / Pl</th></tr></thead>
-                                <tbody>
-                                    <tr><td>Nom</td><td>ὁ / οἱ</td><td>ἡ / αἱ</td><td>τό / τά</td></tr>
-                                    <tr><td>Acus</td><td>τόν / τούς</td><td>τήν / τάς</td><td>τό / τά</td></tr>
-                                    <tr><td>Gen</td><td>τοῦ / τῶν</td><td>τῆς / τῶν</td><td>τοῦ / τῶν</td></tr>
-                                    <tr><td>Dat</td><td>τῷ / τοῖς</td><td>τῇ / ταῖς</td><td>τῷ / τοῖς</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <h4 class="font-cinzel text-yellow-500 border-b border-slate-700 pb-1 text-lg mt-8">Adjetivos de 1ª Clase (2-1-2 y 2-2)</h4>
-                        <p class="text-sm text-slate-300">Siguen la 2ª declinación (Masc/Neut) y 1ª (Fem). Concuerdan en Género, Número y Caso con el sustantivo.</p>
-                        <div class="overflow-x-auto">
-                            <table class="premium-table text-sm">
-                                <thead><tr><th>Caso</th><th>Masc (2ª)</th><th>Fem (1ª pura/imp)</th><th>Neutro (2ª)</th></tr></thead>
-                                <tbody>
-                                    <tr><td colspan="4" class="text-cyan-400 font-bold bg-slate-800/50">Modelo 3 terminaciones: ἅγιος, ἁγία, ἅγιον (santo)</td></tr>
-                                    <tr><td>N Sg</td><td>ἅγι<span class="highlight-des">ος</span></td><td>ἁγί<span class="highlight-des">α</span> (pura)</td><td>ἅγι<span class="highlight-des">ον</span></td></tr>
-                                    <tr><td>G Sg</td><td>ἁγί<span class="highlight-des">ου</span></td><td>ἁγί<span class="highlight-des">ας</span></td><td>ἁγί<span class="highlight-des">ου</span></td></tr>
-                                    <tr><td colspan="4" class="text-cyan-400 font-bold bg-slate-800/50">Modelo 2 terminaciones: ἀθάνατος, -ον (inmortal)</td></tr>
-                                    <tr><td>N Sg</td><td colspan="2">ἀθάνατ<span class="highlight-des">ος</span> (Sirve para Masc y Fem)</td><td>ἀθάνατ<span class="highlight-des">ον</span></td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <h4 class="font-cinzel text-yellow-500 border-b border-slate-700 pb-1 text-lg mt-8">Adjetivos de 2ª Clase (3ª Declinación)</h4>
-                        <div class="overflow-x-auto">
-                            <table class="premium-table text-sm">
-                                <thead><tr><th>Caso</th><th>Masc (3ª)</th><th>Fem (1ª)</th><th>Neutro (3ª)</th></tr></thead>
-                                <tbody>
-                                    <tr><td colspan="4" class="text-cyan-400 font-bold bg-slate-800/50">Modelo πᾶς, πᾶσα, πᾶν (todo)</td></tr>
-                                    <tr><td>N Sg</td><td>πᾶς</td><td>πᾶσα</td><td>πᾶν</td></tr>
-                                    <tr><td>G Sg</td><td>παντός</td><td>πάσης</td><td>παντός</td></tr>
-                                    <tr><td colspan="4" class="text-cyan-400 font-bold bg-slate-800/50">Modelo ἡδύς, ἡδεῖα, ἡδύ (dulce)</td></tr>
-                                    <tr><td>N Sg</td><td>ἡδύς</td><td>ἡδεῖα</td><td>ἡδύ</td></tr>
-                                    <tr><td>G Sg</td><td>ἡδέος</td><td>ἡδείας</td><td>ἡδέος</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <table class="premium-table text-sm">
+                            <thead><tr><th>Caso</th><th>Masc Sg / Pl</th><th>Fem Sg / Pl</th><th>Neut Sg / Pl</th></tr></thead>
+                            <tbody>
+                                <tr><td>Nom</td><td>ὁ / οἱ</td><td>ἡ / αἱ</td><td>τό / τά</td></tr>
+                                <tr><td>Acus</td><td>τόν / τούς</td><td>τήν / τάς</td><td>τό / τά</td></tr>
+                                <tr><td>Gen</td><td>τοῦ / τῶν</td><td>τῆς / τῶν</td><td>τοῦ / τῶν</td></tr>
+                                <tr><td>Dat</td><td>τῷ / τοῖς</td><td>τῇ / ταῖς</td><td>τῷ / τοῖς</td></tr>
+                            </tbody>
+                        </table>
+                        <h4 class="font-cinzel text-yellow-500 border-b border-slate-700 pb-1 text-lg mt-8">Adjetivos de 1ª y 2ª Clase</h4>
+                        <p class="text-sm text-slate-300">Modelos principales: ἅγιος (3 term), ἀθάνατος (2 term), πᾶς (2ª clase).</p>
                     </div>
                 `
             },
@@ -468,31 +413,16 @@
                 content: `
                     <div class="space-y-6 text-sm text-slate-300">
                         <h4 class="font-cinzel text-yellow-500 border-b border-slate-700 pb-1 text-lg">1ª Declinación Femeninos y MASCULINOS</h4>
-                        <p>Los masculinos de la 1ª (como ciudadano o joven) terminan en -ης o -ας, y hacen su genitivo singular en -ου (por analogía con la 2ª).</p>
-                        <div class="overflow-x-auto">
-                            <table class="premium-table text-xs">
-                                <thead><tr><th>Caso</th><th>Fem (α pura)<br>ἡμέρα</th><th>Fem (α imp)<br>δόξα</th><th>Fem (η)<br>κώμη</th><th>Masc (ης)<br>πολίτης</th><th>Masc (ας)<br>νεανίας</th></tr></thead>
-                                <tbody>
-                                    <tr><td>N Sg</td><td>ἡμέρ<span class="highlight-des">α</span></td><td>δόξ<span class="highlight-des">α</span></td><td>κώμ<span class="highlight-des">η</span></td><td>πολίτ<span class="highlight-des">ης</span></td><td>νεανί<span class="highlight-des">ας</span></td></tr>
-                                    <tr><td>Ac Sg</td><td>ἡμέρ<span class="highlight-des">αν</span></td><td>δόξ<span class="highlight-des">αν</span></td><td>κώμ<span class="highlight-des">ην</span></td><td>πολίτ<span class="highlight-des">ην</span></td><td>νεανί<span class="highlight-des">αν</span></td></tr>
-                                    <tr><td>G Sg</td><td>ἡμέρ<span class="highlight-des">ας</span></td><td>δόξ<span class="highlight-des">ης</span></td><td>κώμ<span class="highlight-des">ης</span></td><td>πολίτ<span class="highlight-des">ου</span></td><td>νεανί<span class="highlight-des">ου</span></td></tr>
-                                    <tr><td>D Sg</td><td>ἡμέρ<span class="highlight-des">ᾳ</span></td><td>δόξ<span class="highlight-des">ῃ</span></td><td>κώμ<span class="highlight-des">ῃ</span></td><td>πολίτ<span class="highlight-des">ῃ</span></td><td>νεανί<span class="highlight-des">ᾳ</span></td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-
+                        <table class="premium-table text-xs">
+                            <thead><tr><th>Caso</th><th>Fem (α pura) ἡμέρα</th><th>Fem (α imp) δόξα</th><th>Fem (η) κώμη</th><th>Masc (ης) πολίτης</th></tr></thead>
+                            <tbody>
+                                <tr><td>N Sg</td><td>ἡμέρ<span class="highlight-des">α</span></td><td>δόξ<span class="highlight-des">α</span></td><td>κώμ<span class="highlight-des">η</span></td><td>πολίτ<span class="highlight-des">ης</span></td></tr>
+                                <tr><td>Ac Sg</td><td>ἡμέρ<span class="highlight-des">αν</span></td><td>δόξ<span class="highlight-des">αν</span></td><td>κώμ<span class="highlight-des">ην</span></td><td>πολίτ<span class="highlight-des">ην</span></td></tr>
+                                <tr><td>G Sg</td><td>ἡμέρ<span class="highlight-des">ας</span></td><td>δόξ<span class="highlight-des">ης</span></td><td>κώμ<span class="highlight-des">ης</span></td><td>πολίτ<span class="highlight-des">ου</span></td></tr>
+                            </tbody>
+                        </table>
                         <h4 class="font-cinzel text-yellow-500 border-b border-slate-700 pb-1 text-lg mt-6">2ª Declinación (Temas en -o)</h4>
-                        <div class="overflow-x-auto">
-                            <table class="premium-table text-sm">
-                                <thead><tr><th>Caso</th><th>Masc/Fem (-ος)</th><th>Neutro (-ον)</th><th>Plural M/F</th><th>Plural Neutro</th></tr></thead>
-                                <tbody>
-                                    <tr><td>Nom</td><td>λόγ<span class="highlight-des">ος</span></td><td>δῶρ<span class="highlight-des">ον</span></td><td>λόγ<span class="highlight-des">οι</span></td><td>δῶρ<span class="highlight-des">α</span></td></tr>
-                                    <tr><td>Acus</td><td>λόγ<span class="highlight-des">ον</span></td><td>δῶρ<span class="highlight-des">ον</span></td><td>λόγ<span class="highlight-des">ους</span></td><td>δῶρ<span class="highlight-des">α</span></td></tr>
-                                    <tr><td>Gen</td><td>λόγ<span class="highlight-des">ου</span></td><td>δώρ<span class="highlight-des">ου</span></td><td>λόγ<span class="highlight-des">ων</span></td><td>δώρ<span class="highlight-des">ων</span></td></tr>
-                                    <tr><td>Dat</td><td>λόγ<span class="highlight-des">ῳ</span></td><td>δώρ<span class="highlight-des">ῳ</span></td><td>λόγ<span class="highlight-des">οις</span></td><td>δώρ<span class="highlight-des">οις</span></td></tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <p>Modelos: λόγος (Masc/Fem) y δῶρον (Neutro).</p>
                     </div>
                 `
             },
@@ -500,33 +430,9 @@
                 title: "3. Sustantivos: La 3ª Declinación", icon: "library",
                 content: `
                     <div class="space-y-6 text-sm text-slate-300">
-                        <p>La marca principal es el Genitivo Singular en <strong class="text-rose-400">-ος</strong>. Los neutros de la 3ª no llevan 'ς' en el nominativo.</p>
-                        
-                        <div class="overflow-x-auto">
-                            <h5 class="font-cinzel text-cyan-400 mb-2 font-bold">Temas en Consonante Oclusiva (k, p, t)</h5>
-                            <table class="premium-table text-xs">
-                                <thead><tr><th>Caso</th><th>Gutural (κόραξ)</th><th>Labial (γύψ)</th><th>Dental (ἐλπίς)</th><th>Dental N. (σῶμα)</th></tr></thead>
-                                <tbody>
-                                    <tr><td>N Sg</td><td>κόραξ (κ+ς)</td><td>γύψ (π+ς)</td><td>ἐλπίς (δ+ς)</td><td>σῶμα (dental cae)</td></tr>
-                                    <tr><td>Ac Sg</td><td>κόρακ<span class="highlight-des">α</span></td><td>γύπ<span class="highlight-des">α</span></td><td>ἐλπίδ<span class="highlight-des">α</span></td><td>σῶμα</td></tr>
-                                    <tr><td>G Sg</td><td>κόρακ<span class="highlight-des">ος</span></td><td>γύπ<span class="highlight-des">ος</span></td><td>ἐλπίδ<span class="highlight-des">ος</span></td><td>σώματ<span class="highlight-des">ος</span></td></tr>
-                                    <tr><td>D Pl</td><td>κόραξι(ν)</td><td>γυψί(ν)</td><td>ἐλπίσι(ν)</td><td>σώμασι(ν)</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="overflow-x-auto mt-4">
-                            <h5 class="font-cinzel text-cyan-400 mb-2 font-bold">Líquidas, Nasales, Sibilantes y Vocales</h5>
-                            <table class="premium-table text-xs">
-                                <thead><tr><th>Caso</th><th>Líquida (ῥήτωρ)</th><th>Nasal (δαίμων)</th><th>Sibilante (γένος) N.</th><th>Vocal (πόλις) F.</th><th>Diptongo (βασιλεύς) M.</th></tr></thead>
-                                <tbody>
-                                    <tr><td>N Sg</td><td>ῥήτωρ</td><td>δαίμων</td><td>γένος</td><td>πόλις</td><td>βασιλεύς</td></tr>
-                                    <tr><td>Ac Sg</td><td>ῥήτορ<span class="highlight-des">α</span></td><td>δαίμον<span class="highlight-des">α</span></td><td>γένος</td><td>πόλι<span class="highlight-des">ν</span></td><td>βασιλέ<span class="highlight-des">α</span></td></tr>
-                                    <tr><td>G Sg</td><td>ῥήτορ<span class="highlight-des">ος</span></td><td>δαίμον<span class="highlight-des">ος</span></td><td>γένους (ε+ος)</td><td>πόλε<span class="highlight-des">ως</span></td><td>βασιλέ<span class="highlight-des">ως</span></td></tr>
-                                    <tr><td>N Pl</td><td>ῥήτορ<span class="highlight-des">ες</span></td><td>δαίμον<span class="highlight-des">ες</span></td><td>γένη (ε+α)</td><td>πόλε<span class="highlight-des">ις</span> (ε+ες)</td><td>βασιλε<span class="highlight-des">ῖς</span></td></tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <p>La marca principal es el Genitivo Singular en <strong class="text-rose-400">-ος</strong>.</p>
+                        <h5 class="font-cinzel text-cyan-400 mb-2 font-bold">Oclusivas y otros temas</h5>
+                        <p>Modelos: κόραξ, ἐλπίς, σῶμα, ῥήτωρ, βασιλεύς.</p>
                     </div>
                 `
             },
@@ -534,90 +440,21 @@
                 title: "4. El Universo de los Pronombres", icon: "users",
                 content: `
                     <div class="space-y-6 text-sm text-slate-300">
-                        <h4 class="font-cinzel text-yellow-500 border-b border-slate-700 pb-1 text-lg">Pronombres Personales</h4>
-                        <div class="overflow-x-auto">
-                            <table class="premium-table text-xs">
-                                <thead><tr><th>Caso</th><th>1ª Pers (Yo)</th><th>2ª Pers (Tú)</th><th>1ª Pl (Nosotros)</th><th>2ª Pl (Vosotros)</th></tr></thead>
-                                <tbody>
-                                    <tr><td>Nom</td><td>ἐγώ</td><td>σύ</td><td>ἡμεῖς</td><td>ὑμεῖς</td></tr>
-                                    <tr><td>Acus</td><td>ἐμέ / με</td><td>σέ / σε</td><td>ἡμᾶς</td><td>ὑμᾶς</td></tr>
-                                    <tr><td>Gen</td><td>ἐμοῦ / μου</td><td>σοῦ / σου</td><td>ἡμῶν</td><td>ὑμῶν</td></tr>
-                                    <tr><td>Dat</td><td>ἐμοί / μοι</td><td>σοί / σοι</td><td>ἡμῖν</td><td>ὑμῖν</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                            <div>
-                                <h4 class="font-cinzel text-cyan-400 border-b border-slate-700 pb-1 text-lg">Demostrativos</h4>
-                                <ul class="font-mono text-xs space-y-2 bg-slate-900/50 p-3 rounded border border-slate-700 mt-2">
-                                    <li><strong class="text-white">Este:</strong> οὗτος, αὕτη, τοῦτο</li>
-                                    <li><strong class="text-white">Ese:</strong> ὅδε, ἥδε, τόδε</li>
-                                    <li><strong class="text-white">Aquel:</strong> ἐκεῖνος, ἐκείνη, ἐκεῖνο</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="font-cinzel text-rose-400 border-b border-slate-700 pb-1 text-lg">Relativo</h4>
-                                <ul class="font-mono text-xs space-y-2 bg-slate-900/50 p-3 rounded border border-slate-700 mt-2">
-                                    <li><strong class="text-white">Que, el cual:</strong> ὅς, ἥ, ὅ</li>
-                                    <li class="text-slate-400 italic">Siempre lleva espíritu áspero. Se declina como un adjetivo de 1ª clase (sin la 'τ' del artículo).</li>
-                                </ul>
-                            </div>
-                        </div>
-
+                        <h4 class="font-cinzel text-yellow-500 border-b border-slate-700 pb-1 text-lg">Personales y Demostrativos</h4>
+                        <p>Modelos: ἐγώ, σύ, ἡμεῖς, ὑμεῖς. Demostrativo principal: οὗτος, αὕτη, τοῦτο.</p>
                         <h4 class="font-cinzel text-yellow-500 border-b border-slate-700 pb-1 text-lg mt-6">Interrogativos vs Indefinidos</h4>
-                        <div class="overflow-x-auto">
-                            <table class="premium-table text-sm">
-                                <thead><tr><th>Caso</th><th>Interrogativo (¿Quién/Qué?)</th><th>Indefinido (Alguien/Algo)</th></tr></thead>
-                                <tbody>
-                                    <tr><td>Acento</td><td class="text-green-400 font-bold">Siempre tónico en la 1ª sílaba</td><td class="text-slate-400 font-bold">Enclíticos (sin acento o en la última)</td></tr>
-                                    <tr><td>Nom M/F</td><td>τίς</td><td>τις</td></tr>
-                                    <tr><td>Nom Neutro</td><td>τί</td><td>τι</td></tr>
-                                    <tr><td>Genitivo</td><td>τίνος</td><td>τινός</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <p><strong class="text-green-400">Interrogativo (τίς, τί):</strong> Siempre tónico en 1ª sílaba. <br>
+                        <strong class="text-slate-400">Indefinido (τις, τι):</strong> Enclítico (sin acento o última sílaba).</p>
                     </div>
                 `
             },
             {
-                title: "5. Sistema Verbal: Voz Activa, Media y Verbos Contractos", icon: "pen-tool",
+                title: "5. Sistema Verbal: Activa, Media y Contractos", icon: "pen-tool",
                 content: `
                     <div class="space-y-6 text-sm text-slate-300">
-                        <p>La <strong class="text-yellow-400">Voz Activa</strong> indica que el sujeto realiza la acción. La <strong class="text-cyan-400">Voz Media</strong> indica que el sujeto actúa en su propio interés, o son verbos deponentes (forma media, significado activo).</p>
-                        
-                        <div class="overflow-x-auto">
-                            <table class="premium-table text-xs">
-                                <thead><tr><th>Pers</th><th>Pres. Activo<br>(λύω)</th><th>Pres. Medio<br>(λύομαι)</th><th>Imperf. Activo<br>(ἔλυον)</th><th>Imperf. Medio<br>(ἐλυόμην)</th></tr></thead>
-                                <tbody>
-                                    <tr><td>1 sg</td><td>λύ<span class="highlight-des">ω</span></td><td>λύ<span class="highlight-des">ομαι</span></td><td>ἐ-λύ<span class="highlight-des">ον</span></td><td>ἐ-λυ<span class="highlight-des">όμην</span></td></tr>
-                                    <tr><td>2 sg</td><td>λύ<span class="highlight-des">εις</span></td><td>λύ<span class="highlight-des">ῃ</span> / <span class="highlight-des">ει</span></td><td>ἔ-λυ<span class="highlight-des">ες</span></td><td>ἐ-λύ<span class="highlight-des">ου</span> (ε+σο)</td></tr>
-                                    <tr><td>3 sg</td><td>λύ<span class="highlight-des">ει</span></td><td>λύ<span class="highlight-des">εται</span></td><td>ἔ-λυ<span class="highlight-des">ε(ν)</span></td><td>ἐ-λύ<span class="highlight-des">ετο</span></td></tr>
-                                    <tr><td>1 pl</td><td>λύ<span class="highlight-des">ομεν</span></td><td>λυ<span class="highlight-des">όμεθα</span></td><td>ἐ-λύ<span class="highlight-des">ομεν</span></td><td>ἐ-λυ<span class="highlight-des">όμεθα</span></td></tr>
-                                    <tr><td>3 pl</td><td>λύ<span class="highlight-des">ουσι(ν)</span></td><td>λύ<span class="highlight-des">ονται</span></td><td>ἔ-λυ<span class="highlight-des">ον</span></td><td>ἐ-λύ<span class="highlight-des">οντο</span></td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <h4 class="font-cinzel text-yellow-500 text-lg mt-6 border-b border-slate-700 pb-1">Verbos Contractos (-αω, -εω, -οω)</h4>
-                        <p>Las vocales del tema chocan con la desinencia en Presente e Imperfecto.</p>
-                        <ul class="font-mono text-xs space-y-2 bg-slate-900/50 p-4 rounded border border-slate-700">
-                            <li><strong class="text-white text-sm">-εω (Ej. ποιέω):</strong> ε+ο = <span class="text-yellow-400">ου</span> / ε+ε = <span class="text-yellow-400">ει</span>. (Ej: ποιοῦμεν, ποιεῖς)</li>
-                            <li><strong class="text-white text-sm">-αω (Ej. νικάω):</strong> α+o/ου/ω = <span class="text-yellow-400">ω</span> / α+ε/ει/ῃ = <span class="text-yellow-400">α</span>. (Ej: νικῶμεν, νικᾷς)</li>
-                            <li><strong class="text-white text-sm">-οω (Ej. δηλόω):</strong> o+ε/ο/ου = <span class="text-yellow-400">ου</span> / o+ει/ῃ/οι = <span class="text-yellow-400">οι</span> / o+ω/η = <span class="text-yellow-400">ω</span>.</li>
-                        </ul>
-
-                        <h4 class="font-cinzel text-yellow-500 text-lg mt-6 border-b border-slate-700 pb-1">El Verbo Copulativo (εἰμί)</h4>
-                        <div class="grid grid-cols-2 gap-4 text-center">
-                            <div class="bg-slate-900 p-3 rounded border border-slate-700">
-                                <span class="block text-cyan-400 font-bold mb-2 font-cinzel">Presente</span>
-                                εἰμί, εἶ, ἐστί(ν), ἐσμέν, ἐστέ, εἰσί(ν)
-                            </div>
-                            <div class="bg-slate-900 p-3 rounded border border-slate-700">
-                                <span class="block text-rose-400 font-bold mb-2 font-cinzel">Imperfecto</span>
-                                ἦν/ἦ, ἦσθα, ἦν, ἦμεν, ἦτε, ἦσαν
-                            </div>
-                        </div>
+                        <p>La <strong class="text-yellow-400">Voz Activa</strong> indica que el sujeto realiza la acción. La <strong class="text-cyan-400">Voz Media</strong> indica que el sujeto actúa en su propio interés o deponente.</p>
+                        <h4 class="font-cinzel text-yellow-500 text-lg mt-6 border-b border-slate-700 pb-1">Verbos Contractos y Copulativo</h4>
+                        <p>Contracciones principales de -εω, -αω, -οω. El verbo εἰμί rige atributo en Nominativo.</p>
                     </div>
                 `
             },
@@ -625,231 +462,163 @@
                 title: "6. El Aoristo (Activo y Medio)", icon: "zap",
                 content: `
                     <div class="space-y-6 text-sm text-slate-300">
-                        <p>El <strong>Aoristo</strong> expresa una acción puntual en el pasado. Lleva <strong class="text-yellow-400">Aumento (ἐ-)</strong> en el modo indicativo. Su infinitivo e imperativo NO llevan aumento.</p>
-                        
-                        <h4 class="font-cinzel text-cyan-400 border-b border-slate-700 pb-1 text-lg">Aoristo Sigmático (Tema + σα)</h4>
-                        <div class="overflow-x-auto">
-                            <table class="premium-table text-xs">
-                                <thead><tr><th>Pers</th><th>Activo (ἔ-λυ-σα)</th><th>Medio (ἐ-λυ-σά-μην)</th></tr></thead>
-                                <tbody>
-                                    <tr><td>1 sg</td><td>ἔλυ<span class="highlight-des">σα</span></td><td>ἐλυ<span class="highlight-des">σάμην</span></td></tr>
-                                    <tr><td>2 sg</td><td>ἔλυ<span class="highlight-des">σας</span></td><td>ἐλύ<span class="highlight-des">σω</span> (σα+σο)</td></tr>
-                                    <tr><td>3 sg</td><td>ἔλυ<span class="highlight-des">σε(ν)</span></td><td>ἐλύ<span class="highlight-des">σατο</span></td></tr>
-                                    <tr><td>1 pl</td><td>ἐλύ<span class="highlight-des">σαμεν</span></td><td>ἐλυ<span class="highlight-des">σάμεθα</span></td></tr>
-                                    <tr><td>3 pl</td><td>ἔλυ<span class="highlight-des">σαν</span></td><td>ἐλύ<span class="highlight-des">σαντο</span></td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <p class="text-xs mt-2 italic text-slate-400 bg-slate-900/50 p-2 rounded border border-slate-700">Nota: Labial (π,β,φ) + σ = ψ. Gutural (κ,γ,χ) + σ = ξ. Dental (τ,δ,θ) + σ = σ.</p>
-
-                        <h4 class="font-cinzel text-rose-400 border-b border-slate-700 pb-1 text-lg mt-6">Aoristo Radical / Temático (Fuerte)</h4>
-                        <p>Verbos irregulares que cambian su raíz radicalmente y usan las desinencias del Imperfecto.</p>
-                        <ul class="font-mono text-sm space-y-3 bg-slate-900/50 p-4 rounded border border-slate-700">
-                            <li><span class="text-slate-500">λαμβάνω (tomo)</span> ➔ <strong class="text-yellow-500">ἔ-λαβ-ον</strong> (Activo)</li>
-                            <li><span class="text-slate-500">αἰσθάνομαι (percibo)</span> ➔ <strong class="text-cyan-400">ᾐ-σθό-μην</strong> (Medio/Deponente). <em>La α inicial alarga en η.</em></li>
-                            <li><span class="text-slate-500">γίγνομαι (llego a ser)</span> ➔ <strong class="text-cyan-400">ἐ-γεν-όμην</strong> (Medio/Deponente).</li>
-                            <li><span class="text-slate-500">ἔρχομαι (voy)</span> ➔ <strong class="text-yellow-500">ἦλθ-ον</strong> (Activo).</li>
-                            <li><span class="text-slate-500">λέγω (digo)</span> ➔ <strong class="text-yellow-500">εἶπ-ον</strong> (Activo).</li>
-                        </ul>
+                        <p>Expresa acción puntual en el pasado. Lleva <strong class="text-yellow-400">Aumento (ἐ-)</strong> en indicativo.</p>
+                        <p><strong>Sigmático:</strong> Añade -σα (ἔλυσα).<br>
+                        <strong>Radical Fuerte:</strong> Cambia raíz, desinencias de imperfecto (Ej: λαμβάνω -> ἔλαβον).</p>
                     </div>
                 `
             },
             {
-                title: "7. El Participio Griego y Adjetivos 3ª Clase", icon: "scroll-text",
+                title: "7. El Participio Griego", icon: "scroll-text",
                 content: `
                     <div class="space-y-6 text-sm text-slate-300">
-                        <p>El <strong>Participio</strong> es un adjetivo verbal. Tiene tiempo y voz (como un verbo) pero se declina en caso, género y número (como un adjetivo). Sigue el modelo de los adjetivos de 3ª clase (Mixtos: 3ª declinación para masculino y neutro, 1ª para femenino).</p>
-                        
-                        <h4 class="font-cinzel text-cyan-400 border-b border-slate-700 pb-1 text-lg">Participio de Presente Activo (λύων, λύουσα, λύον)</h4>
-                        <div class="overflow-x-auto">
-                            <table class="premium-table text-xs">
-                                <thead><tr><th>Caso</th><th>Masc (3ª: tema -ντ)</th><th>Fem (1ª: impura)</th><th>Neutro (3ª: tema -ντ)</th></tr></thead>
-                                <tbody>
-                                    <tr><td>N Sg</td><td>λύων</td><td>λύουσ<span class="highlight-des">α</span></td><td>λῦον</td></tr>
-                                    <tr><td>Ac Sg</td><td>λύοντ<span class="highlight-des">α</span></td><td>λύουσ<span class="highlight-des">αν</span></td><td>λῦον</td></tr>
-                                    <tr><td>G Sg</td><td>λύοντ<span class="highlight-des">ος</span></td><td>λυούσ<span class="highlight-des">ης</span></td><td>λύοντ<span class="highlight-des">ος</span></td></tr>
-                                    <tr><td>D Pl</td><td>λύουσι(ν) (οντ+σι)</td><td>λυούσ<span class="highlight-des">αις</span></td><td>λύουσι(ν)</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <h4 class="font-cinzel text-yellow-500 border-b border-slate-700 pb-1 text-lg mt-6">Participio de Aoristo Activo (λύσας, λύσασα, λύσαν)</h4>
-                        <div class="overflow-x-auto">
-                            <table class="premium-table text-xs">
-                                <thead><tr><th>Caso</th><th>Masc (3ª: tema -ντ)</th><th>Fem (1ª: impura)</th><th>Neutro (3ª: tema -ντ)</th></tr></thead>
-                                <tbody>
-                                    <tr><td>N Sg</td><td>λύσας</td><td>λύσασ<span class="highlight-des">α</span></td><td>λῦσαν</td></tr>
-                                    <tr><td>Ac Sg</td><td>λύσαντ<span class="highlight-des">α</span></td><td>λύσασ<span class="highlight-des">αν</span></td><td>λῦσαν</td></tr>
-                                    <tr><td>G Sg</td><td>λύσαντ<span class="highlight-des">ος</span></td><td>λυσάσ<span class="highlight-des">ης</span></td><td>λύσαντ<span class="highlight-des">ος</span></td></tr>
-                                    <tr><td>D Pl</td><td>λύσασι(ν) (αντ+σι)</td><td>λυσάσ<span class="highlight-des">αις</span></td><td>λύσασι(ν)</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <p class="text-xs italic text-slate-400 mt-2 bg-slate-900/50 p-3 rounded border border-slate-700">Nota Premium: Los participios NO llevan aumento, ni siquiera en Aoristo, porque el aumento es exclusivo del modo Indicativo.</p>
+                        <p>Es un adjetivo verbal. Se declina (modelo 3ª y 1ª declinación combinadas).</p>
+                        <p>Presente: λύων, λύουσα, λῦον.<br>Aoristo: λύσας, λύσασα, λῦσαν (Ojo: ¡sin aumento!).</p>
                     </div>
                 `
             }
         ];
 
-        // ==========================================
-        // BASE DE DATOS: FASES DEL JUEGO
-        // ==========================================
-        // ==========================================
-        // BASE DE DATOS: FASES DEL JUEGO
-        // ==========================================
         const STAGES = [
             {
                 title: "Fase I: La Híbris de Sardes",
                 narrative: `
-                    <p>Estás en el palacio de Sardes. Creso, señor de Lidia e inventor del <em>electró</em>, ha invitado a Solón, el sabio ateniense. Creso cree ciegamente en el poder material y le muestra sus inmensos tesoros, esperando ser coronado como el hombre más dichoso de la Tierra.</p>
-                    <p>Solón, portador de la prudencia griega (<em>sophrosyne</em>), rechaza la adulación. En el pergamino inferior, Heródoto narra el comienzo de este tenso diálogo. Demuestra tu valía filológica para descifrarlo.</p>
+                    <p>Estás en el palacio de Sardes. Creso, señor de Lidia e inventor del <em>electró</em>, ha invitado a Solón. Creso cree ciegamente en el poder material y le muestra sus inmensos tesoros.</p>
+                    <p>Solón rechaza la adulación. En el pergamino inferior, Heródoto narra el comienzo de este tenso diálogo.</p>
                 `,
                 greekText: `
-                    ὁ μὲν <strong>Κροῖσος</strong>, τῶν Λυδῶν βασιλεύς, <strong>ἦν</strong> πλούσιος. ἐν τοῖς βασιλείοις εἶχε πολὺν χρυσὸν καὶ ἄργυρον. ποτὲ δὲ ὁ <strong>Σόλων</strong>, ὁ τῶν Ἀθηναίων νομοθέτης, εἰς τὰς Σάρδεις ἦλθεν. ὁ δὲ Κροῖσος ἐπιδείκνυσι πάντα τὸν πλοῦτον καὶ ἐρωτᾷ·<br><br>
-                    "ὦ ξένε Ἀθηναῖε, <strong>τίνα</strong> νομίζεις πάντων ἀνθρώπων <strong>ὀλβιώτατον</strong> <strong>εἶναι</strong>;"<br><br>
-                    ὁ δὲ Σόλων οὐ κολακεύει, ἀλλὰ λέγει· "σκοπέειν δὲ χρὴ παντὸς χρήματος τὴν τελευτήν· πολλοῖς γὰρ ὁ θεὸς <strong>ὄλβον</strong> δείξας, πρόρριζον ἀνέτρεψε."
+                    ὁ μὲν <strong>Κροῖσος</strong>, τῶν Λυδῶν βασιλεύς, <strong>ἦν</strong> πλούσιος. ποτὲ δὲ ὁ <strong>Σόλων</strong> εἰς τὰς Σάρδεις ἦλθεν. ὁ δὲ Κροῖσος ἐρωτᾷ·<br><br>
+                    "ὦ ξένε, <strong>τίνα</strong> νομίζεις πάντων ἀνθρώπων <strong>ὀλβιώτατον</strong> <strong>εἶναι</strong>;"<br><br>
+                    ὁ δὲ Σόλων λέγει· "σκοπέειν δὲ χρὴ παντὸς χρήματος τὴν τελευτήν."
                 `,
-                relic: "Moneda de Electró (Creseida)",
+                relic: "Moneda de Electró",
                 relicIcon: "coins",
-                translation: "Creso, rey de los lidios, era rico. En su palacio tenía mucho oro y plata. Una vez, Solón, el legislador de los atenienses, fue a Sardes. Creso le muestra toda su riqueza y le pregunta: 'Oh extranjero ateniense, ¿a quién de todos los hombres consideras que es el más feliz?'. Pero Solón no lo adula, sino que dice: 'Es necesario observar el final de todo asunto; pues a muchos el dios, tras mostrarles la felicidad, los ha arruinado de raíz'.",
+                translation: "Creso, rey de los lidios, era rico. Una vez, Solón fue a Sardes. Creso le pregunta: 'Oh extranjero, ¿a quién de todos los hombres consideras que es el más feliz?'. Pero Solón dice: 'Es necesario observar el final de todo asunto'.",
                 analysis: [
                     { word: "ὁ", type: "Artículo", morph: "Nom. Sg. Masc.", lemma: "ὁ, ἡ, τό" },
-                    { word: "μὲν", type: "Partícula", morph: "Invariable", lemma: "μὲν ... δὲ (por un lado...)" },
-                    { word: "Κροῖσος", type: "Sustantivo", morph: "Nom. Sg. Masc. (Sujeto)", lemma: "Κροῖσος, -ου (ὁ)" },
-                    { word: "τῶν", type: "Artículo", morph: "Gen. Pl. Masc.", lemma: "ὁ, ἡ, τό" },
-                    { word: "Λυδῶν", type: "Sustantivo", morph: "Gen. Pl. Masc. (C.Nombre)", lemma: "Λυδός, -οῦ (ὁ)" },
-                    { word: "βασιλεύς", type: "Sustantivo", morph: "Nom. Sg. Masc. (Aposición)", lemma: "βασιλεύς, -έως (ὁ)" },
-                    { word: "ἦν", type: "Verbo Copulativo", morph: "Imperf. Ind. Activo (3ª Sg)", lemma: "εἰμί" },
-                    { word: "πλούσιος", type: "Adjetivo", morph: "Nom. Sg. Masc. (Atributo)", lemma: "πλούσιος, -α, -ον" }
+                    { word: "Κροῖσος", type: "Sustantivo", morph: "Nom. Sg. Masc. (Sujeto)", lemma: "Κροῖσος, -ου" },
+                    { word: "ἦν", type: "Verbo Copulativo", morph: "Imperf. Ind. Activo (3ª Sg)", lemma: "εἰμί" }
                 ],
                 tasks: [
                     {
                         type: "select",
-                        question: "En la primera línea, <strong class='text-yellow-400'>ἦν</strong> es un verbo crucial. ¿Cuál es su análisis morfológico correcto según el Códice?",
+                        question: "En la primera línea, <strong class='text-yellow-400'>ἦν</strong> es un verbo crucial. ¿Cuál es su análisis morfológico correcto?",
                         options: [
-                            { text: "Aoristo Activo (3ª sg) del verbo λύω", isCorrect: false },
-                            { text: "Imperfecto (3ª sg) del verbo copulativo εἰμί", isCorrect: true },
-                            { text: "Presente Medio (1ª sg) de un verbo contracto", isCorrect: false },
+                            { text: "Aoristo Activo del verbo λύω", isCorrect: false },
+                            { text: "Imperfecto del verbo copulativo εἰμί", isCorrect: true },
+                            { text: "Presente Medio", isCorrect: false }
                         ],
-                        hint: "Consulta el Tomo Gramatical, sección 5 (El Verbo Copulativo)."
+                        hint: "Consulta la Gramática, sección 5."
                     },
                     {
                         type: "input",
-                        question: "El sustantivo <strong class='text-yellow-400'>Σόλων</strong> (Solón) pertenece a la 3ª declinación (tema en nasal). Basándote en el Códice, ¿cuál sería su Genitivo Singular? Escríbelo en griego.",
+                        question: "El sustantivo <strong class='text-yellow-400'>Σόλων</strong> pertenece a la 3ª declinación. Escribe su Genitivo Singular en griego.",
                         correctAnswers: ["σολωνος", "σόλωνος", "Σόλωνος"],
-                        hint: "Añade la desinencia -ος a la raíz (acuérdate de δαίμων -> δαίμονος, pero aquí la omega se mantiene larga)."
+                        hint: "Añade la desinencia -ος a la raíz."
                     },
                     {
                         type: "select",
-                        question: "La palabra <strong class='text-yellow-400'>τίνα</strong> ('a quién') lleva acento en la primera sílaba. ¿Qué tipo de pronombre es?",
+                        question: "La palabra <strong class='text-yellow-400'>τίνα</strong> ('a quién') lleva acento en la primera sílaba. ¿Qué es?",
                         options: [
-                            { text: "Pronombre Personal de 3ª persona.", isCorrect: false },
-                            { text: "Pronombre Indefinido (alguien).", isCorrect: false },
-                            { text: "Pronombre Interrogativo (quién/qué).", isCorrect: true },
+                            { text: "Pronombre Indefinido", isCorrect: false },
+                            { text: "Pronombre Interrogativo", isCorrect: true }
                         ],
-                        hint: "Tomo Gramatical, sección 4: la regla del acento tónico constante."
+                        hint: "Regla del acento tónico constante (Sección 4)."
                     }
                 ]
             },
             {
                 title: "Fase II: El Engaño de Delfos",
                 narrative: `
-                    <p>Habiendo perdido a su hijo por una profecía de Némesis, Creso teme ahora el avance del Imperio Persa de Ciro. Envía ricas ofrendas al santuario de Apolo en Delfos buscando consejo militar.</p>
-                    <p>La Pitia pronuncia un oráculo ambiguo. Creso no aplica la inteligencia práctica (<em>Mêtis</em>) necesaria e interpreta que destruirá a los persas, sin percatarse de que el gran imperio destinado a caer será el suyo propio. ¡Analiza el engaño divino!</p>
+                    <p>Creso envía ricas ofrendas al santuario de Apolo en Delfos buscando consejo militar.</p>
+                    <p>La Pitia pronuncia un oráculo ambiguo. Creso no aplica la inteligencia práctica (<em>Mêtis</em>) e interpreta que destruirá a los persas.</p>
                 `,
                 greekText: `
-                    μετὰ δὲ ταῦτα, <strong>οὗτος</strong> ὁ Κροῖσος ἐβούλετο τοῖς Πέρσαις <strong>πολεμεῖν</strong>. ἔπεμψε οὖν ἀγγέλους εἰς Δελφοὺς καὶ <strong>ἠρώτησε</strong> τὸν Ἀπόλλωνα. ἡ δὲ Πυθία ἀπεκρίνατο·<br><br>
-                    "ἢν τὸν Ἅλυν <strong>ποταμὸν</strong> διαβαίνῃς, μεγάλην <strong>ἀρχὴν</strong> καταλύσεις."<br><br>
-                    ὁ δὲ <strong>βασιλεὺς</strong> ἥδετο τοῖς λόγοις. παρεσκευάζετο οὖν τὸν στρατὸν καὶ <strong>διέβαινε</strong> τὸν ποταμόν, ἐλπίζων τοὺς Πέρσας <strong>νικᾶν</strong>. ἀλλὰ τὴν ἑαυτοῦ ἀρχὴν <strong>ἔφθειρεν</strong>.
+                    μετὰ δὲ ταῦτα, <strong>οὗτος</strong> ὁ Κροῖσος ἐβούλετο τοῖς Πέρσαις <strong>πολεμεῖν</strong>. ἡ δὲ Πυθία ἀπεκρίνατο·<br><br>
+                    "ἢν τὸν Ἅλυν ποταμὸν διαβαίνῃς, μεγάλην ἀρχὴν καταλύσεις."<br><br>
+                    ὁ δὲ <strong>βασιλεὺς</strong> ἥδετο καὶ <strong>διέβαινε</strong> τὸν ποταμόν. ἀλλὰ τὴν ἑαυτοῦ ἀρχὴν <strong>ἔφθειρεν</strong>.
                 `,
-                relic: "Rama de Laurel Délfico",
+                relic: "Laurel Délfico",
                 relicIcon: "leaf",
-                translation: "Después de esto, este Creso quería hacer la guerra a los persas. Envió, pues, mensajeros a Delfos y preguntó a Apolo. La Pitia respondió: 'Si cruzas el río Halys, destruirás un gran imperio'. El rey se alegró con estas palabras. Preparaba, pues, su ejército y cruzaba el río, esperando vencer a los persas. Pero destruyó su propio imperio.",
+                translation: "Después, este Creso quería hacer la guerra a los persas. La Pitia respondió: 'Si cruzas el río Halys, destruirás un gran imperio'. El rey se alegraba y cruzaba el río. Pero destruyó su propio imperio.",
                 analysis: [
                     { word: "οὗτος", type: "Pron. Demostrativo", morph: "Nom. Sg. Masc.", lemma: "οὗτος, αὕτη, τοῦτο" },
-                    { word: "πολεμεῖν", type: "Verbo (Contracto)", morph: "Infinitivo Pres. Activo", lemma: "πολεμέω" },
-                    { word: "βασιλεὺς", type: "Sustantivo", morph: "Nom. Sg. Masc.", lemma: "βασιλεύς, -έως (ὁ)" },
+                    { word: "πολεμεῖν", type: "Verbo", morph: "Infinitivo Pres. Activo", lemma: "πολεμέω" },
                     { word: "ἔφθειρεν", type: "Verbo", morph: "Imperf. Ind. Activo (3ª Sg)", lemma: "φθείρω" }
                 ],
                 tasks: [
                     {
                         type: "select",
-                        question: "Observa los verbos de acción continua en el pasado: <strong class='text-yellow-400'>διέβαινε</strong> (cruzaba) y <strong class='text-yellow-400'>ἔφθειρεν</strong> (destruía). Ambos llevan un aumento (ε). ¿En qué tiempo están?",
+                        question: "Los verbos <strong class='text-yellow-400'>διέβαινε</strong> (cruzaba) y <strong class='text-yellow-400'>ἔφθειρεν</strong> (destruía) llevan un aumento (ε). ¿Qué tiempo es?",
                         options: [
                             { text: "Aoristo Radical", isCorrect: false },
-                            { text: "Pretérito Imperfecto de Indicativo Activo", isCorrect: true },
-                            { text: "Presente de Indicativo Medio", isCorrect: false }
+                            { text: "Pretérito Imperfecto Activo", isCorrect: true }
                         ],
-                        hint: "Tomo Gramatical, sección 5. El aumento (ε) indica pasado, y la traducción continua ('cruzaba') indica aspecto imperfectivo."
+                        hint: "El aumento (ε) indica pasado, y la traducción continua es imperfectiva."
                     },
                     {
                         type: "input",
-                        question: "El sustantivo <strong class='text-yellow-400'>βασιλεὺς</strong> (rey) pertenece a la 3ª declinación (tema en diptongo). Escribe su Genitivo Singular en griego según las tablas del Códice.",
+                        question: "El sustantivo <strong class='text-yellow-400'>βασιλεὺς</strong> (rey) es 3ª declinación. Escribe su Genitivo Singular.",
                         correctAnswers: ["βασιλεως", "βασιλέως"],
-                        hint: "Tomo Gramatical, sección 3 (Líquidas, Nasales y Vocales). Revisa el modelo βασιλεύς."
-                    },
-                    {
-                        type: "select",
-                        question: "Identifica el pronombre <strong class='text-yellow-400'>οὗτος</strong> ('este'). Según el Códice, ¿qué tipo de pronombre es?",
-                        options: [
-                            { text: "Pronombre Personal de 1ª persona.", isCorrect: false },
-                            { text: "Pronombre Relativo.", isCorrect: false },
-                            { text: "Pronombre Demostrativo.", isCorrect: true }
-                        ],
-                        hint: "Tomo Gramatical, sección 4."
+                        hint: "Revisa el modelo βασιλεύς en la Gramática."
                     }
                 ]
             },
             {
                 title: "Fase III: La Pira y La Revelación",
                 narrative: `
-                    <p>Creso ha cruzado el río Halys. Su ejército ha sido aniquilado y Sardes ha caído. Prisionero de Ciro, es condenado a ser quemado vivo en una inmensa pira. La Némesis ha completado su ciclo.</p>
-                    <p>Sintiendo el calor de las llamas (<em>phlox</em>), Creso sufre una catarsis. Recuerda a Solón y comprende que la riqueza no protege del destino. Su desgarrador grito detiene a Ciro, enseñando que la reflexión griega puede vencer a la barbarie y conmutar la ejecución en piedad.</p>
+                    <p>Prisionero de Ciro, Creso es condenado a ser quemado vivo en una inmensa pira. La Némesis se completa.</p>
+                    <p>En las llamas, Creso comprende a Solón. Su grito detiene a Ciro, enseñando que la reflexión griega puede vencer a la barbarie.</p>
                 `,
                 greekText: `
-                    οἱ γὰρ Πέρσαι ἐνίκησαν τοὺς Λυδούς. ὁ δὲ Κῦρος <strong>ἔλαβε</strong> τὸν Κροῖσον ζῶντα καὶ ἐκέλευσε τοὺς στρατιώτας μέγαν πυρσὸν ποιεῖν. ὁ μὲν Κροῖσος ἐπὶ τῆς <strong>πυρᾶς</strong> ἱστάμενος ἀνεμνήσθη τοῦ Σόλωνος καὶ ἀνεβόησε τρίς· "Σόλων, Σόλων, Σόλων!"<br><br>
-                    ὁ δὲ Κῦρος, ὡς <strong>ᾔσθετο</strong> τὴν τοῦ ἀνδρὸς σοφίαν, μετενόησε καὶ ἐκέλευσε τὸ πῦρ <strong>σβεννύναι</strong>.<br><br>
-                    οὕτως ὁ Κροῖσος <strong>ἐσώθη</strong> καὶ <strong>ἐγένετο</strong> φίλος τῷ Κύρῳ.
+                    οἱ Πέρσαι ἐνίκησαν τοὺς Λυδούς. ὁ δὲ Κῦρος <strong>ἔλαβε</strong> τὸν Κροῖσον. ὁ μὲν Κροῖσος ἐπὶ τῆς <strong>πυρᾶς</strong> ἱστάμενος ἀνεβόησε· "Σόλων, Σόλων!"<br><br>
+                    ὁ δὲ Κῦρος, ὡς <strong>ᾔσθετο</strong> τὴν σοφίαν, ἐκέλευσε τὸ πῦρ σβεννύναι.<br><br>
+                    οὕτως ὁ Κροῖσος ἐσώθη καὶ <strong>ἐγένετο</strong> φίλος τῷ Κύρῳ.
                 `,
-                relic: "Antorcha Apagada de Ciro",
+                relic: "Antorcha Apagada",
                 relicIcon: "flame",
-                translation: "Pues los persas vencieron a los lidios. Y Ciro capturó a Creso vivo y ordenó a los soldados hacer una gran pira. Creso, estando de pie sobre la pira, se acordó de Solón y gritó tres veces: '¡Solón, Solón, Solón!'. Ciro, cuando se dio cuenta de la sabiduría del hombre, se arrepintió y ordenó apagar el fuego. Así Creso fue salvado y se convirtió en amigo de Ciro.",
+                translation: "Los persas vencieron. Ciro capturó a Creso. Creso, sobre la pira, gritó: '¡Solón, Solón!'. Ciro, cuando se dio cuenta de la sabiduría, ordenó apagar el fuego. Creso fue salvado y se convirtió en amigo.",
                 analysis: [
                     { word: "ἔλαβε", type: "Verbo", morph: "Aoristo Radical Activo (3ª Sg)", lemma: "λαμβάνω" },
-                    { word: "πυρᾶς", type: "Sustantivo", morph: "Gen. Sg. Fem.", lemma: "πυρά, -ᾶς (ἡ)" },
-                    { word: "ᾔσθετο", type: "Verbo (Deponente)", morph: "Aoristo Ind. Medio (3ª Sg)", lemma: "αἰσθάνομαι" },
-                    { word: "ἐγένετο", type: "Verbo (Deponente)", morph: "Aoristo Ind. Medio (3ª Sg)", lemma: "γίγνομαι" }
+                    { word: "ᾔσθετο", type: "Verbo", morph: "Aoristo Ind. Medio (3ª Sg)", lemma: "αἰσθάνομαι" },
+                    { word: "ἐγένετο", type: "Verbo", morph: "Aoristo Ind. Medio (3ª Sg)", lemma: "γίγνομαι" }
                 ],
                 tasks: [
                     {
                         type: "select",
-                        question: "El verbo <strong class='text-yellow-400'>ἔλαβε</strong> (capturó) es un Aoristo. Sabiendo que su presente es λαμβάνω, ¿qué tipo formal de Aoristo es?",
+                        question: "El verbo <strong class='text-yellow-400'>ἔλαβε</strong> (capturó) es un Aoristo. Su presente es λαμβάνω, ¿qué tipo de Aoristo es?",
                         options: [
-                            { text: "Aoristo Sigmático (se forma con la sílaba -σα).", isCorrect: false },
-                            { text: "Aoristo Radical Fuerte (la raíz cambia abruptamente sin sigma).", isCorrect: true },
-                            { text: "Pretérito Imperfecto Contracto.", isCorrect: false }
+                            { text: "Aoristo Sigmático", isCorrect: false },
+                            { text: "Aoristo Radical Fuerte", isCorrect: true }
                         ],
-                        hint: "Tomo Gramatical, sección 6. Fíjate que no tiene la 'σ' característica de los regulares."
+                        hint: "Fíjate que la raíz cambia y no tiene la 'σ'."
                     },
                     {
                         type: "select",
-                        question: "Analiza <strong class='text-yellow-400'>ᾔσθετο</strong> ('percibió para sí mismo / se dio cuenta'). Presta atención a su desinencia (-ετο) y su alargamiento (η).",
+                        question: "Analiza <strong class='text-yellow-400'>ᾔσθετο</strong> ('percibió para sí mismo').",
                         options: [
-                            { text: "Aoristo Indicativo de la Voz Media (verbo deponente).", isCorrect: true },
-                            { text: "Aoristo Indicativo de la Voz Activa.", isCorrect: false },
-                            { text: "Presente de Indicativo.", isCorrect: false }
+                            { text: "Aoristo Indicativo de la Voz Media", isCorrect: true },
+                            { text: "Aoristo Indicativo Activo", isCorrect: false }
                         ],
-                        hint: "Tomo Gramatical, sección 6. La voz media implica un proceso interno del sujeto o interés propio."
+                        hint: "Tiene desinencia -ετο y alargamiento (η)."
                     },
                     {
-                        type: "input",
-                        question: "Identifica en el texto un sustantivo femenino de la 1ª Declinación (α pura) en caso Genitivo Singular, dependiente de la preposición ἐπί. Significa 'pira/fuego'. Escríbelo en griego.",
-                        correctAnswers: ["πυρας", "πυρᾶς"],
-                        hint: "Empieza por 'π' y termina en 'ς'. Está en la segunda oración larga."
+                        type: "select",
+                        question: "El verbo <strong class='text-yellow-400'>ἐγένετο</strong> ('se convirtió') es fundamental. ¿Cuál es su presente?",
+                        options: [
+                            { text: "γίγνομαι", isCorrect: true },
+                            { text: "ἔρχομαι", isCorrect: false }
+                        ],
+                        hint: "Sección 6 (Aoristo Radical)."
                     }
                 ]
             }
         ];
+
+        // ==========================================
+        // 2. LÓGICA PRINCIPAL (Juego, XP, UI)
+        // ==========================================
+        let currentStage = 0;
         let tasksState = [];
         let totalXP = 0;
         let unlockedRelics = [];
@@ -859,7 +628,6 @@
             loadStage(0);
         }
 
-        // --- Sistema de Pestañas del Códice ---
         function switchTab(tabName) {
             document.getElementById('tab-grammar').classList.remove('active');
             document.getElementById('tab-culture').classList.remove('active');
@@ -867,22 +635,20 @@
             renderCodexData(tabName);
         }
 
-        // --- Renderizado del Códice ---
         function renderCodexData(tabName = 'grammar') {
             const container = document.getElementById('codex-content-area');
             container.innerHTML = '';
-            
             const dataToRender = tabName === 'grammar' ? GRAMMAR_DATA : CULTURE_DATA;
             
             dataToRender.forEach((section, index) => {
-                const isOpen = index === 0; // First accordion open by default
+                const isOpen = index === 0;
                 container.innerHTML += `
-                    <div class="mb-5 bg-slate-900/90 rounded-2xl border border-slate-700/60 overflow-hidden transition-all duration-300 shadow-lg">
-                        <button onclick="toggleAccordion('codex-content-${index}')" class="w-full p-5 flex justify-between items-center bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 transition-colors">
+                    <div class="mb-5 bg-slate-900/90 rounded-2xl border border-slate-700/60 overflow-hidden shadow-lg">
+                        <button onclick="toggleAccordion('codex-content-${index}')" class="w-full p-5 flex justify-between items-center bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-700">
                             <span class="font-cinzel font-bold text-yellow-500 flex items-center gap-3 text-left">
                                 <i data-lucide="${section.icon}" class="w-5 h-5 text-yellow-600"></i> ${section.title}
                             </span>
-                            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform" id="icon-${index}"></i>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400"></i>
                         </button>
                         <div id="codex-content-${index}" class="p-6 ${isOpen ? 'block' : 'hidden'} border-t border-slate-700/50">
                             ${section.content}
@@ -897,17 +663,14 @@
             const content = document.getElementById(id);
             if(content.classList.contains('hidden')) {
                 content.classList.remove('hidden');
-                content.classList.add('animate-[fadeIn_0.3s_ease-out]');
             } else {
                 content.classList.add('hidden');
             }
         }
 
-        // --- Manejo del Códice Móvil/Desktop ---
         function toggleCodex() {
             const sidebar = document.getElementById('codex-sidebar');
             const overlay = document.getElementById('mobile-overlay');
-            
             if(sidebar.classList.contains('hidden')) {
                 sidebar.classList.remove('hidden');
                 sidebar.classList.add('fixed', 'inset-y-0', 'right-0', 'w-[95vw]', 'md:w-[80vw]', 'z-[60]', 'm-2', 'md:m-4');
@@ -919,32 +682,25 @@
             }
         }
 
-        // --- Lógica de Carga de Fase ---
         function loadStage(stageIndex) {
-            if (stageIndex >= STAGES.length) {
-                showVictory();
-                return;
-            }
+            if (stageIndex >= STAGES.length) return showVictory();
 
             const stage = STAGES[stageIndex];
             document.getElementById('stage-title').innerHTML = `
                 <div class="bg-gradient-to-br from-yellow-700 to-slate-900 p-3 rounded-2xl border border-yellow-600/50 shadow-lg">
                     <i data-lucide="map" class="w-8 h-8 text-yellow-400"></i>
-                </div>
-                ${stage.title}
-            `;
+                </div> ${stage.title}`;
             document.getElementById('narrative-text').innerHTML = stage.narrative;
             document.getElementById('greek-text').innerHTML = stage.greekText;
             
-            // Generar Tareas
             const tasksContainer = document.getElementById('tasks-container');
             tasksContainer.innerHTML = '';
             tasksState = new Array(stage.tasks.length).fill(false);
 
             stage.tasks.forEach((task, tIndex) => {
                 let taskHTML = `
-                    <div id="task-card-${tIndex}" class="bg-slate-900/80 p-6 lg:p-8 rounded-2xl border-2 border-slate-700/50 transition-all duration-500 relative overflow-hidden group hover:border-yellow-900/50">
-                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-yellow-600/50 group-hover:bg-yellow-500 transition-colors"></div>
+                    <div id="task-card-${tIndex}" class="bg-slate-900/80 p-6 lg:p-8 rounded-2xl border-2 border-slate-700/50 transition-all duration-500 relative overflow-hidden group">
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-yellow-600/50 group-hover:bg-yellow-500"></div>
                         <p class="font-bold text-slate-100 mb-5 font-cinzel tracking-wide text-lg"><span class="text-yellow-500 mr-2">⟐ Reto ${tIndex + 1}:</span> ${task.question}</p>
                 `;
 
@@ -953,7 +709,7 @@
                     task.options.forEach((opt, oIndex) => {
                         taskHTML += `
                             <button id="btn-${tIndex}-${oIndex}" onclick="checkSelectTask(${tIndex}, ${oIndex}, ${opt.isCorrect})" 
-                                class="w-full text-left p-4 rounded-xl border border-slate-600/50 bg-slate-800/80 hover:bg-slate-700 hover:border-yellow-500 transition-all text-slate-200 text-sm md:text-base font-medium">
+                                class="w-full text-left p-4 rounded-xl border border-slate-600/50 bg-slate-800/80 hover:bg-slate-700 text-slate-200">
                                 ${opt.text}
                             </button>
                         `;
@@ -961,459 +717,193 @@
                     taskHTML += `</div>`;
                 } else if (task.type === "input") {
                     taskHTML += `
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <input type="text" id="input-${tIndex}" placeholder="Escribe en griego..." 
-                                class="flex-grow bg-slate-950 border border-slate-600 text-yellow-100 px-5 py-4 rounded-xl focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 font-mono text-lg transition-all">
-                            <button onclick="checkInputTask(${tIndex})" class="bg-gradient-to-r from-yellow-600 to-yellow-700 hover:from-yellow-500 hover:to-yellow-600 text-slate-950 font-black px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-yellow-600/30 font-cinzel tracking-widest whitespace-nowrap">
-                                VALIDAR
-                            </button>
+                        <div class="flex gap-4">
+                            <input type="text" id="input-${tIndex}" placeholder="Escribe en griego..." class="flex-grow bg-slate-950 border border-slate-600 text-yellow-100 px-5 py-3 rounded-xl font-mono text-lg">
+                            <button onclick="checkInputTask(${tIndex})" class="bg-yellow-600 hover:bg-yellow-500 text-slate-950 font-black px-6 rounded-xl">VALIDAR</button>
                         </div>
                     `;
                 }
-
-                taskHTML += `
-                        <p id="feedback-${tIndex}" class="mt-4 text-sm font-bold hidden"></p>
-                    </div>
-                `;
+                taskHTML += `<p id="feedback-${tIndex}" class="mt-4 text-sm font-bold hidden"></p></div>`;
                 tasksContainer.innerHTML += taskHTML;
             });
 
             updateProgress();
             lucide.createIcons();
-            
-            // Pequeña animación de entrada
-            document.getElementById('game-container').animate([
-                { opacity: 0, transform: 'translateY(20px)' },
-                { opacity: 1, transform: 'translateY(0)' }
-            ], { duration: 600, easing: 'ease-out' });
-        }
-// --- Modal de Traducción y Análisis ---
-        function openTranslationModal() {
-            const modal = document.getElementById('translation-modal');
-            const modalContent = document.getElementById('translation-modal-content');
-            const stage = STAGES[currentStage];
-
-            // Rellenar traducción
-            document.getElementById('modal-translation-text').innerHTML = stage.translation;
-
-            // Rellenar tabla de análisis
-            const tbody = document.getElementById('modal-analysis-body');
-            tbody.innerHTML = '';
-            stage.analysis.forEach(item => {
-                tbody.innerHTML += `
-                    <tr>
-                        <td class="text-yellow-400 font-bold font-serif text-lg">${item.word}</td>
-                        <td class="text-slate-300 font-mono text-xs">${item.type}</td>
-                        <td class="text-cyan-300">${item.morph}</td>
-                        <td class="text-slate-300 italic">${item.lemma}</td>
-                    </tr>
-                `;
-            });
-
-            // Mostrar modal con animación
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalContent.classList.remove('scale-95');
-            }, 10);
-            document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
-            lucide.createIcons();
         }
 
-        function closeTranslationModal() {
-            const modal = document.getElementById('translation-modal');
-            const modalContent = document.getElementById('translation-modal-content');
-            
-            modal.classList.add('opacity-0');
-            modalContent.classList.add('scale-95');
-            
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.body.style.overflow = '';
-            }, 300);
-        }
-        // --- Función Premium: Secretos del Códice ---
-        function openLoreModal(title, text) {
-            const modal = document.getElementById('lore-modal');
-            const titleEl = document.getElementById('lore-title');
-            const textEl = document.getElementById('lore-text');
-            
-            titleEl.innerText = title;
-            textEl.innerHTML = text; // Usamos innerHTML por si queremos meter negritas en el secreto
-            
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modal.querySelector('div').classList.remove('scale-95');
-            }, 10);
-            lucide.createIcons();
-        }
-
-        function closeLoreModal() {
-            const modal = document.getElementById('lore-modal');
-            modal.classList.add('opacity-0');
-            modal.querySelector('div').classList.add('scale-95');
-            setTimeout(() => modal.classList.add('hidden'), 300);
-        }
-        // --- Función Premium: Mapa Interactivo (Leaflet) ---
-        let ancientMap = null; 
-
-        function openMapModal() {
-            const modal = document.getElementById('map-modal');
-            modal.classList.remove('hidden');
-            
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modal.querySelector('div').classList.remove('scale-95');
-                
-                if (!ancientMap) {
-                    ancientMap = L.map('ancient-map').setView([38.8, 26.5], 6);
-
-                    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-                        attribution: '&copy; OpenStreetMap contributors',
-                        maxZoom: 10,
-                        minZoom: 5
-                    }).addTo(ancientMap);
-
-                    L.marker([38.48, 28.03]).addTo(ancientMap)
-                        .bindPopup('<strong style="color:#b45309;font-family:\'Cinzel\',serif;font-size:1.2em;">Sardes (Lidia)</strong><br>Capital del imperio de Creso. Atravesada por el río Pactolo, rico en oro y electró.')
-                        .openPopup();
-
-                    L.marker([38.48, 22.50]).addTo(ancientMap)
-                        .bindPopup('<strong style="color:#0891b2;font-family:\'Cinzel\',serif;font-size:1.2em;">Oráculo de Delfos</strong><br>Centro religioso del mundo griego. Aquí se dictó la profecía engañosa a Creso.');
-
-                    L.marker([39.75, 33.38]).addTo(ancientMap)
-                        .bindPopup('<strong style="color:#9f1239;font-family:\'Cinzel\',serif;font-size:1.2em;">Río Halys</strong><br>La frontera natural entre Lidia y el Imperio Persa. <em>"Si cruzas el río..."</em>');
-                }
-                
-                ancientMap.invalidateSize();
-                lucide.createIcons();
-                
-            }, 50);
-        }
-
-        function closeMapModal() {
-            const modal = document.getElementById('map-modal');
-            modal.classList.add('opacity-0');
-            modal.querySelector('div').classList.add('scale-95');
-            setTimeout(() => modal.classList.add('hidden'), 300);
-        }
-        // Initialize App
-        // --- Función Premium: La Ceca Real de Sardes (Etimología) ---
-        const ETYMOLOGY_DATA = [
-            { greek: "χρυσός", meaning: "(oro)", options: ["Crisantemo", "Cromático", "Cristal"], correct: 0 },
-            { greek: "χρόνος", meaning: "(tiempo)", options: ["Cromosoma", "Coro", "Cronómetro"], correct: 2 },
-            { greek: "φίλος", meaning: "(amigo / el que ama)", options: ["Filiación", "Filántropo", "Fobia"], correct: 1 },
-            { greek: "πόλεμος", meaning: "(guerra)", options: ["Policía", "Política", "Polémica"], correct: 2 },
-            { greek: "πῦρ, πυρός", meaning: "(fuego)", options: ["Pirómano", "Piraña", "Pirámide"], correct: 0 },
-            { greek: "θεός", meaning: "(dios)", options: ["Teorema", "Ateo", "Teatro"], correct: 1 },
-            { word: "ἄνθρωπος", meaning: "(hombre / ser humano)", options: ["Antropología", "Antítesis", "Araña"], correct: 0 }
-        ];
-
-        let currentMintIndex = 0;
-        let mintedCoins = 0;
-        let shuffledEtymology = [];
-
-        function openMintModal() {
-            const modal = document.getElementById('mint-modal');
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modal.querySelector('div').classList.remove('scale-95');
-            }, 10);
-            
-            // Barajar las preguntas cada vez que se abre
-            shuffledEtymology = [...ETYMOLOGY_DATA].sort(() => Math.random() - 0.5);
-            currentMintIndex = 0;
-            loadMintQuestion();
-            lucide.createIcons();
-        }
-
-        function closeMintModal() {
-            const modal = document.getElementById('mint-modal');
-            modal.classList.add('opacity-0');
-            modal.querySelector('div').classList.add('scale-95');
-            setTimeout(() => modal.classList.add('hidden'), 500);
-        }
-
-        function loadMintQuestion() {
-            if (currentMintIndex >= shuffledEtymology.length) {
-                currentMintIndex = 0; // Volver a empezar si las hacen todas
-            }
-
-            const question = shuffledEtymology[currentMintIndex];
-            // En algunos objetos usamos 'greek' y en otros 'word' por error tipográfico, lo unificamos al leer:
-            const greekWord = question.greek || question.word; 
-            
-            document.getElementById('greek-root-word').innerText = greekWord;
-            document.getElementById('greek-root-meaning').innerText = question.meaning;
-
-            const optionsContainer = document.getElementById('mint-options');
-            optionsContainer.innerHTML = '';
-
-            question.options.forEach((opt, index) => {
-                optionsContainer.innerHTML += `
-                    <button onclick="checkMintAnswer(${index}, ${question.correct})" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 hover:border-orange-500 text-slate-200 font-bold py-3 px-4 rounded-xl transition-all shadow-sm">
-                        ${opt}
-                    </button>
-                `;
-            });
-        }
-
-        function checkMintAnswer(selectedIndex, correctIndex) {
-            if (selectedIndex === correctIndex) {
-                // ACIERTO: Efecto de martillazo (Forja)
-                const flash = document.getElementById('forge-flash');
-                flash.style.opacity = '0.5';
-                setTimeout(() => flash.style.opacity = '0', 150);
-
-                mintedCoins++;
-                document.getElementById('mint-score').innerText = mintedCoins;
-                
-                // Dar un poco de XP también
-                addXP(10);
-                
-                // Cargar siguiente tras el destello
-                currentMintIndex++;
-                setTimeout(loadMintQuestion, 300);
-            } else {
-                // FALLO: Temblor rojo
-                const modalBox = document.querySelector('#mint-modal > div');
-                modalBox.style.borderColor = '#e11d48'; // rojo
-                modalBox.animate([
-                    { transform: 'translateX(0) scale(1)' }, { transform: 'translateX(-10px) scale(1)' },
-                    { transform: 'translateX(10px) scale(1)' }, { transform: 'translateX(0) scale(1)' }
-                ], { duration: 300 });
-                
-                setTimeout(() => modalBox.style.borderColor = 'rgba(249,115,22,0.5)', 300);
-            }
-        }
-        
-        // --- Funciones Premium: XP y Reliquias ---
+        // --- Sistema de Puntuación (XP) ---
         function addXP(amount) {
             totalXP += amount;
-            const counter = document.getElementById('xp-counter');
-            const rankBadge = document.getElementById('rank-badge');
-            
-            counter.innerText = `${totalXP} XP`;
-            counter.classList.add('text-yellow-400', 'scale-110');
-            setTimeout(() => counter.classList.remove('text-yellow-400', 'scale-110'), 300);
+            document.getElementById('xp-counter').innerText = `${totalXP} XP`;
 
-            // Sistema Premium de Rangos
             let newRank = "Iniciado";
-            let rankColor = "text-slate-300 border-slate-600 bg-slate-800";
+            let rankClass = "text-slate-300 border-slate-600 bg-slate-800";
+            if (totalXP >= 750) { newRank = "Oráculo"; rankClass = "text-yellow-900 border-yellow-400 bg-yellow-400"; }
+            else if (totalXP >= 500) { newRank = "Aedo"; rankClass = "text-purple-100 border-purple-500 bg-purple-900"; }
             
-            if (totalXP >= 750) {
-                newRank = "Oráculo de Delfos";
-                rankColor = "text-yellow-900 border-yellow-400 bg-yellow-400";
-            } else if (totalXP >= 500) {
-                newRank = "Aedo Homérico";
-                rankColor = "text-purple-100 border-purple-500 bg-purple-900";
-            } else if (totalXP >= 250) {
-                newRank = "Discípulo Ático";
-                rankColor = "text-cyan-100 border-cyan-500 bg-cyan-900";
-            }
-            
-            rankBadge.innerText = newRank;
-            rankBadge.className = `ml-2 text-[10px] uppercase font-bold px-2 py-0.5 rounded border transition-colors ${rankColor}`;
+            const badge = document.getElementById('rank-badge');
+            badge.innerText = newRank;
+            badge.className = `ml-2 text-[10px] uppercase font-bold px-2 py-0.5 rounded border transition-colors ${rankClass}`;
         }
 
         function unlockRelic(stageIndex) {
             const relic = STAGES[stageIndex].relic;
-            const icon = STAGES[stageIndex].relicIcon;
             if (!unlockedRelics.includes(relic)) {
                 unlockedRelics.push(relic);
-                const container = document.getElementById('relics-container');
-                container.innerHTML += `
+                document.getElementById('relics-container').innerHTML += `
                     <div class="bg-yellow-900/30 p-1.5 rounded-md border border-yellow-500/50" title="${relic}">
-                        <i data-lucide="${icon}" class="w-4 h-4 text-yellow-400 relic-icon"></i>
-                    </div>
-                `;
+                        <i data-lucide="${STAGES[stageIndex].relicIcon}" class="w-4 h-4 text-yellow-400"></i>
+                    </div>`;
                 lucide.createIcons();
             }
         }
 
-        // --- Validación de Retos ---
+        // --- Corrección de Tareas ---
         function markTaskCorrect(tIndex) {
             tasksState[tIndex] = true;
-            addXP(250); // XP Reward
-
-            const card = document.getElementById(`task-card-${tIndex}`);
-            card.classList.add('task-success');
-            
+            addXP(250);
             const feedback = document.getElementById(`feedback-${tIndex}`);
-            feedback.innerText = "¡SABIDURÍA ALCANZADA! Análisis filológico exacto.";
-            feedback.className = "mt-4 text-base font-bold text-green-400 block flex items-center gap-2 font-cinzel tracking-wide";
-            feedback.innerHTML = `<i data-lucide="check-circle" class="w-5 h-5"></i> ` + feedback.innerHTML;
-            lucide.createIcons();
-
+            feedback.innerText = "¡CORRECTO! Análisis exacto.";
+            feedback.className = "mt-4 text-base font-bold text-green-400 block font-cinzel tracking-wide";
+            document.getElementById(`task-card-${tIndex}`).classList.add('task-success');
             checkStageCompletion();
         }
 
         function markTaskIncorrect(tIndex) {
             const feedback = document.getElementById(`feedback-${tIndex}`);
-            feedback.innerText = "HÍBRIS DETECTADA. El análisis es incorrecto. Consulta el Códice.";
-            feedback.className = "mt-4 text-sm font-bold text-rose-500 block flex items-center gap-2";
-            feedback.innerHTML = `<i data-lucide="alert-triangle" class="w-5 h-5"></i> ` + feedback.innerHTML;
-            
-            // Shake animation
-            const card = document.getElementById(`task-card-${tIndex}`);
-            card.animate([
-                { transform: 'translateX(0)' }, { transform: 'translateX(-10px)' },
-                { transform: 'translateX(10px)' }, { transform: 'translateX(-10px)' },
-                { transform: 'translateX(10px)' }, { transform: 'translateX(0)' }
-            ], { duration: 400 });
-            
-            lucide.createIcons();
+            feedback.innerText = "ERROR. Consulta el Códice.";
+            feedback.className = "mt-4 text-sm font-bold text-rose-500 block";
         }
 
         function checkSelectTask(tIndex, oIndex, isCorrect) {
             if (tasksState[tIndex]) return; 
-            
             const buttons = document.querySelectorAll(`[id^="btn-${tIndex}-"]`);
             buttons.forEach(btn => btn.classList.remove('bg-rose-950/80', 'border-rose-500', 'bg-green-950/80', 'border-green-500'));
-
             const selectedBtn = document.getElementById(`btn-${tIndex}-${oIndex}`);
 
-            if (isCorrect) {
-                selectedBtn.classList.add('bg-green-950/80', 'border-green-500');
-                markTaskCorrect(tIndex);
-            } else {
-                selectedBtn.classList.add('bg-rose-950/80', 'border-rose-500');
-                markTaskIncorrect(tIndex);
-            }
+            if (isCorrect) { selectedBtn.classList.add('bg-green-950/80', 'border-green-500'); markTaskCorrect(tIndex); }
+            else { selectedBtn.classList.add('bg-rose-950/80', 'border-rose-500'); markTaskIncorrect(tIndex); }
         }
 
-        function normalizeGreek(str) {
-            // Elimina acentos, espíritus e iota suscrita para facilitar validación a los alumnos
-            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\u0345/g, "").toLowerCase().trim();
-        }
+        function normalizeGreek(str) { return str.normalize("NFD").replace(/[\u0300-\u036f\u0345]/g, "").toLowerCase().trim(); }
 
         function checkInputTask(tIndex) {
             if (tasksState[tIndex]) return;
-
-            const inputVal = document.getElementById(`input-${tIndex}`).value;
-            const normalizedInput = normalizeGreek(inputVal);
+            const inputVal = normalizeGreek(document.getElementById(`input-${tIndex}`).value);
             const correctAnswers = STAGES[currentStage].tasks[tIndex].correctAnswers.map(normalizeGreek);
-
-            if (correctAnswers.includes(normalizedInput)) {
-                markTaskCorrect(tIndex);
-            } else {
-                markTaskIncorrect(tIndex);
-            }
+            if (correctAnswers.includes(inputVal)) markTaskCorrect(tIndex); else markTaskIncorrect(tIndex);
         }
 
         function checkStageCompletion() {
-            if (tasksState.every(state => state === true)) {
+            if (tasksState.every(s => s)) {
                 unlockRelic(currentStage);
-                
-                const btnContainer = document.createElement('div');
-                btnContainer.className = "mt-10 text-center";
-                btnContainer.innerHTML = `
-                    <button onclick="nextStage()" class="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-400 hover:to-amber-500 text-slate-950 text-xl md:text-2xl font-cinzel font-black py-5 px-12 rounded-2xl shadow-[0_0_40px_rgba(234,179,8,0.4)] transition-all transform hover:scale-105 border-2 border-yellow-300">
-                        <i data-lucide="unlock" class="inline-block w-7 h-7 mr-3"></i> DESBLOQUEAR SIGUIENTE FASE
-                    </button>
-                `;
-                document.getElementById('tasks-container').appendChild(btnContainer);
-                lucide.createIcons();
+                document.getElementById('tasks-container').innerHTML += `
+                    <div class="mt-10 text-center"><button onclick="nextStage()" class="bg-gradient-to-r from-yellow-500 to-amber-600 text-slate-950 text-xl font-cinzel font-black py-4 px-10 rounded-2xl">AVANZAR FASE</button></div>`;
             }
         }
 
-        function nextStage() {
-            currentStage++;
-            loadStage(currentStage);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function updateProgress() {
-            const percentage = Math.round((currentStage / STAGES.length) * 100);
-            document.getElementById('progress-bar').style.width = `${percentage}%`;
-        }
-
-        function useHint() {
-            const unsolvedIndex = tasksState.findIndex(state => !state);
-            if (unsolvedIndex !== -1) {
-                const feedback = document.getElementById(`feedback-${unsolvedIndex}`);
-                feedback.innerText = `👁️ VISIÓN DEL ORÁCULO: ${STAGES[currentStage].tasks[unsolvedIndex].hint}`;
-                feedback.className = "mt-4 text-sm font-mono text-cyan-300 block border-l-4 border-cyan-500 pl-4 py-2 bg-cyan-950/30 rounded-r-lg";
-            } else {
-                alert("La fase ha sido completamente superada. Los dioses están satisfechos.");
-            }
-        }
+        function nextStage() { currentStage++; loadStage(currentStage); window.scrollTo(0,0); }
+        function updateProgress() { document.getElementById('progress-bar').style.width = `${Math.round((currentStage / STAGES.length) * 100)}%`; }
 
         function showVictory() {
             document.getElementById('progress-bar').style.width = `100%`;
-            
             document.getElementById('game-container').innerHTML = `
-                <div class="glass-panel p-10 md:p-16 rounded-3xl shadow-2xl text-center border-t-[12px] border-yellow-500 relative overflow-hidden">
-                    <!-- Efectos de luz final -->
-                    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
-                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-yellow-500/10 rounded-full blur-[100px] pointer-events-none"></div>
-                    
-                    <div class="relative z-10">
-                        <div class="inline-block p-6 bg-slate-900 rounded-full border-4 border-yellow-500 mb-8 shadow-[0_0_50px_rgba(234,179,8,0.5)]">
-                            <i data-lucide="award" class="w-24 h-24 text-yellow-500"></i>
-                        </div>
-                        
-                        <h2 class="text-4xl md:text-6xl font-cinzel font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-500 to-yellow-700 mb-6 drop-shadow-lg">¡EL NÓSTOS FILOLÓGICO!</h2>
-                        
-                        <div class="bg-slate-900/80 border border-yellow-600/30 p-8 rounded-2xl max-w-3xl mx-auto mb-8 backdrop-blur-sm">
-                            <h3 class="text-2xl text-yellow-400 font-cinzel font-bold mb-6 border-b border-slate-700 pb-4">Dominio de la Lengua Griega Alcanzado</h3>
-                            
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                                    <p class="text-xs text-slate-500 uppercase font-mono">Puntuación</p>
-                                    <p class="text-2xl text-cyan-400 font-bold font-mono">${totalXP} XP</p>
-                                </div>
-                                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                                    <p class="text-xs text-slate-500 uppercase font-mono">Reliquias</p>
-                                    <p class="text-2xl text-yellow-400 font-bold font-mono">${unlockedRelics.length}/3</p>
-                                </div>
-                                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                                    <p class="text-xs text-slate-500 uppercase font-mono">Verbos</p>
-                                    <p class="text-xl text-green-400 font-bold font-cinzel">Maestro</p>
-                                </div>
-                                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                                    <p class="text-xs text-slate-500 uppercase font-mono">Casos</p>
-                                    <p class="text-xl text-green-400 font-bold font-cinzel">Maestro</p>
-                                </div>
-                            </div>
-
-                            <p class="text-lg text-slate-300 font-body leading-relaxed">
-                                Has superado con éxito las trampas de la Híbris. Has navegado por la complejidad de la 3ª declinación, el enigmático Aoristo Medio, los escurridizos verbos contractos y los misterios del texto de Heródoto.
-                            </p>
-                        </div>
-                        
-                        <p class="text-2xl font-cinzel text-yellow-500 font-black tracking-wider italic">
-                            "La verdadera riqueza no es el electró de Lidia, sino ἡ σοφία (la sabiduría)."
-                        </p>
-                    </div>
-                </div>
-            `;
+                <div class="glass-panel p-16 rounded-3xl text-center border-t-[12px] border-yellow-500">
+                    <div class="inline-block p-6 bg-slate-900 rounded-full border-4 border-yellow-500 mb-8"><i data-lucide="award" class="w-24 h-24 text-yellow-500"></i></div>
+                    <h2 class="text-5xl font-cinzel font-black text-yellow-500 mb-6">¡EL NÓSTOS FILOLÓGICO!</h2>
+                    <p class="text-xl text-slate-300">Has ganado ${totalXP} XP y ${unlockedRelics.length} reliquias. Los dioses te sonríen.</p>
+                </div>`;
             lucide.createIcons();
+        }
+
+        // ==========================================
+        // 3. FUNCIONES PREMIUM (Modales: Map, Mint, Lore, Translation)
+        // ==========================================
+
+        // -- Modal Traducción --
+        function openTranslationModal() {
+            const modal = document.getElementById('translation-modal');
+            const stage = STAGES[currentStage];
+            document.getElementById('modal-translation-text').innerHTML = stage.translation;
             
-            // Final Victory Confetti simulation
-            const container = document.getElementById('game-container');
-            for(let i=0; i<30; i++) {
-                let spark = document.createElement('div');
-                spark.style.position = 'absolute';
-                spark.style.width = '10px'; spark.style.height = '10px';
-                spark.style.backgroundColor = i%2===0 ? '#eab308' : '#38bdf8';
-                spark.style.left = Math.random() * 100 + '%';
-                spark.style.top = Math.random() * 100 + '%';
-                spark.style.borderRadius = '50%';
-                spark.style.opacity = '0';
-                spark.style.boxShadow = '0 0 10px currentColor';
-                container.appendChild(spark);
-                
-                spark.animate([
-                    { transform: `translate(0,0) scale(0)`, opacity: 1 },
-                    { transform: `translate(${(Math.random()-0.5)*200}px, ${(Math.random()-0.5)*200}px) scale(1.5)`, opacity: 0 }
-                ], { duration: 1500 + Math.random()*1000, iterations: Infinity });
+            const tbody = document.getElementById('modal-analysis-body');
+            tbody.innerHTML = '';
+            stage.analysis.forEach(item => {
+                tbody.innerHTML += `<tr><td class="text-yellow-400 font-bold">${item.word}</td><td class="text-slate-300 text-xs">${item.type}</td><td class="text-cyan-300">${item.morph}</td><td class="text-slate-300 italic">${item.lemma}</td></tr>`;
+            });
+            
+            modal.classList.remove('hidden'); setTimeout(() => { modal.classList.remove('opacity-0'); modal.querySelector('div').classList.remove('scale-95'); }, 10);
+        }
+        function closeTranslationModal() { document.getElementById('translation-modal').classList.add('opacity-0'); setTimeout(() => document.getElementById('translation-modal').classList.add('hidden'), 300); }
+
+        // -- Modal Lore (Secretos) --
+        function openLoreModal(title, text) {
+            const modal = document.getElementById('lore-modal');
+            document.getElementById('lore-title').innerText = title;
+            document.getElementById('lore-text').innerHTML = text;
+            modal.classList.remove('hidden'); setTimeout(() => { modal.classList.remove('opacity-0'); modal.querySelector('div').classList.remove('scale-95'); }, 10);
+        }
+        function closeLoreModal() { document.getElementById('lore-modal').classList.add('opacity-0'); setTimeout(() => document.getElementById('lore-modal').classList.add('hidden'), 300); }
+
+        // -- Modal Mapa (Leaflet) --
+        let ancientMap = null; 
+        function openMapModal() {
+            const modal = document.getElementById('map-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0'); modal.querySelector('div').classList.remove('scale-95');
+                if (!ancientMap) {
+                    ancientMap = L.map('ancient-map').setView([38.8, 26.5], 6);
+                    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', { maxZoom: 10, minZoom: 5 }).addTo(ancientMap);
+                    L.marker([38.48, 28.03]).addTo(ancientMap).bindPopup('<b>Sardes (Lidia)</b><br>Capital del imperio de Creso.').openPopup();
+                    L.marker([38.48, 22.50]).addTo(ancientMap).bindPopup('<b>Oráculo de Delfos</b><br>El engaño divino.');
+                    L.marker([39.75, 33.38]).addTo(ancientMap).bindPopup('<b>Río Halys</b><br>Frontera natural.');
+                }
+                ancientMap.invalidateSize();
+            }, 50);
+        }
+        function closeMapModal() { document.getElementById('map-modal').classList.add('opacity-0'); setTimeout(() => document.getElementById('map-modal').classList.add('hidden'), 300); }
+
+        // -- Modal La Ceca (Etimología) --
+        const ETYMOLOGY_DATA = [
+            { greek: "χρυσός", meaning: "(oro)", options: ["Crisantemo", "Cromático", "Cristal"], correct: 0 },
+            { greek: "χρόνος", meaning: "(tiempo)", options: ["Cromosoma", "Coro", "Cronómetro"], correct: 2 },
+            { greek: "φίλος", meaning: "(amigo / el que ama)", options: ["Filiación", "Filántropo", "Fobia"], correct: 1 },
+            { greek: "πόλεμος", meaning: "(guerra)", options: ["Policía", "Política", "Polémica"], correct: 2 },
+            { greek: "πῦρ", meaning: "(fuego)", options: ["Pirómano", "Piraña", "Pirámide"], correct: 0 }
+        ];
+        let cecaIndex = 0; let minted = 0; let shuffledCeca = [];
+
+        function openMintModal() {
+            document.getElementById('mint-modal').classList.remove('hidden');
+            setTimeout(() => { document.getElementById('mint-modal').classList.remove('opacity-0'); }, 10);
+            shuffledCeca = [...ETYMOLOGY_DATA].sort(() => Math.random() - 0.5);
+            cecaIndex = 0; loadCecaQ();
+        }
+        function closeMintModal() { document.getElementById('mint-modal').classList.add('opacity-0'); setTimeout(() => document.getElementById('mint-modal').classList.add('hidden'), 300); }
+        
+        function loadCecaQ() {
+            if(cecaIndex >= shuffledCeca.length) cecaIndex = 0;
+            const q = shuffledCeca[cecaIndex];
+            document.getElementById('greek-root-word').innerText = q.greek;
+            document.getElementById('greek-root-meaning').innerText = q.meaning;
+            const opts = document.getElementById('mint-options'); opts.innerHTML = '';
+            q.options.forEach((opt, i) => {
+                opts.innerHTML += `<button onclick="checkCeca(${i}, ${q.correct})" class="bg-slate-800 border border-slate-600 text-slate-200 py-3 px-4 rounded-xl">${opt}</button>`;
+            });
+        }
+        function checkCeca(sel, cor) {
+            if(sel === cor) {
+                document.getElementById('forge-flash').style.opacity = '0.5'; setTimeout(() => document.getElementById('forge-flash').style.opacity = '0', 150);
+                document.getElementById('mint-score').innerText = ++minted; addXP(10);
+                cecaIndex++; setTimeout(loadCecaQ, 300);
+            } else {
+                const box = document.querySelector('#mint-modal > div'); box.style.borderColor = '#e11d48';
+                setTimeout(() => box.style.borderColor = 'rgba(249,115,22,0.5)', 300);
             }
         }
 
-        // Initialize App
+        // INIT
         window.onload = init;
 
     </script>
