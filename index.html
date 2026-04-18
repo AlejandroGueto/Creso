@@ -368,6 +368,54 @@
                 </div>
             </div>
         </div>
+        <div id="notepad-panel" class="fixed bottom-24 left-4 md:left-8 w-80 max-w-[90vw] bg-amber-100 border-4 border-amber-900 rounded-lg shadow-[0_10px_40px_rgba(0,0,0,0.5)] z-40 hidden transform transition-transform origin-bottom-left">
+            <div class="bg-amber-900 text-amber-100 p-3 flex justify-between items-center rounded-t-sm border-b-2 border-amber-950">
+                <h3 class="font-cinzel font-bold flex items-center gap-2 text-sm">
+                    <i data-lucide="edit-3" class="w-4 h-4"></i> Tablilla de Apuntes
+                </h3>
+                <button onclick="toggleNotepad()" class="hover:text-amber-300 transition-colors">
+                    <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div class="p-1">
+                <textarea id="student-notes" oninput="saveNotes()" placeholder="Escribe aquí tu borrador de traducción, analiza casos o apunta las pistas del oráculo... (Tus notas se guardan solas)" class="w-full h-64 bg-amber-50/50 text-amber-950 p-3 font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-amber-900 rounded"></textarea>
+            </div>
+        </div>
+
+        <button onclick="toggleNotepad()" class="fixed bottom-6 left-4 md:left-8 z-50 bg-gradient-to-br from-amber-700 to-amber-900 text-amber-100 p-4 rounded-full shadow-lg border-2 border-amber-500 hover:scale-110 hover:shadow-amber-500/50 transition-all group">
+            <i data-lucide="edit-3" class="w-6 h-6 group-hover:rotate-12 transition-transform"></i>
+        </button>
+        ```
+
+---
+
+### PASO 2: El JavaScript (La memoria del navegador)
+Ahora vamos a decirle al navegador que guarde cada letra que el alumno escriba.
+
+1. Busca (con `Ctrl + F`) la línea donde inicializas todo: **`window.onload = init;`** (al final del código).
+2. Pega estas tres funciones cortitas **justo encima** de esa línea:
+
+```javascript
+        // --- Función Premium: Tablilla de Cera (LocalStorage) ---
+        function toggleNotepad() {
+            const panel = document.getElementById('notepad-panel');
+            panel.classList.toggle('hidden');
+            if (!panel.classList.contains('hidden')) {
+                document.getElementById('student-notes').focus();
+            }
+        }
+
+        function saveNotes() {
+            const notes = document.getElementById('student-notes').value;
+            localStorage.setItem('códice_creso_notas', notes);
+        }
+
+        function loadNotes() {
+            const savedNotes = localStorage.getItem('códice_creso_notas');
+            if (savedNotes) {
+                document.getElementById('student-notes').value = savedNotes;
+            }
+        }
     </main>
 
     <script>
@@ -866,8 +914,9 @@
         let totalXP = 0;
         let unlockedRelics = [];
 
-        function init() {
+       function init() {
             renderCodexData();
+            loadNotes(); // <--- Esta es la línea nueva
             loadStage(0);
         }
 
