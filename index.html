@@ -992,6 +992,13 @@
             renderCodexData();
             loadNotes(); // <--- Esta es la línea nueva
             loadStage(0);
+const bienvenidas = [
+    "¡Saludos, filólogo! Mis tesoros son vastos, pero solo la sabiduría te permitirá llevarte una moneda.",
+    "Bienvenido a Sardes. ¿Vienes buscando oro o conocimiento? Aquí, ambos pesan lo mismo.",
+    "¡Por el río Pactolo! Hacía siglos que no veía a alguien con ganas de estudiar."
+];
+const saludoAleatorio = bienvenidas[Math.floor(Math.random() * bienvenidas.length)];
+setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos de entrar
         }
 
         // --- Sistema de Pestañas del Códice ---
@@ -1051,6 +1058,9 @@
                 sidebar.classList.add('hidden');
                 sidebar.classList.remove('fixed', 'inset-y-0', 'right-0', 'w-[95vw]', 'md:w-[80vw]', 'z-[60]', 'm-2', 'md:m-4');
                 overlay.classList.add('hidden');
+                const panel = document.getElementById('codex-panel');
+    if (panel.classList.contains('translate-x-full')) { 
+        sayCroesus("Mi biblioteca personal. Aquí Solón me enseñó que la fortuna es más volátil que el humo.");
             }
         }
 
@@ -1225,7 +1235,8 @@
                 lucide.createIcons();
                 
             }, 50);
-        }
+        sayCroesus("Contempla mi imperio. Desde las costas de Jonia hasta el corazón de Lidia, todo brilla bajo mi mando.");
+}
 
         function closeMapModal() {
             const modal = document.getElementById('map-modal');
@@ -1262,6 +1273,7 @@
             currentMintIndex = 0;
             loadMintQuestion();
             lucide.createIcons();
+            sayCroesus("¡Escucha el tintineo del electró! Fui el primero en poner mi sello al dinero, ¿lo sabías?");
         }
 
         function closeMintModal() {
@@ -1347,6 +1359,8 @@
             } else if (totalXP >= 250) {
                 newRank = "Discípulo Ático";
                 rankColor = "text-cyan-100 border-cyan-500 bg-cyan-900";
+    sayCroesus("¡Magnífico! Tu intelecto brilla como un lingote recién fundido. ¡Sigue así!");
+}
             }
             
             rankBadge.innerText = newRank;
@@ -1472,8 +1486,8 @@
                 alert(`👁️ VISIÓN DEL ORÁCULO:\n\n${STAGES[currentStage].tasks[unsolvedIndex].hint}`);
             } else {
                 alert("La fase ha sido completamente superada. Los dioses están satisfechos.");
-            }
-        }
+                sayCroesus("Invocando al Oráculo, ¿eh? Recuerda: sus palabras son como el oro, hay que saber filtrarlas.");
+}
 
         function showVictory() {
             document.getElementById('progress-bar').style.width = `100%`;
@@ -1548,7 +1562,6 @@
         }
 
         // Initialize App
-        // 👇 AHORA SÍ, ESTÁ DENTRO DE <script> 👇
         function toggleNotepad() {
             const panel = document.getElementById('notepad-panel');
             panel.classList.toggle('hidden');
@@ -1560,6 +1573,11 @@
         function saveNotes() {
             const notes = document.getElementById('student-notes').value;
             localStorage.setItem('códice_creso_notas', notes);
+            if (!window.notesTalked) {
+        sayCroesus("Anota bien en tu tablilla. La memoria es traicionera, pero el grafito es eterno.");
+        window.notesTalked = true; // Solo lo dirá la primera vez que escriban algo
+    }
+}
         }
 
         function loadNotes() {
@@ -1597,7 +1615,8 @@
             if (!localStorage.getItem('rosetta_used')) {
                 addXP(20);
                 localStorage.setItem('rosetta_used', 'true');
-            }
+               sayCroesus("La lengua de Homero es un laberinto para los bárbaros, pero una joya para los sabios. ¡Escribe!");
+}
         }
 
         function closeRosettaModal() {
@@ -1648,6 +1667,8 @@
             if (!localStorage.getItem('torch_used')) {
                 addXP(50);
                 localStorage.setItem('torch_used', 'true');
+                sayCroesus("Cuidado con el fuego de Prometeo... a veces revela verdades que preferiríamos dejar en la sombra.");
+}
             }
         }
 
@@ -1743,5 +1764,25 @@
         window.onload = init;
 
     </script>
+    let idleTimer;
+function resetIdleTimer() {
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(() => {
+        const bromas = [
+            "¿Te has quedado petrificado como el rey Midas? ¡Muévete, que el tiempo es electró!",
+            "¿Estás analizando un aoristo o te has quedado dormido?"
+        ];
+        const bromaAleatoria = bromas[Math.floor(Math.random() * bromas.length)];
+        sayCroesus(bromaAleatoria);
+    }, 60000); // 60.000 milisegundos = 1 minuto
+}
+
+// Escuchar movimientos del ratón o teclas para resetear el tiempo
+window.onload = () => {
+    init(); // Tu función de inicio normal
+    document.onmousemove = resetIdleTimer;
+    document.onkeypress = resetIdleTimer;
+    resetIdleTimer();
+};
 </body>
 </html>
