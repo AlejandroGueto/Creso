@@ -859,6 +859,9 @@
                 ]
             }
         ];
+
+        let currentStage = 0;
+        
         let tasksState = [];
         let totalXP = 0;
         let unlockedRelics = [];
@@ -1339,12 +1342,11 @@
             document.getElementById('progress-bar').style.width = `${percentage}%`;
         }
 
-        function useHint() {
+       function useHint() {
             const unsolvedIndex = tasksState.findIndex(state => !state);
             if (unsolvedIndex !== -1) {
-                const feedback = document.getElementById(`feedback-${unsolvedIndex}`);
-                feedback.innerText = `👁️ VISIÓN DEL ORÁCULO: ${STAGES[currentStage].tasks[unsolvedIndex].hint}`;
-                feedback.className = "mt-4 text-sm font-mono text-cyan-300 block border-l-4 border-cyan-500 pl-4 py-2 bg-cyan-950/30 rounded-r-lg";
+                // Sacamos un pop-up gigante en el navegador con la pista
+                alert(`👁️ VISIÓN DEL ORÁCULO:\n\n${STAGES[currentStage].tasks[unsolvedIndex].hint}`);
             } else {
                 alert("La fase ha sido completamente superada. Los dioses están satisfechos.");
             }
