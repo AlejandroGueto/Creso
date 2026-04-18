@@ -161,7 +161,7 @@
         
         <div class="relative w-32 h-32 md:w-48 md:h-48 cursor-pointer hover:scale-110 transition-transform duration-500 animate-float" onclick="sayCroesus('¡No me toques el manto, que es de seda de Sardes!')">
             <div class="absolute inset-0 bg-yellow-500/20 rounded-full blur-2xl animate-pulse"></div>
-            <img src="creso.png" 
+            <img src="https://drive.google.com/uc?export=view&id=15xR0gEsq7zgzoJUBcYAN7h4CNcSx7K63"
                  alt="Rey Creso" 
                  class="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(234,179,8,0.6)] relative z-10">
         </div>
@@ -1049,18 +1049,15 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
         // --- Manejo del Códice Móvil/Desktop ---
         // --- Manejo del Códice Móvil/Desktop ---
         function toggleCodex() {
-            const sidebar = document.getElementById('codex-sidebar');
-            const overlay = document.getElementById('mobile-overlay');
-            
-            if(sidebar.classList.contains('hidden')) {
-                sidebar.classList.remove('hidden');
-                sidebar.classList.add('fixed', 'inset-y-0', 'right-0', 'w-[95vw]', 'md:w-[80vw]', 'z-[60]', 'm-2', 'md:m-4');
-                overlay.classList.remove('hidden');
-                sayCroesus("Mi biblioteca personal. Aquí Solón me enseñó que la fortuna es más volátil que el humo.");
-            } else {
-                sidebar.classList.add('hidden');
-                sidebar.classList.remove('fixed', 'inset-y-0', 'right-0', 'w-[95vw]', 'md:w-[80vw]', 'z-[60]', 'm-2', 'md:m-4');
-                overlay.classList.add('hidden');
+            const panel = document.getElementById('codex-panel');
+            if (panel) {
+                // Esto quita o pone la clase que lo esconde a la derecha
+                panel.classList.toggle('translate-x-full');
+                
+                // Si el panel se está abriendo (es decir, ya NO tiene la clase translate-x-full), Creso habla
+                if (!panel.classList.contains('translate-x-full')) { 
+                    sayCroesus("Mi biblioteca personal. Aquí Solón me enseñó que la fortuna es más volátil que el humo.");
+                }
             }
         }
 
