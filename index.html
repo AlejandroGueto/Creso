@@ -297,6 +297,18 @@
                 </div>
             </div>
         </div>
+        <div id="lore-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[110] hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300" onclick="closeLoreModal()">
+            <div class="bg-gradient-to-b from-amber-900 to-slate-900 border-2 border-amber-500/50 rounded-2xl w-full max-w-lg shadow-[0_0_40px_rgba(245,158,11,0.3)] transform scale-95 transition-transform duration-300 p-1" onclick="event.stopPropagation()">
+                <div class="bg-slate-950/90 rounded-xl p-6 relative overflow-hidden">
+                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-amber-500/20 rounded-full blur-2xl"></div>
+                    <button onclick="closeLoreModal()" class="absolute top-4 right-4 text-amber-500/50 hover:text-amber-400 transition-colors">
+                        <i data-lucide="x-circle" class="w-6 h-6"></i>
+                    </button>
+                    <h3 id="lore-title" class="text-2xl font-cinzel font-black text-amber-400 mb-4 border-b border-amber-900/50 pb-2 pr-8"></h3>
+                    <p id="lore-text" class="text-slate-300 font-body leading-relaxed text-lg relative z-10"></p>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script>
@@ -307,27 +319,38 @@
         // ==========================================
         const CULTURE_DATA = [
             {
-                title: "La Riqueza de Lidia y el Electró", icon: "coins",
+                title: "1. La Riqueza de Lidia y el Electró", icon: "coins",
                 content: `<p class="mb-4">Lidia, situada en Asia Menor (actual Turquía), fue un poderoso imperio en el s. VI a.C. Su capital, Sardes, estaba bañada por el río Pactolo, famoso por sus arenas auríferas. Según la mitología, el rey Midas se lavó en él para librarse de su toque de oro.</p>
-                <p>Creso fue el primer soberano en acuñar monedas con pureza garantizada por el estado. Utilizaba el <strong>electró</strong> (una aleación natural de oro y plata). Sus monedas, conocidas como <em>creseidas</em>, impulsaron el comercio internacional y lo convirtieron en el hombre más rico del mundo conocido.</p>`
+                <p>Creso fue el primer soberano en acuñar monedas con pureza garantizada por el estado. Utilizaba el <span class="text-amber-400 font-bold cursor-pointer hover:text-amber-300 underline decoration-amber-500/50 decoration-dashed transition-all" onclick="openLoreModal('El Electró', 'Aleación natural de oro (73%) y plata (27%). Los griegos lo llamaban &quot;oro blanco&quot;. Las monedas de Creso tenían el sello de un león y un toro enfrentados.')">electró</span>. Sus monedas, conocidas como <em>creseidas</em>, impulsaron el comercio internacional.</p>`
             },
             {
-                title: "Híbris (Ὕβρις) y Némesis (Νέμεσις)", icon: "scale",
-                content: `<p class="mb-4">En el pensamiento griego, la <strong>Híbris</strong> es la arrogancia extrema, el orgullo desmesurado que lleva a un mortal a creerse igual a los dioses o a no reconocer los límites de su condición humana. Creso comete Híbris al basar su felicidad absoluta en riquezas materiales.</p>
-                <p>La consecuencia inevitable de la Híbris es la <strong>Némesis</strong>, la venganza divina o justicia retributiva que castiga la desmesura y restaura el equilibrio cósmico. Los dioses griegos son envidiosos (<em>phthonos theōn</em>) de la excesiva prosperidad humana.</p>`
-            },
-            {
-                title: "Solón y la Sabiduría (Σοφία)", icon: "brain-circuit",
-                content: `<p class="mb-4">Solón de Atenas fue uno de los Siete Sabios de Grecia. Reformó las leyes de Atenas y luego viajó por el mundo. Heródoto narra su encuentro (históricamente improbable pero literariamente brillante) con Creso.</p>
+                title: "2. Solón y la Sabiduría (Σοφία)", icon: "brain-circuit",
+                content: `<p class="mb-4">Solón de Atenas fue uno de los Siete Sabios de Grecia. Reformó las leyes de Atenas y luego viajó por el mundo. Heródoto narra su encuentro con Creso.</p>
                 <p>Solón representa la <em>sophrosyne</em> (moderación, prudencia). Su máxima es que la fortuna es inestable: <strong>"No llames a nadie verdaderamente feliz (ὄλβιος) hasta que haya muerto"</strong>, pues el destino puede arruinar una vida próspera en su último día.</p>`
             },
+            // 👇 NUEVA SECCIÓN: ATIS Y ADRASTO 👇
             {
-                title: "El Oráculo de Delfos y la Ambigüedad", icon: "flame",
-                content: `<p class="mb-4">El Oráculo de Delfos, dedicado a Apolo, era el centro religioso del mundo antiguo (el <em>omphalos</em> o cráter del mundo). Las profecías eran pronunciadas por la Pitia en estado de trance y puestas en hexámetros dactílicos por los sacerdotes.</p>
-                <p>Sus respuestas solían ser ambiguas, requiriendo <strong>Mêtis</strong> (inteligencia práctica y astucia) para ser interpretadas correctamente. Creso, cegado por su deseo de guerra, interpretó la profecía literalmente a su favor, ignorando que el "gran imperio" que caería sería el suyo propio.</p>`
+                title: "3. La Tragedia de Atis y el Jabalí", icon: "swords",
+                content: `<p class="mb-4">Tras la partida de Solón, la venganza divina comenzó. Creso tuvo un sueño profético: su hijo favorito, <span class="text-amber-400 font-bold cursor-pointer hover:text-amber-300 underline decoration-amber-500/50 decoration-dashed transition-all" onclick="openLoreModal('Atis (Ἄτυς)', 'El nombre Atis está relacionado con divinidades frigias de la vegetación que mueren jóvenes y trágicamente, un presagio de su propio destino.')">Atis</span>, moriría herido por una punta de hierro. Aterrado, Creso lo alejó de la guerra y escondió todas las armas del palacio.</p>
+                <p class="mb-4">Tiempo después, llegó a Sardes un príncipe exiliado llamado <span class="text-amber-400 font-bold cursor-pointer hover:text-amber-300 underline decoration-amber-500/50 decoration-dashed transition-all" onclick="openLoreModal('Adrasto (Ἄδρηστος)', 'Su nombre en griego significa &quot;El Inevitable&quot; o &quot;Del que no se puede escapar&quot;. Una ironía literaria magistral de Heródoto, pues él será el portador del destino inevitable de Atis.')">Adrasto</span>, que había matado a su propio hermano por accidente. Creso lo purificó y lo acogió como huésped (<em>Xenía</em>).</p>
+                <p>Ese mismo año, un monstruoso jabalí aterrorizó la región de Misia. Atis rogó ir a la caza, argumentando que los colmillos de un jabalí "no son puntas de hierro". Creso accedió, pero envió a Adrasto para protegerlo. Durante la cacería, Adrasto lanzó su jabalina a la bestia, pero falló, atravesando trágicamente a Atis y cumpliendo la profecía. Devastado por el dolor, Adrasto se suicidó sobre la tumba del joven.</p>`
+            },
+            {
+                title: "4. El Hijo Sordomudo y la Caída", icon: "ear-off",
+                content: `<p class="mb-4">Creso tenía otro hijo que era sordomudo. Años atrás, Creso había preguntado al oráculo si el niño hablaría alguna vez. La Pitia respondió: <em>"Oh, rey, no desees escuchar la voz de tu hijo en el palacio. Hablará por primera vez en un día de gran infortunio"</em>.</p>
+                <p>Cuando los persas de Ciro el Grande tomaron Sardes, un soldado persa, sin reconocer a Creso, se abalanzó sobre él para matarlo. Creso, destrozado por haberlo perdido todo, no hizo ademán de defenderse. Al ver esto, su hijo mudo rompió a hablar por primera vez por puro terror, gritando: <span class="text-amber-400 font-bold cursor-pointer hover:text-amber-300 underline decoration-amber-500/50 decoration-dashed transition-all" onclick="openLoreModal('El grito que salvó al rey', '&quot;¡Hombre, no mates a Creso!&quot; (Ἄνθρωπε, μὴ κτεῖνε Κροῖσον). Gracias a estas primeras palabras, el soldado lo reconoció y lo hizo prisionero en lugar de asesinarlo.')">¡Hombre, no mates a Creso!</span>. La profecía se había cumplido al milímetro.</p>`
+            },
+            {
+                title: "5. Híbris (Ὕβρις) y Némesis (Νέμεσις)", icon: "scale",
+                content: `<p class="mb-4">En el pensamiento griego, la <strong>Híbris</strong> es la arrogancia extrema, el orgullo desmesurado que lleva a un mortal a creerse intocable. Creso comete Híbris al basar su felicidad en riquezas materiales, ignorando los avisos divinos.</p>
+                <p>La consecuencia de la Híbris es la <strong>Némesis</strong>, la venganza divina o justicia retributiva que restaura el equilibrio. La pérdida de Atis, de su imperio y su condena a la hoguera son la Némesis en acción.</p>`
+            },
+            {
+                title: "6. El Oráculo de Delfos y la Ambigüedad", icon: "flame",
+                content: `<p class="mb-4">El Oráculo de Delfos, dedicado a Apolo, era el centro religioso del mundo antiguo. Las profecías, pronunciadas por la Pitia en estado de trance, solían ser ambiguas, requiriendo <strong>Mêtis</strong> (inteligencia y astucia) para ser interpretadas.</p>
+                <p>Creso, cegado por su deseo de guerra, interpretó la famosa profecía ("Si cruzas el río, destruirás un gran imperio") literalmente a su favor, ignorando que el imperio que caería sería el suyo. Al final de la historia, Creso manda sus cadenas a Delfos quejándose del engaño, pero el dios le responde que el oráculo fue exacto: la culpa fue de su propia interpretación.</p>`
             }
         ];
-
         // ==========================================
         // BASE DE DATOS: GRAMÁTICA EXHAUSTIVA
         // ==========================================
@@ -987,6 +1010,29 @@
                 modal.classList.add('hidden');
                 document.body.style.overflow = '';
             }, 300);
+        }
+        // --- Función Premium: Secretos del Códice ---
+        function openLoreModal(title, text) {
+            const modal = document.getElementById('lore-modal');
+            const titleEl = document.getElementById('lore-title');
+            const textEl = document.getElementById('lore-text');
+            
+            titleEl.innerText = title;
+            textEl.innerHTML = text; // Usamos innerHTML por si queremos meter negritas en el secreto
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('div').classList.remove('scale-95');
+            }, 10);
+            lucide.createIcons();
+        }
+
+        function closeLoreModal() {
+            const modal = document.getElementById('lore-modal');
+            modal.classList.add('opacity-0');
+            modal.querySelector('div').classList.add('scale-95');
+            setTimeout(() => modal.classList.add('hidden'), 300);
         }
         // --- Funciones Premium: XP y Reliquias ---
         function addXP(amount) {
