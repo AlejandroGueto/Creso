@@ -1746,7 +1746,56 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
             document.onkeypress = resetIdleTimer;
             resetIdleTimer();
         };
+// --- SUPERPODER: CRESO ARRASTRABLE (DRAG & DROP) ---
+        const cresoElement = document.getElementById('croesus-mentor');
+        let isDragging = false, startX, startY;
 
+        // Iniciar el arrastre (Ratón y Táctil)
+        cresoElement.addEventListener('mousedown', startDrag);
+        cresoElement.addEventListener('touchstart', startDrag, {passive: true});
+
+        function startDrag(e) {
+            isDragging = true;
+            let clientX = e.clientX || e.touches[0].clientX;
+            let clientY = e.clientY || e.touches[0].clientY;
+            let rect = cresoElement.getBoundingClientRect();
+            
+            startX = clientX - rect.left;
+            startY = clientY - rect.top;
+            
+            cresoElement.style.cursor = 'grabbing';
+            cresoElement.style.transition = 'none'; // Quitar animación para que no vaya con lag
+        }
+
+        // Mover a Creso por la pantalla
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('touchmove', drag, {passive: true});
+
+        function drag(e) {
+            if (!isDragging) return;
+            
+            let clientX = e.clientX || e.touches[0].clientX;
+            let clientY = e.clientY || e.touches[0].clientY;
+            
+            // Liberamos a Creso de su esquina fija (anulamos el bottom y right de Tailwind)
+            cresoElement.style.bottom = 'auto';
+            cresoElement.style.right = 'auto';
+            
+            // Le damos su nueva posición
+            cresoElement.style.left = (clientX - startX) + 'px';
+            cresoElement.style.top = (clientY - startY) + 'px';
+        }
+
+        // Soltar a Creso
+        document.addEventListener('mouseup', stopDrag);
+        document.addEventListener('touchend', stopDrag);
+
+        function stopDrag() {
+            if (!isDragging) return;
+            isDragging = false;
+            cresoElement.style.cursor = 'pointer';
+            cresoElement.style.transition = 'all 0.5s ease'; // Devolver su animación suave
+        }
     </script>
 </body>
 </html>
