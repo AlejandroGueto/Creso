@@ -1474,6 +1474,33 @@ Ahora vamos a decirle al navegador que guarde cada letra que el alumno escriba.
         }
 
         // Initialize App
+        // 👇 AHORA SÍ, ESTÁ DENTRO DE <script> 👇
+        function toggleNotepad() {
+            const panel = document.getElementById('notepad-panel');
+            panel.classList.toggle('hidden');
+            if (!panel.classList.contains('hidden')) {
+                document.getElementById('student-notes').focus();
+            }
+        }
+
+        function saveNotes() {
+            const notes = document.getElementById('student-notes').value;
+            localStorage.setItem('códice_creso_notas', notes);
+        }
+
+        function loadNotes() {
+            const savedNotes = localStorage.getItem('códice_creso_notas');
+            if (savedNotes) {
+                document.getElementById('student-notes').value = savedNotes;
+            }
+        }
+
+        // INIT
+        window.onload = init;
+
+    </script>
+</body>
+</html>
         window.onload = init;
 
     </script>
