@@ -209,14 +209,19 @@
 
             <!-- Tasks Dashboard -->
             <div class="glass-panel p-8 lg:p-10 rounded-3xl border-t-4 border-yellow-500 relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
-                
                 <div class="flex justify-between items-end border-b border-slate-700 pb-5 mb-8 relative z-10">
                     <h3 class="font-cinzel text-3xl text-white font-bold drop-shadow-md">Desafíos Filológicos</h3>
-                    <button onclick="useHint()" class="group flex items-center gap-2 text-sm font-mono bg-cyan-950/40 border border-cyan-800/50 text-cyan-400 hover:text-cyan-300 hover:bg-cyan-900/60 px-4 py-2 rounded-lg transition-all">
-                        <i data-lucide="sparkles" class="w-4 h-4 group-hover:animate-pulse"></i> Invocar Oráculo
-                    </button>
-                </div>
+                    
+                    <div class="flex gap-3">
+                        <button onclick="openTranslationModal()" class="group flex items-center gap-2 text-sm font-mono bg-amber-950/40 border border-amber-800/50 text-amber-400 hover:text-amber-300 hover:bg-amber-900/60 px-4 py-2 rounded-lg transition-all shadow-lg">
+                            <i data-lucide="languages" class="w-4 h-4 group-hover:rotate-12 transition-transform"></i> Traducción y Análisis
+                        </button>
+                        
+                        <button onclick="useHint()" class="group flex items-center gap-2 text-sm font-mono bg-cyan-950/40 border border-cyan-800/50 text-cyan-400 hover:text-cyan-300 hover:bg-cyan-900/60 px-4 py-2 rounded-lg transition-all shadow-lg">
+                            <i data-lucide="sparkles" class="w-4 h-4 group-hover:animate-pulse"></i> Invocar Oráculo
+                        </button>
+                    </div>
+                    </div>
                 
                 <div id="tasks-container" class="space-y-6 relative z-10">
                     <!-- Tasks injected via JS -->
@@ -256,6 +261,41 @@
 
         <!-- OVERLAY FOR MOBILE CODEX -->
         <div id="mobile-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 hidden xl:hidden" onclick="toggleCodex()"></div>
+        <div id="translation-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-[100] hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+            <div class="bg-slate-900 border border-amber-600/50 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-[0_0_50px_rgba(217,119,6,0.2)] transform scale-95 transition-transform duration-300" id="translation-modal-content">
+                <div class="sticky top-0 bg-slate-900/95 backdrop-blur border-b border-slate-700 p-6 flex justify-between items-center z-10">
+                    <h2 class="text-2xl font-cinzel font-bold text-amber-500 flex items-center gap-3">
+                        <i data-lucide="book-type" class="w-7 h-7"></i> Análisis Filológico
+                    </h2>
+                    <button onclick="closeTranslationModal()" class="text-slate-400 hover:text-white bg-slate-800 hover:bg-rose-900/50 p-2 rounded-full transition-colors">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                <div class="p-6 md:p-8 space-y-8">
+                    <div>
+                        <h3 class="text-sm font-mono text-cyan-400 uppercase tracking-widest mb-3 border-b border-slate-700 pb-2">Traducción Literal Adaptada</h3>
+                        <p id="modal-translation-text" class="text-slate-300 text-lg leading-relaxed font-body italic bg-slate-950 p-5 rounded-xl border border-slate-800"></p>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-mono text-cyan-400 uppercase tracking-widest mb-3 border-b border-slate-700 pb-2">Descomposición Morfológica</h3>
+                        <div class="overflow-x-auto">
+                            <table class="premium-table text-sm w-full">
+                                <thead>
+                                    <tr>
+                                        <th>Forma en Texto</th>
+                                        <th>Clase</th>
+                                        <th>Morfología</th>
+                                        <th>Enunciado (Lema)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="modal-analysis-body">
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script>
@@ -550,6 +590,15 @@
                 `,
                 relic: "Moneda de Electró (Creseida)",
                 relicIcon: "coins",
+
+                translation: "Creso, rey de los lidios, era rico. En su palacio tenía mucho oro y plata. Una vez, Solón, el legislador de los atenienses, fue a Sardes. Creso le muestra toda su riqueza y le pregunta: 'Oh extranjero ateniense, ¿a quién de todos los hombres consideras que es el más feliz?'. Pero Solón no lo adula, sino que dice: 'Es necesario observar el final de todo asunto; pues a muchos el dios, tras mostrarles la felicidad, los ha arruinado de raíz'.",
+                analysis: [
+                    { word: "Κροῖσος", type: "Sustantivo", morph: "Nom. Sg. Masc.", lemma: "Κροῖσος, -ου (ὁ)" },
+                    { word: "ἦν", type: "Verbo", morph: "Imperf. Ind. Activo (3ª Sg)", lemma: "εἰμί" },
+                    { word: "ὀλβιώτατον", type: "Adjetivo (Superl.)", morph: "Acus. Sg. Masc.", lemma: "ὄλβιος, -α, -ον" },
+                    { word: "τίνα", type: "Pronombre", morph: "Acus. Sg. Masc.", lemma: "τίς, τί" }
+                ],
+                
                 tasks: [
                     {
                         type: "select",
@@ -602,6 +651,31 @@
                 `,
                 relic: "Rama de Laurel Délfico",
                 relicIcon: "leaf",
+
+                {
+                title: "Fase II: El Engaño de Delfos",
+                narrative: `
+                    <p>Habiendo perdido a su hijo por una profecía de Némesis, Creso teme ahora el avance...</p>
+                    <p>La Pitia pronuncia un oráculo ambiguo. Creso no aplica la inteligencia práctica...</p>
+                `,
+                greekText: `
+                    μετὰ δὲ ταῦτα, <strong>οὗτος</strong> ὁ Κροῖσος ἐβούλετο τοῖς Πέρσαις <strong>πολεμεῖν</strong>...
+                `,
+                relic: "Rama de Laurel Délfico",
+                relicIcon: "leaf",
+
+                translation: "Después de esto, este Creso quería hacer la guerra a los persas. Envió, pues, mensajeros a Delfos y preguntó a Apolo. La Pitia respondió: 'Si cruzas el río Halys, destruirás un gran imperio'. El rey se alegró con estas palabras. Preparaba, pues, su ejército y cruzaba el río, esperando vencer a los persas. Pero destruyó su propio imperio.",
+                analysis: [
+                    { word: "οὗτος", type: "Pron. Demostrativo", morph: "Nom. Sg. Masc.", lemma: "οὗτος, αὕτη, τοῦτο" },
+                    { word: "πολεμεῖν", type: "Verbo (Contracto)", morph: "Infinitivo Pres. Activo", lemma: "πολεμέω" },
+                    { word: "βασιλεὺς", type: "Sustantivo", morph: "Nom. Sg. Masc.", lemma: "βασιλεύς, -έως (ὁ)" },
+                    { word: "ἔφθειρεν", type: "Verbo", morph: "Imperf. Ind. Activo (3ª Sg)", lemma: "φθείρω" }
+                ],
+
+                tasks: [
+                    {
+                        type: "select",
+                        question: "Observa los verbos de acción continua en el pasado...",
                 tasks: [
                     {
                         type: "select",
@@ -654,6 +728,31 @@
                 `,
                 relic: "Antorcha Apagada de Ciro",
                 relicIcon: "flame",
+
+                {
+                title: "Fase III: La Pira y La Revelación",
+                narrative: `
+                    <p>Creso ha cruzado el río Halys. Su ejército ha sido aniquilado y Sardes ha caído...</p>
+                    <p>Sintiendo el calor de las llamas (<em>phlox</em>), Creso sufre una catarsis...</p>
+                `,
+                greekText: `
+                    οἱ γὰρ Πέρσαι ἐνίκησαν τοὺς Λυδούς. ὁ δὲ Κῦρος <strong>ἔλαβε</strong> τὸν Κροῖσον ζῶντα...
+                `,
+                relic: "Antorcha Apagada de Ciro",
+                relicIcon: "flame",
+
+                translation: "Pues los persas vencieron a los lidios. Y Ciro capturó a Creso vivo y ordenó a los soldados hacer una gran pira. Creso, estando de pie sobre la pira, se acordó de Solón y gritó tres veces: '¡Solón, Solón, Solón!'. Ciro, cuando se dio cuenta de la sabiduría del hombre, se arrepintió y ordenó apagar el fuego. Así Creso fue salvado y se convirtió en amigo de Ciro.",
+                analysis: [
+                    { word: "ἔλαβε", type: "Verbo", morph: "Aoristo Radical Activo (3ª Sg)", lemma: "λαμβάνω" },
+                    { word: "πυρᾶς", type: "Sustantivo", morph: "Gen. Sg. Fem.", lemma: "πυρά, -ᾶς (ἡ)" },
+                    { word: "ᾔσθετο", type: "Verbo (Deponente)", morph: "Aoristo Ind. Medio (3ª Sg)", lemma: "αἰσθάνομαι" },
+                    { word: "ἐγένετο", type: "Verbo (Deponente)", morph: "Aoristo Ind. Medio (3ª Sg)", lemma: "γίγνομαι" }
+                ],
+
+                tasks: [
+                    {
+                        type: "select",
+                        question: "El verbo <strong class='text-yellow-400'>ἔλαβε</strong> (capturó) es un Aoristo...",
                 tasks: [
                     {
                         type: "select",
@@ -836,7 +935,51 @@
                 { opacity: 1, transform: 'translateY(0)' }
             ], { duration: 600, easing: 'ease-out' });
         }
+// --- Modal de Traducción y Análisis ---
+        function openTranslationModal() {
+            const modal = document.getElementById('translation-modal');
+            const modalContent = document.getElementById('translation-modal-content');
+            const stage = STAGES[currentStage];
 
+            // Rellenar traducción
+            document.getElementById('modal-translation-text').innerHTML = stage.translation;
+
+            // Rellenar tabla de análisis
+            const tbody = document.getElementById('modal-analysis-body');
+            tbody.innerHTML = '';
+            stage.analysis.forEach(item => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="text-yellow-400 font-bold font-serif text-lg">${item.word}</td>
+                        <td class="text-slate-300 font-mono text-xs">${item.type}</td>
+                        <td class="text-cyan-300">${item.morph}</td>
+                        <td class="text-slate-300 italic">${item.lemma}</td>
+                    </tr>
+                `;
+            });
+
+            // Mostrar modal con animación
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
+            lucide.createIcons();
+        }
+
+        function closeTranslationModal() {
+            const modal = document.getElementById('translation-modal');
+            const modalContent = document.getElementById('translation-modal-content');
+            
+            modal.classList.add('opacity-0');
+            modalContent.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
         // --- Funciones Premium: XP y Reliquias ---
         function addXP(amount) {
             totalXP += amount;
