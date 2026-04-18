@@ -1047,6 +1047,7 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
 
         // --- Manejo del Códice Móvil/Desktop ---
         // --- Manejo del Códice Móvil/Desktop ---
+        // --- Manejo del Códice Móvil/Desktop ---
         function toggleCodex() {
             const sidebar = document.getElementById('codex-sidebar');
             const overlay = document.getElementById('mobile-overlay');
@@ -1744,7 +1745,9 @@ setTimeout(() => sayCroesus(saludoAleatorio), 2000); // Aparece a los 2 segundos
 
         // --- ARRANQUE DEL JUEGO ---
         window.onload = () => {
+            init(); // Carga las bases de datos que ya tienes arriba
             initParticles();
+            
             document.onmousemove = resetIdleTimer;
             document.onkeypress = resetIdleTimer;
             resetIdleTimer();
